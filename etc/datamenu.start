@@ -23,7 +23,7 @@ function datamenulib = startModule() // small letter toolbox name
 // =============================================================================
   mprintf("\tLoad macros\n");
   pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
-  samplestatlib = lib(pathmacros);
+  datamenulib = lib(pathmacros);
 
 // load gateways and Java libraries
 // =============================================================================
@@ -62,5 +62,5 @@ function datamenulib = startModule() // small letter toolbox name
 
 endfunction
 
-toolbox_skeletonlib = startModule();
+datamenulib = startModule();
 clear startModule; // remove startModule on stack
