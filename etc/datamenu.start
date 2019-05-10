@@ -59,6 +59,7 @@ function datamenulib = startModule() // small letter toolbox name
 // ====================================================================
     // A Welcome message.
     mprintf("\tType ""help"" and search for "+TOOLBOX_TITLE+" for Demonstration.\n");
+    DM_datamenu("start");
 
 endfunction
 
