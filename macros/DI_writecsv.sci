@@ -1,29 +1,53 @@
+// Copyright (C) 2019 Hani Andreas Ibrahim
+//
+// This program is free software; you can redistribute it and/or modify it under
+// the terms of the GNU General Public License as published by the Free Software
+// Foundation; either version 3 of the License, or (at your option) any later
+// version.
+//
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+// details.
+//
+// You should have received a copy of the GNU General Public License along with
+// this program; if not, see <http://www.gnu.org/licenses/>.
+
 function [exitID] = DI_writecsv(mat_name, path)
-    //
     // Write numerical data stored in a matrix in a CSV file interactively
     //
-    // CALLING SEQUENCES
-    // [exitID] = DM_writecsv(mat_name, path)
+    // Calling Sequence
     // [exitID] = DM_writecsv(mat_name)
+    // [exitID] = DM_writecsv(mat_name, path)
     //
-    // PARAMETERS
-    // mat_name:Character string of the matrix variable you want to store in a csv-file
-    // path:    Full path at which the file selector points to first (OPTIONAL)
-    //          If not commited the HOME/USERPROFILE directory is used
-    // exitID:  Exit#
+    // Parameters
+    // mat_name: Character string of the matrix variable you want to store in a csv-file
+    // path: Full path at which the file selector points to first (OPTIONAL)
+    // exitID: Exit-ID (0, -1, -2, -3, -4), see below:
+    //
     //           0: Everything is OK 
     //          -1: Canceled file selection 
     //          -2: Canceled parameter dialog box 
-    //          -3: Cannot write CSV file 
+    //          -3: Cannot write CSV file
     //          -4: No matrix name specified 
     // 
-    // DESCRIPTION
-    // Write a given numerical matrix to an CSV-file interactively. 
+    // Description
+    // Write a given matrix of doubles to an CSV-file interactively.
     //
-    // EXAMPLES
-    // [exitID] = DM_writecsv("a", pwd()) // Open the file selector in the currend directory
-    // DM_writecsv("a");
+    // Examples
+    // // Open the file selector at the currend directory
+    // // and write matrix "a" to the specified csv-file
+    // [exitID] = DI_writecsv("a", pwd())
+    // // Open the file selector at your home directory
+    // // and write matrix "a" to the specified csv-file
+    // DI_writecsv("a");
     //
+    // See also
+    //  DI_readcsv
+    //  DI_readxls
+    //
+    // Authors
+    //  Hani A. Ibrahim - hani.ibrahim@gmx.de
     
     [lhs,rhs]=argn()
     apifun_checkrhs("DI_writecsv", rhs, 1:2); // Input args

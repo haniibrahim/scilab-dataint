@@ -1,37 +1,102 @@
+// Copyright (C) 2019 Hani Andreas Ibrahim
+//
+// This program is free software; you can redistribute it and/or modify it under
+// the terms of the GNU General Public License as published by the Free Software
+// Foundation; either version 3 of the License, or (at your option) any later
+// version.
+//
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+// details.
+//
+// You should have received a copy of the GNU General Public License along with
+// this program; if not, see <http://www.gnu.org/licenses/>.
+
 function [csvMat, exitID] = DI_readcsv(path)
+    // Imports a CSV file (comma-separated-value) in a matrix variable interactively
     //
-    // Reads a CSV file in a matrix variable interactively
-    //
-    // CALLING SEQUENCES
-    // [csvMat, exitID] = DI_readcsv(path)
+    // Calling Sequence
+    // [csvMat] = DI_readcsv()
+    // [csvMat] = DI_readcsv(path)
     // [csvMat, exitID] = DI_readcsv()
+    // [csvMat, exitID] = DI_readcsv(path)
     //
-    // PARAMETERS
-    // path:    Path at which the file selector points to first (OPTIONAL)
-    //          If not commited the HOME/USERPROFILE directory is used
-    // csvMath: Matrix of read numbers from the CSV file (Strings are NaN)
-    // exitID:  Exit#
-    //           0: Everything is OK
-    //          -1: Canceled file selection
-    //          -2: Canceled parameter dialog box
-    //          -3: Cannot read or interpret CSV file
-    //          -4: Cannot interpret file correctly - maybe header present
+    // Parameters
+    // path:   1-by-1 matrix of strings, the path which the file selector points to (OPTIONAL)
+    // csvMat: String, Matrix of read numbers from the CSV file (Strings are NaN)
+    // exitID:  Exit-ID (0, -1, -2, -3, -4), see below:
+    //
+    //    0: Everything is OK. Matrix with the name committed in csvMat was created
+    //   -1: User canceled file selection
+    //   -2: User canceled parameter dialog box
+    //   -3: Cannot read or interpret CSV file
+    //   -4: Cannot interpret file correctly - maybe header present
     // 
-    // DESCRIPTION
-    // Read an comma-separated-value (CSV) file interactively. You can specify: 
-    //  - number of the sheet in a worksheet file
-    //  - row range you want to read
-    //  - column range you want to read
-    // in a GUI. You can commit a init path for the file selector as an 
-    // argument as an option. Otherwise the HOME directory is used.
+    // Description
+    // Read an comma-separated-value (CSV) file interactively. 
     //
-    // The exitID give a feedback what happened inside the function. If 
-    // something went wrog csvMat is always [] (empty).
+    // <inlinemediaobject>
+    //  <imageobject>
+    //      <imagedata fileref="../images/readcsv_i_import.png" align="center" valign="middle"/>
+    //  </imageobject>
+    // </inlinemediaobject>
     //
-    // EXAMPLES
-    // [csvMat, exitID] = DI_readcsv(pwd()) // Open the file selector in the currend directory
-    // csvMat = DI_readcsv()
+    // FIELD SEPARATOR: This is the character which separates the fields and 
+    // numbers, resp.
+    // In general Anglo-Saxon files it is the comma (,), in European files it is  
+    // often the semicolon (;). Sometimes it is a tabulator (tab) or a space 
+    // (space). E.g. to specify a tabulator as the separator fill in the word 
+    // "tab" without quotes.
     //
+    // DECIMAL SEPARATOR: The character which indentifies the decimal place. In
+    // general Anglo-Saxon files it is the point (.) in most European ones it is  
+    // the comma (,).
+    //
+    // NUMBER OF HEADER LINES TO SKIP: The number of lines to be ignored at the 
+    // beginning of the file. This is useful to skip table headers.   
+    // 
+    // ROW RANGE: The rows you want to select for import. E.g. "2:5" imports
+    // rows 2, 3, 4 and 5. "2:$" starts the import at row 2 and imports all 
+    // following rows till the last row is reached. ":" means all rows.
+    //
+    // COLUMN RANGE: The columns you want to select for import. Refer the 
+    // description of ROW RANGE above for details.
+    //
+    // With ROW and COLUMN RANGE you can import a subset of your raw data table 
+    // and store the data in a matrix variable for further processing.
+    //
+    // You can commit an optional path to the function. This is used to open
+    // the file selector at the committed target path. If you omit it your home 
+    // directory is set as the target path of the file selector box.
+    //
+    // <inlinemediaobject>
+    //  <imageobject>
+    //      <imagedata fileref="../images/readcsv.png" align="center" valign="middle"/>
+    //  </imageobject>
+    // </inlinemediaobject>
+    //
+    // The exitID gives a feedback what happened inside the function. If 
+    // something went wrong csvMat is always [] (empty). But you can grab an error
+    // code in exitID which is always a negative number in an error case (see above). 
+    // If the import was sucessfull the exitID is 0.
+    //
+    // Examples
+    // // Open the file selector in the current directory and read the data into
+    // // the matrix "mat1". The exit code is stored in the variable "id".
+    // [mat1, id] = DI_readcsv(pwd());
+    // // Open the file selector in your home directory and read the data into
+    // // the matrix "mat2". No exit code is stored.
+    // mat2 = DI_readcsv();
+    // disp(mat1) // Displays matrix "mat1"
+    // disp(mat2) // Displays matrix "mat2"
+    //
+    // See also
+    //  DI_readxls
+    //  DI_writecsv
+    //
+    // Authors
+    //  Hani A. Ibrahim - hani.ibrahim@gmx.de
     
     [lhs,rhs]=argn()
     apifun_checkrhs("DI_readcsv", rhs, 0:1); // Input args
