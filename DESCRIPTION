@@ -17,10 +17,10 @@
 Toolbox: dataint
 
 // Human-friendly name for your toolbox
-Title: DataINT
+Title: dataINT
 
 // One-line description for your toolbox
-Summary: Userfriendly INTERACTIVE reading and writing of csv- and xls-datafiles
+Summary: dataINT provides userfriendly INTERACTIVE reading and writing of csv- and xls-datafiles
 
 // Version number, in format 'major.minor.patch', or
 // 'major.minor.patch', where all fields are numbers.
@@ -70,16 +70,30 @@ Date: 2019-05-10
 
 Description: Toolbox for easy and interactive reading and writing of data files
 
- dataINT offers a menu-driven interactice im-/export of data files, as comma-
- separated value (*.csv, *.dat, *.txt) and binary Excel files (*.xls). 
+ dataINT offers functions for convienient interactice im-/export of data files, 
+ as comma-separated-value- (*.csv, *.dat, *.txt) and binary Excel files (*.xls)
+ to or from a Scilab matrix. 
  
- Parameters to specify the im-/export can easily be entered in a dialog box and 
- the file selection is done by the platform-specific file-selection-dialog. 
+ They are based on the appropriate internal Scilab functions but make the im-
+ and export much more user-friendly.
  
- IMPORTANT: It does not handle data from the XML-based Excel files (.xlsx)!
+ Parameters to specify the im-/export can convieniently entered in a dialog box 
+ and the file selection is done by the platform-specific file-selection-dialog.
  
- The functions can be integrated in your own scripts easily to make use of 
- dataINT's interactive functionality.
+ You can specify the following im-/export parameters:
+ - Field separator (comma, semicolon, tab, space)
+ - Decimal separator (comma, point)
+ - Rows and Colums you want to import (DI_readcsv, DI_readxls only)
+ - Sheet you want to import (DI_readxls only)
+ - Number of lines to skip (e.g. header line(s), DI_readcsv, DI_readxls only)
+ - Comment header line (to describe your data, DI_writecsv only)
+ 
+ IMPORTANT: dataINT does not handle data from XML-based Excel files (.xlsx)!
+ NOTE: dataINT handles doubles only. Strings are imported as NaN (%nan).
+ 
+ The functions can easily integrated in your own scripts to make use of 
+ dataINT's interactive functionality or to simplify your data import in 
+ Scilab's console.
  
  FUNCTIONS:
  
@@ -90,7 +104,7 @@ Description: Toolbox for easy and interactive reading and writing of data files
  * DI_writecsv
    Write comma-separated value files (*.csv, *.dat, *.txt) interactively.
  
- dataINT is available for Scilab 5.5.x and Scilab 6.0.x.
+ dataINT is available for Scilab 5.5.x and Scilab 6.0.x and cross-platform.
       
  ---------------------------------------------------------------------
  
