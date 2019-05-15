@@ -1,4 +1,4 @@
-function [exitID] = DM_writecsv(mat_name, path)
+function [exitID] = DI_writecsv(mat_name, path)
     //
     // Write numerical data stored in a matrix in a CSV file interactively
     //
@@ -26,11 +26,11 @@ function [exitID] = DM_writecsv(mat_name, path)
     //
     
     [lhs,rhs]=argn()
-    apifun_checkrhs("DM_writecsv", rhs, 1:2); // Input args
-    apifun_checklhs("DM_writecsv", lhs, 1);   // Output args
-    apifun_checktype("DM_writecsv", mat_name, "mat_name", 1,"string");
+    apifun_checkrhs("DI_writecsv", rhs, 1:2); // Input args
+    apifun_checklhs("DI_writecsv", lhs, 1);   // Output args
+    apifun_checktype("DI_writecsv", mat_name, "mat_name", 1,"string");
     if rhs == 2 then
-       apifun_checktype("DM_writecsv", path, "path", 2,"string"); 
+       apifun_checktype("DI_writecsv", path, "path", 2,"string"); 
     end
 
     

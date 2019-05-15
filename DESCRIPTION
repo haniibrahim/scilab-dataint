@@ -14,13 +14,13 @@
 // Unique identifier for this toolbox.
 // It must be alphanumeric, start with a letter and contain neither space
 // nor special characters other than underscore or dash.
-Toolbox: datamenu
+Toolbox: dataint
 
 // Human-friendly name for your toolbox
-Title: DataMENU
+Title: DataINT
 
 // One-line description for your toolbox
-Summary: Userfriendly interactive reading and writing of csv- and xls-files
+Summary: Userfriendly INTERACTIVE reading and writing of csv- and xls-datafiles
 
 // Version number, in format 'major.minor.patch', or
 // 'major.minor.patch', where all fields are numbers.
@@ -70,29 +70,27 @@ Date: 2019-05-10
 
 Description: Toolbox for easy and interactive reading and writing of data files
 
- DataMENU offers a menu-driven interactice im-/export of data files, as comma-
- separated value (*.csv, *.dat, *.txt) and binary Excel files (*.xls). It 
- integrades a menu right beneath Scilab's main menu where you manage reading & 
- writing of your data files.
+ dataINT offers a menu-driven interactice im-/export of data files, as comma-
+ separated value (*.csv, *.dat, *.txt) and binary Excel files (*.xls). 
  
  Parameters to specify the im-/export can easily be entered in a dialog box and 
  the file selection is done by the platform-specific file-selection-dialog. 
  
  IMPORTANT: It does not handle data from the XML-based Excel files (.xlsx)!
  
- Furthermore it provides 3 functions which can be integrated in your own scripts
- to make use of DataMENU's interactive functionality.
+ The functions can be integrated in your own scripts easily to make use of 
+ dataINT's interactive functionality.
  
  FUNCTIONS:
  
- * DM_readcsv
+ * DI_readcsv
    Read comma-separated value files (*.csv, *.dat, *.txt) interactively.
- * DM_readxls
+ * DI_readxls
    Read  binary Excel files (*.xls) interactively.
- * DM_writecsv
+ * DI_writecsv
    Write comma-separated value files (*.csv, *.dat, *.txt) interactively.
  
- DataMENU is available for Scilab 5.5.x and Scilab 6.0.x.
+ dataINT is available for Scilab 5.5.x and Scilab 6.0.x.
       
  ---------------------------------------------------------------------
  

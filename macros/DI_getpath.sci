@@ -13,27 +13,27 @@
 // You should have received a copy of the GNU General Public License along with
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
-function path = DM_getpath()
+function path = DI_getpath()
 // Returns the path to the current module.
 //
 // Calling Sequence
-//   path = DM_getpath()
+//   path = DI_getpath()
 //
 // Parameters
 // path : a 1-by-1 matrix of strings, the path to the current module.
 //
 // Examples
-// path = DM_getpath()
+// path = DI_getpath()
 //
 // Authors
 //  Hani A. Ibrahim - hani.ibrahim@gmx.de
 // 
 
 [lhs, rhs] = argn()
-apifun_checkrhs("DM_getpath", rhs, 0)
-apifun_checklhs("DM_getpath", lhs, 1)
+apifun_checkrhs("DI_getpath", rhs, 0)
+apifun_checklhs("DI_getpath", lhs, 1)
 
-path=get_function_path("DM_getpath");
+path=get_function_path("DI_getpath");
 path=fullpath(fullfile(fileparts(path),".."));
 
 endfunction

@@ -7,8 +7,8 @@ mode(-1);
 lines(0);
 
 function main_builder()
-    TOOLBOX_NAME  = "datamenu"; // name of the toolbox small letters
-    TOOLBOX_TITLE = "Datamenu"; // name of the toolbox small letters
+    TOOLBOX_NAME  = "dataint"; // name of the toolbox small letters
+    TOOLBOX_TITLE = "dataINT"; // name of the toolbox small letters
     toolbox_dir   = get_absolute_file_path("builder.sce");
 
     // Check Scilab's version

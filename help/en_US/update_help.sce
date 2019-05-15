@@ -5,24 +5,23 @@ mprintf("Working dir = %s\n",cwd);
 mprintf("Updating root\n");
 helpdir = fullfile(cwd);
 funmat = [
-  "DM_readcsv"
-  "DM_readxls"
-  "DM_writecsv"
+  "DI_readcsv"
+  "DI_readxls"
+  "DI_writecsv"
   ];
 macrosdir = cwd +"../../macros";
 demosdir = [];
-modulename = "xxx";
+modulename = "dataint";
 helptbx_helpupdate ( funmat , helpdir , macrosdir , demosdir , modulename , %t );
 // ========================================================================================
 // Generate the utilities help
 mprintf("Updating utilities\n");
 helpdir = fullfile(cwd,"utilities");
 funmat = [
-  "DM_getpath"
-  "DM_datamenu"
+  "DI_getpath"
   ];
 macrosdir = cwd +"../../macros";
 demosdir = [];
-modulename = "xxx";
+modulename = "dataint";
 helptbx_helpupdate ( funmat , helpdir , macrosdir , demosdir , modulename , %t );
 

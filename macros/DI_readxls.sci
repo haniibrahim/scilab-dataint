@@ -1,10 +1,10 @@
-function [xlsMat, exitID] = DM_readxls(path)
+function [xlsMat, exitID] = DI_readxls(path)
     //
     // Reads a XLS file in a matrix variable interactively
     //
     // CALLING SEQUENCES
-    // [xlsMat, exitID] = DM_readxls(path)
-    // [xlsMat, exitID] = DM_readxls()
+    // [xlsMat, exitID] = DI_readxls(path)
+    // [xlsMat, exitID] = DI_readxls()
     //
     // PARAMETERS
     // path:    Path at which the file selector points to first (OPTIONAL)
@@ -28,13 +28,13 @@ function [xlsMat, exitID] = DM_readxls(path)
     // something went wrog xlsMat is always [] (empty).
     //
     // EXAMPLES
-    // [xlsMat, exitID] = DM_readxls(pwd()) // Open the file selector in the currend directory
-    // xlsMat = DM_readxls()
+    // [xlsMat, exitID] = DI_readxls(pwd()) // Open the file selector in the currend directory
+    // xlsMat = DI_readxls()
     //
     
     [lhs,rhs]=argn()
-    apifun_checkrhs("DM_readxls", rhs, 0:1); // Input args
-    apifun_checklhs("DM_readxls", lhs, 1:2); // Output args
+    apifun_checkrhs("DI_readxls", rhs, 0:1); // Input args
+    apifun_checklhs("DI_readxls", lhs, 1:2); // Output args
     inarg = argn(2);
     if inarg > 1 then error(39); end
     
