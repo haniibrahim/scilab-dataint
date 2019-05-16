@@ -13,7 +13,7 @@
 	<refsection>
 		<title>Introduction and Purpose</title>
 		<para>
-        This toolbox provides functions for importing and exporting tabular data. It is based on Scilab's in-built functions csvRead(), xlsRead(), and cvsWrite(). The purpose of this toolbox is to make the use of these functions more convenient by introducing a GUI for selecting the files and specifying the im- or export parameters. It can easily integrated in scripts and controlled by dataINT's exit codes but also used in Scilab's console for importing or exporting data conveniently.
+        This toolbox provides functions for importing and exporting tabular data. It is based on Scilab's in-built functions csvRead(), xlsRad(), and cvsWrite(). The purpose of this toolbox is to make the use of these functions more convenient by introducing a GUI for selecting the files and specifying the im- or export parameters. It can easily integrated in scripts and controlled by dataINT's exit codes but also used in Scilab's console for importing or exporting data conveniently.
     </para>
 	<para>
         dataINT's import functions read the data from a comma-separated value (*.csv), other text-based data (*.dat, *.txt) or from a binary Excel 95-2003 file (*.xls) into a Scilab matrix variable for further processing. The export function saves a Scilab matrix into a comma-separated value (*.csv) or other text-based file( *.dat, *.txt). The field separators of the CSV files can be comma, semicolon, tabular or space. The decimal separator can be point or comma. This makes dataINT flexible to a huge variety of text-based data formats. 
@@ -21,7 +21,7 @@
 	<para>
 		<note>
 			<para>
-		dataINT can handle numerical (doubles) data only. Strings are represented as NaN (%nan).
+		dataINT can handle numerical (doubles) data only. Strings are represented as Nan (not-a-number, %nan).
 	</para>
 		</note>
 		</para>

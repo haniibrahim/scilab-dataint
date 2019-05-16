@@ -37,7 +37,8 @@ function [xlsMat, exitID] = DI_readxls(path)
     // </note>
     //
     // <note>
-    // DI_readxls handles doubles only. Strings are imported as NaN (%nan).
+    // DI_readxls handles doubles only. Strings or missing data are imported as 
+    // Nan (Not-a-number, %nan).
     // </note>
     //
     // <variablelist>
@@ -173,6 +174,7 @@ function [xlsMat, exitID] = DI_readxls(path)
     try
         sheets = readxls(fn);
         sheet = sheets(sheetNo);
+        sheet = sheet.value; // just the numbers, text is Nan
         execstr( "xlsMat = sheet(" + rowRange + "," + colRange + ")");
     catch
         exitID = -3; // Error while interpreting XLS file
