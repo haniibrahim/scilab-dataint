@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ *
+ * Overview dataINT
+ * Copyright (c) 2019 - Hani A. Ibrahim
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="dataint_overview">
+	<refnamediv>
+		<refname>Overview</refname>
+		<refpurpose>An overview of the dataINT toolbox.</refpurpose>
+	</refnamediv>
+	<refsection>
+		<title>Introduction and Purpose</title>
+		<para>
+        This toolbox provides functions for importing and exporting tabular data. It is based on Scilab's in-built functions csvRead(), xlsRead(), and cvsWrite(). The purpose of this toolbox is to make the use of these functions more convenient by introducing a GUI for selecting the files and specifying the im- or export parameters. It can easily integrated in scripts and controlled by dataINT's exit codes but also used in Scilab's console for importing or exporting data conveniently.
+    </para>
+	<para>
+        dataINT's import functions read the data from a comma-separated value (*.csv), other text-based data (*.dat, *.txt) or from a binary Excel 95-2003 file (*.xls) into a Scilab matrix variable for further processing. The export function saves a Scilab matrix into a comma-separated value (*.csv) or other text-based file( *.dat, *.txt). The field separators of the CSV files can be comma, semicolon, tabular or space. The decimal separator can be point or comma. This makes dataINT flexible to a huge variety of text-based data formats. 
+    </para>
+	<para>
+		<note>
+			<para>
+		dataINT can handle numerical (doubles) data only. Strings are represented as NaN (%nan).
+	</para>
+		</note>
+		</para>
+		<para>
+		<note>
+			<para>
+		dataINT cannot import XML-based Excel files (Excel 2007 and higher)!
+	</para>
+		</note>
+		</para>
+	</refsection>
+	<refsection>
+		<title>Functions</title>
+		<variablelist>
+			<varlistentry>
+				<term><link linkend="DI_readcsv">DI_readcsv</link>:</term>
+				<listitem>
+					<para> Read data from a comma-separated-value (*.csv) or another text-based data file (*.dat, *.txt) and store it into a matrix variable interactively.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><link linkend="DI_readxls">DI_readxls</link>:</term>
+				<listitem>
+					<para>Read data from a binary Excel 95-2003 file and store it into a matrix variable interactively.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><link linkend="DI_writecsv">DI_writecsv</link>:</term>
+				<listitem>
+					<para>Write a Scilab matrix of doubles to a comma-separated value or other text-based file interactively.</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+		<para>Type "demo_gui()" in Scilab's console and search for "dataINT" to get started.</para>
+	</refsection>
+	<refsection>
+		<title>Authors</title>
+		<para>
+		Hani A. Ibrahim - hani.ibrahim@gmx.de
+	</para>
+	</refsection>
+</refentry>

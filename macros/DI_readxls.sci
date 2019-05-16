@@ -14,36 +14,106 @@
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
 function [xlsMat, exitID] = DI_readxls(path)
-    // Reads a XLS file in a matrix variable interactively
+    // Imports a binary Excel file (xls) in a matrix variable interactively
     //
     // Calling Sequence
+    // [xlsMat] = DI_readxls()
+    // [xlsMat] = DI_readxls(path)
     // [xlsMat, exitID] = DI_readxls()
     // [xlsMat, exitID] = DI_readxls(path)
     //
     // Parameters
-    // path:    Path at which the file selector points to first (OPTIONAL)
-    // xlsMath: Matrix of read numbers from the XLS file (Strings are NaN)
-    // exitID:  Exit-ID (0, -1, -2, -3, -4), see below:
-    //
-    //           0: Everything is OK
-    //          -1: Canceled file selection
-    //          -2: Canceled parameter dialog box
-    //          -3: Cannot read or interpret XLS file
+    // path:   a string, the path which the file selector points to (OPTIONAL)
+    // xlsMat: a string, name of the matrix which stored the imported data
+    // exitID: an integer, exit codes, 0=OK, -1, -2, -3=error codes, see below.
     // 
     // Description
-    // Read an Excel 97-2003 XLS file interactively. You can specify: 
-    //  - number of the sheet in a worksheet file
-    //  - row range you want to read
-    //  - column range you want to read
-    // in a GUI. You can commit a init path for the file selector as an 
-    // argument as an option. Otherwise the HOME directory is used.
+    // Read data from a binary Excel 95-2003 file (*.xls) and store it into 
+    // a matrix variable interactively.
     //
-    // The exitID give a feedback what happened inside the function. If 
-    // something went wrog xlsMat is always [] (empty).
+    // <note>
+    // DI_readxls does not handle data from XML-based Excel files (*.xlsx) of 
+    // Excel 2007 and higher!
+    // </note>
+    //
+    // <note>
+    // DI_readxls handles doubles only. Strings are imported as NaN (%nan).
+    // </note>
+    //
+    // <variablelist>
+    //  <varlistentry>
+    //      <term>path:</term>
+    //      <listitem><para>
+    // You can commit an optional path to the function. This is used to open
+    // the file selector at the committed target path. If you omit it your home 
+    // directory is set as the target path.
+    //      </para></listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>xlsMat:</term>
+    //      <listitem><para>
+    // This is the name of the matrix variable which contents the imported data
+    // for further processing in Scilab's console or in a script.
+    //      </para></listitem>
+    //  </varlistentry>
+    //   <varlistentry>
+    //      <term>exitID:</term>
+    //      <listitem><para>
+    // The exitID gives a feedback what happened inside the function. If 
+    // something went wrong xlsMat is always [] (empty). To handle errors in a 
+    // script you can evaluate exitID's error codes (negative numbers):
+    //      </para>
+    // <itemizedlist>
+    // <listitem><para> 0: Everything is OK. Matrix xlsMat was created</para></listitem>
+    // <listitem><para>-1: User canceled file selection</para></listitem>
+    // <listitem><para>-2: User canceled parameter dialog box</para></listitem>
+    // <listitem><para>-3: Cannot read or interpret XLS file</para></listitem>
+    // </itemizedlist>
+    //      </listitem>
+    //  </varlistentry>
+    // </variablelist>
+    // 
+    // Import Parameter: 
+    //
+    // <inlinemediaobject>
+    //  <imageobject>
+    //      <imagedata fileref="../images/readxls.png" align="center" valign="middle"/>
+    //  </imageobject>
+    // </inlinemediaobject>
+    //
+    // <variablelist>
+    //  <varlistentry>
+    //      <term>Sheet#:</term>
+    //      <listitem><para>
+    // The number of the sheet of the Excel file you want to import from. The 
+    // names of the sheets are not evaluated. The 1st sheet is 1 the 2nd is 2
+    // independent of their names in Excel.
+    //      </para></listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>Row Range:</term>
+    //      <listitem><para>
+    // The rows you want to select for import. E.g. "2:5" imports
+    // rows 2, 3, 4 and 5. "2:$" starts the import at row 2 and imports all 
+    // following rows till the last row is reached. ":" means all rows.
+    //      </para></listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>Column Range:</term>
+    //      <listitem><para>
+    // The columns you want to select for import. Refer the 
+    // description of "row range" above for details.
+    //      </para>
+    //      <para>
+    // With row and column range you can import a subset of your raw data table 
+    // for further processing. 
+    //      </para></listitem>
+    //  </varlistentry>
+    // </variablelist>
     //
     // Examples
-    // [xlsMat, exitID] = DI_readxls(pwd()) // Open the file selector in the currend directory
-    // xlsMat = DI_readxls()
+    // [mat, id] = DI_readxls(fullfile(DI_getpath(), "demos")) // Read XLS file
+    // disp("Exit-Code: "+string(id),mat,"data:") // Displays imported data "mat" and exit code "id"
     //
     // See also
     //  DI_readcsv

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from DI_readcsv.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="DI_readcsv" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>DI_readcsv</refname>
+    <refpurpose>Imports a CSV file (comma-separated-value) in a matrix variable interactively</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   [csvMat] = DI_readcsv()
+   [csvMat] = DI_readcsv(path)
+   [csvMat, exitID] = DI_readcsv()
+   [csvMat, exitID] = DI_readcsv(path)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>path:</term>
+      <listitem><para>   a string, the path which the file selector points to (OPTIONAL)</para></listitem></varlistentry>
+   <varlistentry><term>csvMat:</term>
+      <listitem><para> a string, name of the matrix which stored the imported data</para></listitem></varlistentry>
+   <varlistentry><term>exitID:</term>
+      <listitem><para> an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+Read data from a comma-separated-value (*.csv) or another text-based
+data file (*.dat, *.txt) and store it into a matrix variable interactively.
+   </para>
+   <para>
+<note>
+DI_readcsv handles doubles only. Strings are imported as NaN (%nan).
+</note>
+   </para>
+   <para>
+<note><para>
+If a text-based data file is separated by spaces, dataINT take EVERY space as field separator.
+</para></note>
+   </para>
+   <para>
+<variablelist>
+<varlistentry>
+<term>path:</term>
+<listitem><para>
+You can commit an optional path to the function. This is used to open
+the file selector at the committed target path. If you omit it your home
+directory is set as the target path.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>csvMat:</term>
+<listitem><para>
+This is the name of the matrix variable which contents the imported data
+for further processing in Scilab's console or in a script.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>exitID:</term>
+<listitem><para>
+The exitID gives a feedback what happened inside the function. If
+something went wrong csvMat is always [] (empty). To handle errors in a
+script you can evaluate exitID's error codes (negative numbers):
+</para>
+<itemizedlist>
+<listitem><para> 0: Everything is OK. Matrix csvMat was created</para></listitem>
+<listitem><para>-1: User canceled file selection</para></listitem>
+<listitem><para>-2: User canceled parameter dialog box</para></listitem>
+<listitem><para>-3: Cannot read or interpret CSV file</para></listitem>
+<listitem><para>-4: Cannot interpret file correctly - maybe header present</para></listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+   </para>
+   <para>
+Import Parameter:
+   </para>
+   <para>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="../images/readcsv.png" align="center" valign="middle"/>
+</imageobject>
+</inlinemediaobject>
+   </para>
+   <para>
+<variablelist>
+<varlistentry>
+<term>Field Separator:</term>
+<listitem><para>
+This is the character which separates the fields and
+numbers, resp.
+In general CSV-files it is the comma (,), in European ones it is
+often the semicolon (;). Sometimes it is a tabulator (tab) or a space
+(space). E.g. to specify a tabulator as the separator, type in the word
+"tab" without quotes.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Decimal separator:</term>
+<listitem><para>
+The character which indentifies the decimal place. In
+general CSV files it is the point (.), in most European ones it is
+the comma (,).
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Number of Header Lines to Skip:</term>
+<listitem><para>
+The number of lines to be ignored at the
+beginning of the file. This is useful to skip table headers.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Row Range:</term>
+<listitem><para>
+The rows you want to select for import. E.g. "2:5" imports
+rows 2, 3, 4 and 5. "2:$" starts the import at row 2 and imports all
+following rows till the last row is reached. ":" means all rows.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Column Range:</term>
+<listitem><para>
+The columns you want to select for import. Refer the
+description of "row range" above for details.
+</para>
+<para>
+With row and column range you can import a subset of your raw data table
+for further processing.
+</para></listitem>
+</varlistentry>
+</variablelist>
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+[mat, id] = DI_readcsv(fullfile(DI_getpath(), "demos")); // Read CSV file
+disp("Exit-Code: "+string(id),mat,"data:") // Displays imported data "mat" and exit code "id"
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="DI_readxls">DI_readxls</link></member>
+   <member><link linkend="DI_writecsv">DI_writecsv</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Hani A. Ibrahim - hani.ibrahim@gmx.de</member>
+   </simplelist>
+</refsection>
+</refentry>

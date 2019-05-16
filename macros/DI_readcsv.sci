@@ -23,52 +23,53 @@ function [csvMat, exitID] = DI_readcsv(path)
     // [csvMat, exitID] = DI_readcsv(path)
     //
     // Parameters
-    // path:   1-by-1 matrix of strings, the path which the file selector points to (OPTIONAL)
-    // csvMat: String, Matrix of read numbers from the CSV file (Strings are NaN)
-    // exitID:  Exit-ID (0, -1, -2, -3, -4), see below:
+    // path:   a string, the path which the file selector points to (OPTIONAL)
+    // csvMat: a string, name of the matrix which stored the imported data
+    // exitID: an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.
     //
-    //    0: Everything is OK. Matrix with the name committed in csvMat was created
-    //   -1: User canceled file selection
-    //   -2: User canceled parameter dialog box
-    //   -3: Cannot read or interpret CSV file
-    //   -4: Cannot interpret file correctly - maybe header present
-    // 
     // Description
-    // Read an comma-separated-value (CSV) file interactively. 
+    // Read data from a comma-separated-value (*.csv) or another text-based   
+    // data file (*.dat, *.txt) and store it into a matrix variable interactively.
     //
-    // <inlinemediaobject>
-    //  <imageobject>
-    //      <imagedata fileref="../images/readcsv_i_import.png" align="center" valign="middle"/>
-    //  </imageobject>
-    // </inlinemediaobject>
-    //
-    // FIELD SEPARATOR: This is the character which separates the fields and 
-    // numbers, resp.
-    // In general Anglo-Saxon files it is the comma (,), in European files it is  
-    // often the semicolon (;). Sometimes it is a tabulator (tab) or a space 
-    // (space). E.g. to specify a tabulator as the separator fill in the word 
-    // "tab" without quotes.
-    //
-    // DECIMAL SEPARATOR: The character which indentifies the decimal place. In
-    // general Anglo-Saxon files it is the point (.) in most European ones it is  
-    // the comma (,).
-    //
-    // NUMBER OF HEADER LINES TO SKIP: The number of lines to be ignored at the 
-    // beginning of the file. This is useful to skip table headers.   
+    // <note>
+    // DI_readcsv handles doubles only. Strings are imported as NaN (%nan).
+    // </note>
     // 
-    // ROW RANGE: The rows you want to select for import. E.g. "2:5" imports
-    // rows 2, 3, 4 and 5. "2:$" starts the import at row 2 and imports all 
-    // following rows till the last row is reached. ":" means all rows.
-    //
-    // COLUMN RANGE: The columns you want to select for import. Refer the 
-    // description of ROW RANGE above for details.
-    //
-    // With ROW and COLUMN RANGE you can import a subset of your raw data table 
-    // and store the data in a matrix variable for further processing.
-    //
+    // <variablelist>
+    //  <varlistentry>
+    //      <term>path:</term>
+    //      <listitem><para>
     // You can commit an optional path to the function. This is used to open
     // the file selector at the committed target path. If you omit it your home 
-    // directory is set as the target path of the file selector box.
+    // directory is set as the target path.
+    //      </para></listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>csvMat:</term>
+    //      <listitem><para>
+    // This is the name of the matrix variable which contents the imported data
+    // for further processing in Scilab's console or in a script.
+    //      </para></listitem>
+    //  </varlistentry>
+    //   <varlistentry>
+    //      <term>exitID:</term>
+    //      <listitem><para>
+    // The exitID gives a feedback what happened inside the function. If 
+    // something went wrong csvMat is always [] (empty). To handle errors in a 
+    // script you can evaluate exitID's error codes (negative numbers):
+    //      </para>
+    // <itemizedlist>
+    // <listitem><para> 0: Everything is OK. Matrix csvMat was created</para></listitem>
+    // <listitem><para>-1: User canceled file selection</para></listitem>
+    // <listitem><para>-2: User canceled parameter dialog box</para></listitem>
+    // <listitem><para>-3: Cannot read or interpret CSV file</para></listitem>
+    // <listitem><para>-4: Cannot interpret file correctly - maybe header present</para></listitem>
+    // </itemizedlist>
+    //      </listitem>
+    //  </varlistentry>
+    // </variablelist>
+    // 
+    // Import Parameter: 
     //
     // <inlinemediaobject>
     //  <imageobject>
@@ -76,20 +77,57 @@ function [csvMat, exitID] = DI_readcsv(path)
     //  </imageobject>
     // </inlinemediaobject>
     //
-    // The exitID gives a feedback what happened inside the function. If 
-    // something went wrong csvMat is always [] (empty). But you can grab an error
-    // code in exitID which is always a negative number in an error case (see above). 
-    // If the import was sucessfull the exitID is 0.
+    // <variablelist>
+    //  <varlistentry>
+    //      <term>Field Separator:</term>
+    //      <listitem><para>
+    // This is the character which separates the fields and 
+    // numbers, resp.
+    // In general CSV-files it is the comma (,), in European ones it is  
+    // often the semicolon (;). Sometimes it is a tabulator (tab) or a space 
+    // (space). E.g. to specify a tabulator as the separator, type in the word 
+    // "tab" without quotes.
+    //      </para></listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>Decimal separator:</term>
+    //      <listitem><para>
+    // The character which indentifies the decimal place. In
+    // general CSV files it is the point (.), in most European ones it is  
+    // the comma (,).
+    //      </para></listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>Number of Header Lines to Skip:</term>
+    //      <listitem><para>
+    // The number of lines to be ignored at the 
+    // beginning of the file. This is useful to skip table headers. 
+    //      </para></listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>Row Range:</term>
+    //      <listitem><para>
+    // The rows you want to select for import. E.g. "2:5" imports
+    // rows 2, 3, 4 and 5. "2:$" starts the import at row 2 and imports all 
+    // following rows till the last row is reached. ":" means all rows.
+    //      </para></listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>Column Range:</term>
+    //      <listitem><para>
+    // The columns you want to select for import. Refer the 
+    // description of "row range" above for details.
+    //      </para>
+    //      <para>
+    // With row and column range you can import a subset of your raw data table 
+    // for further processing. 
+    //      </para></listitem>
+    //  </varlistentry>
+    // </variablelist>
     //
     // Examples
-    // // Open the file selector in the current directory and read the data into
-    // // the matrix "mat1". The exit code is stored in the variable "id".
-    // [mat1, id] = DI_readcsv(pwd());
-    // // Open the file selector in your home directory and read the data into
-    // // the matrix "mat2". No exit code is stored.
-    // mat2 = DI_readcsv();
-    // disp(mat1) // Displays matrix "mat1"
-    // disp(mat2) // Displays matrix "mat2"
+    // [mat, id] = DI_readcsv(fullfile(DI_getpath(), "demos")); // Read CSV file
+    // disp("Exit-Code: "+string(id),mat,"data:") // Displays imported data "mat" and exit code "id"
     //
     // See also
     //  DI_readxls

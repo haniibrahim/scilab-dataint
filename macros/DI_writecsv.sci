@@ -13,34 +13,98 @@
 // You should have received a copy of the GNU General Public License along with
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
-function [exitID] = DI_writecsv(mat_name, path)
-    // Write numerical data stored in a matrix in a CSV file interactively
+function [exitID] = DI_writecsv(csvMat, path)
+    // Exports numerical data stored in a matrix to a CSV file interactively
     //
     // Calling Sequence
-    // [exitID] = DM_writecsv(mat_name)
-    // [exitID] = DM_writecsv(mat_name, path)
+    // [exitID] = DI_writecsv(csvMat)
+    // [exitID] = DI_writecsv(csvMat, path)
     //
     // Parameters
-    // mat_name: Character string of the matrix variable you want to store in a csv-file
-    // path: Full path at which the file selector points to first (OPTIONAL)
-    // exitID: Exit-ID (0, -1, -2, -3, -4), see below:
-    //
-    //           0: Everything is OK 
-    //          -1: Canceled file selection 
-    //          -2: Canceled parameter dialog box 
-    //          -3: Cannot write CSV file
-    //          -4: No matrix name specified 
+    // csvMat: a string of the matrix variable you want to store in a csv-file
+    // path: a string, the path which the file selector points to (OPTIONAL)
+    // exitID: an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.
     // 
     // Description
-    // Write a given matrix of doubles to an CSV-file interactively.
+    // Write a Scilab matrix of doubles to an CSV-file interactively.
+    // 
+    // <variablelist>
+    //  <varlistentry>
+    //      <term>path:</term>
+    //      <listitem><para>
+    // You can commit an optional path to the function. This is used to open
+    // the file selector at the committed target path. If you omit it your home 
+    // directory is set as the target path.
+    //      </para></listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>csvMat:</term>
+    //      <listitem><para>
+    // This is the name of the matrix variable which contents the data you want
+    // to export.
+    //      </para></listitem>
+    //  </varlistentry>
+    //   <varlistentry>
+    //      <term>exitID:</term>
+    //      <listitem><para>
+    // The exitID gives a feedback what happened inside the function. If 
+    // something went wrong csvMat is always [] (empty). To handle errors in a 
+    // script you can evaluate exitID's error codes (negative numbers):
+    //      </para>
+    // <itemizedlist>
+    // <listitem><para> 0: Everything is OK. Matrix csvMat was created</para></listitem>
+    // <listitem><para>-1: User canceled file selection</para></listitem>
+    // <listitem><para>-2: User canceled parameter dialog box</para></listitem>
+    // <listitem><para>-3: Cannot write CSV file</para></listitem>
+    // <listitem><para>-4: No matrix variable name specified</para></listitem>
+    // </itemizedlist>
+    //      </listitem>
+    //  </varlistentry>
+    // </variablelist>
+    // 
+    // Export Parameter: 
+    //
+    // <inlinemediaobject>
+    //  <imageobject>
+    //      <imagedata fileref="../images/writecsv.png" align="center" valign="middle"/>
+    //  </imageobject>
+    // </inlinemediaobject>
+    //
+    // <variablelist>
+    //  <varlistentry>
+    //      <term>Field Separator:</term>
+    //      <listitem><para>
+    // This is the character which separates the fields and 
+    // numbers, resp.
+    // In general CSV-files it is the comma (,), in European ones it is  
+    // often the semicolon (;). Sometimes it is a tabulator (tab) or a space 
+    // (space). E.g. to specify a tabulator as the separator, type in the word 
+    // "tab" without quotes.
+    //      </para></listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>Decimal separator:</term>
+    //      <listitem><para>
+    // The character which indentifies the decimal place. In
+    // general CSV files it is the point (.), in most European ones it is  
+    // the comma (,).
+    //      </para></listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>Comment header:</term>
+    //      <listitem><para>
+    // Place a comment in the first line/row of the CSV file. This is useful to 
+    // describe your data. Just one line is supported (OPTIONAL).
+    //      </para></listitem>
+    //  </varlistentry>
+    // </variablelist>
     //
     // Examples
+    // dat = [32.4 34.6 36.5 32.6 ; 102.4 105.0 104.8 102.6];
     // // Open the file selector at the currend directory
-    // // and write matrix "a" to the specified csv-file
-    // [exitID] = DI_writecsv("a", pwd())
-    // // Open the file selector at your home directory
-    // // and write matrix "a" to the specified csv-file
-    // DI_writecsv("a");
+    // // and write matrix "dat" to the specified csv-file
+    // [exitID] = DI_writecsv("dat", pwd());
+    // disp("Exit-code: " + string(exitID)) // Displays exit code
     //
     // See also
     //  DI_readcsv
@@ -52,7 +116,7 @@ function [exitID] = DI_writecsv(mat_name, path)
     [lhs,rhs]=argn()
     apifun_checkrhs("DI_writecsv", rhs, 1:2); // Input args
     apifun_checklhs("DI_writecsv", lhs, 1);   // Output args
-    apifun_checktype("DI_writecsv", mat_name, "mat_name", 1,"string");
+    apifun_checktype("DI_writecsv", csvMat, "csvMat", 1,"string");
     if rhs == 2 then
        apifun_checktype("DI_writecsv", path, "path", 2,"string"); 
     end
@@ -95,7 +159,7 @@ function [exitID] = DI_writecsv(mat_name, path)
     end
     //pause;
     // Checking input
-    if mat_name == "" then
+    if csvMat == "" then
         exitID = -4; // no matrix name specified => error
         return;
     end
@@ -113,12 +177,12 @@ function [exitID] = DI_writecsv(mat_name, path)
         fld_sep = ascii(32); // space as separator
     end
     
-    // Write CSV file in mat_name
+    // Write CSV file in csvMat
     try
         if com == "" then // No comment committed
-            execstr("csvWrite("+ mat_name + ", fn, fld_sep, dec);");
+            execstr("csvWrite("+ csvMat + ", fn, fld_sep, dec);");
         else
-            execstr("csvWrite(" + mat_name + ", fn, fld_sep, dec, [], com);");
+            execstr("csvWrite(" + csvMat + ", fn, fld_sep, dec, [], com);");
         end
     catch
         exitID = -3; // Error while writing CSV file

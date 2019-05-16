@@ -50,17 +50,16 @@ function dataintlib = startModule() // small letter toolbox name
 
 // Load demos
 // =============================================================================
-//  if or(getscilabmode() == ["NW";"STD"]) then
-//    mprintf("\tLoad demos\n");
-//    pathdemos = pathconvert(root_tlbx+"/demos/dataint.dem.gateway.sce", %F, %T);
-//    add_demo(TOOLBOX_TITLE, pathdemos);
-//  end
+  if or(getscilabmode() == ["NW";"STD"]) then
+    mprintf("\tLoad demos\n");
+    pathdemos = pathconvert(root_tlbx+"/demos/dataint.dem.gateway.sce", %F, %T);
+    add_demo(TOOLBOX_TITLE, pathdemos);
+  end
 
 // ====================================================================
     // A Welcome message.
-    mprintf("\tType ""help"" and search for "+TOOLBOX_TITLE+" for Demonstration.\n");
- 
-	   
+    mprintf("\tType ""help"" and ""demo_gui()"" and search for "+TOOLBOX_TITLE+" to get started.\n");
+
 endfunction
 
 dataintlib = startModule();
