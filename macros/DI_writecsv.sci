@@ -14,19 +14,19 @@
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
 function [exitID] = DI_writecsv(csvMat, path)
-    // Exports numerical data stored in a matrix to a CSV file interactively
+    // Exports numerical data stored in a matrix variable to a CSV file interactively
     //
     // Calling Sequence
     // [exitID] = DI_writecsv(csvMat)
     // [exitID] = DI_writecsv(csvMat, path)
     //
     // Parameters
-    // csvMat: a string of the matrix variable you want to store in a csv-file
-    // path: a string, the path which the file selector points to (OPTIONAL)
+    // csvMat: a string, name of the matrix variable you want to store in a file
+    // path: a string, target path for the file selector (OPTIONAL)
     // exitID: an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.
     // 
     // Description
-    // Write a Scilab matrix of doubles to an CSV-file interactively.
+    // Write a Scilab matrix of doubles to a CSV or other text-based file interactively.
     // 
     // <variablelist>
     //  <varlistentry>
@@ -80,6 +80,8 @@ function [exitID] = DI_writecsv(csvMat, path)
     // often the semicolon (;). Sometimes it is a tabulator (tab) or a space 
     // (space). E.g. to specify a tabulator as the separator, type in the word 
     // "tab" without quotes.
+    //      </para><para>
+    // If you select space just ONE space character delimits the data.
     //      </para></listitem>
     //  </varlistentry>
     //  <varlistentry>
@@ -93,7 +95,7 @@ function [exitID] = DI_writecsv(csvMat, path)
     //  <varlistentry>
     //      <term>Comment header:</term>
     //      <listitem><para>
-    // Place a comment in the first line/row of the CSV file. This is useful to 
+    // Place a comment in the first line/row of the file. This is useful to 
     // describe your data. Just one line is supported (OPTIONAL).
     //      </para></listitem>
     //  </varlistentry>

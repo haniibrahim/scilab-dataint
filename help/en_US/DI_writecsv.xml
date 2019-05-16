@@ -17,35 +17,32 @@
 
   <refnamediv>
     <refname>DI_writecsv</refname>
-    <refpurpose>Exports numerical data stored in a matrix to a CSV file interactively</refpurpose>
+    <refpurpose>Exports numerical data stored in a matrix variable to a CSV file interactively</refpurpose>
   </refnamediv>
 
-
-<refsynopsisdiv>
-   <title>Calling Sequence</title>
-   <synopsis>
-   [exitID] = DI_writecsv(csvMat)
-   [exitID] = DI_writecsv(csvMat, path)
-   
-   </synopsis>
-</refsynopsisdiv>
 
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>csvMat:</term>
-      <listitem><para> a string of the matrix variable you want to store in a csv-file</para></listitem></varlistentry>
-   <varlistentry><term>path:</term>
-      <listitem><para> a string, the path which the file selector points to (OPTIONAL)</para></listitem></varlistentry>
-   <varlistentry><term>exitID:</term>
-      <listitem><para> an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>csvMat:</term>
+            <listitem><para> a string, name of the matrix variable you want to store in a file</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>path:</term>
+            <listitem><para> a string, target path for the file selector (OPTIONAL)</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>exitID:</term>
+            <listitem><para> an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
 <refsection>
    <title>Description</title>
    <para>
-Write a Scilab matrix of doubles to an CSV-file interactively.
+Write a Scilab matrix of doubles to a CSV or other text-based file interactively.
    </para>
    <para>
 <variablelist>
@@ -103,6 +100,8 @@ In general CSV-files it is the comma (,), in European ones it is
 often the semicolon (;). Sometimes it is a tabulator (tab) or a space
 (space). E.g. to specify a tabulator as the separator, type in the word
 "tab" without quotes.
+</para><para>
+If you select space just ONE space character delimits the data.
 </para></listitem>
 </varlistentry>
 <varlistentry>
@@ -116,7 +115,7 @@ the comma (,).
 <varlistentry>
 <term>Comment header:</term>
 <listitem><para>
-Place a comment in the first line/row of the CSV file. This is useful to
+Place a comment in the first line/row of the file. This is useful to
 describe your data. Just one line is supported (OPTIONAL).
 </para></listitem>
 </varlistentry>

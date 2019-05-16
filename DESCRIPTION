@@ -74,22 +74,20 @@ Description: Toolbox for easy and interactive reading and writing of data files
  as comma-separated-value- (*.csv, *.dat, *.txt) and binary Excel files (*.xls)
  to or from a Scilab matrix. 
  
- They are based on the appropriate internal Scilab functions but make the im-
- and export much more user-friendly.
- 
- Parameters to specify the im-/export can convieniently entered in a dialog box 
- and the file selection is done by the platform-specific file-selection-dialog.
+ Parameters, to specify the im-/export, can convieniently entered in a dialog  
+ box and the file selection is done by the platform-specific 
+ file selection dialog.
  
  You can specify the following im-/export parameters:
  - Field separator (comma, semicolon, tab, space)
  - Decimal separator (comma, point)
  - Rows and Colums you want to import (DI_readcsv, DI_readxls only)
  - Sheet you want to import (DI_readxls only)
- - Number of lines to skip (e.g. header line(s), DI_readcsv, DI_readxls only)
- - Comment header line (to describe your data, DI_writecsv only)
+ - Number of lines to skip, e.g. header line(s) (DI_readcsv, DI_readxls only)
+ - Comment header line to describe your data (DI_writecsv only)
  
  IMPORTANT: dataINT does not handle data from XML-based Excel files (.xlsx)!
- NOTE: dataINT handles doubles only. Strings are imported as NaN (%nan).
+ NOTE: dataINT handles doubles only.
  
  The functions can easily integrated in your own scripts to make use of 
  dataINT's interactive functionality or to simplify your data import in 

@@ -23,12 +23,12 @@ function [xlsMat, exitID] = DI_readxls(path)
     // [xlsMat, exitID] = DI_readxls(path)
     //
     // Parameters
-    // path:   a string, the path which the file selector points to (OPTIONAL)
-    // xlsMat: a string, name of the matrix which stored the imported data
+    // path:   a string, target path for the file selector (OPTIONAL)
+    // xlsMat: a string, name of the matrix which stores the imported data
     // exitID: an integer, exit codes, 0=OK, -1, -2, -3=error codes, see below.
     // 
     // Description
-    // Read data from a binary Excel 95-2003 file (*.xls) and store it into 
+    // Read data from a binary Excel 95-2003 file (*.xls) and stores it into 
     // a matrix variable interactively.
     //
     // <note>

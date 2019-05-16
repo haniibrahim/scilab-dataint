@@ -23,13 +23,13 @@ function [csvMat, exitID] = DI_readcsv(path)
     // [csvMat, exitID] = DI_readcsv(path)
     //
     // Parameters
-    // path:   a string, the path which the file selector points to (OPTIONAL)
-    // csvMat: a string, name of the matrix which stored the imported data
+    // path:   a string, target path for the file selector (OPTIONAL)
+    // csvMat: a string, name of the matrix which stores the imported data
     // exitID: an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.
     //
     // Description
     // Read data from a comma-separated-value (*.csv) or another text-based   
-    // data file (*.dat, *.txt) and store it into a matrix variable interactively.
+    // data file (*.dat, *.txt) and stores it into a matrix variable interactively.
     //
     // <note>
     // Note that the file has to be correctly formated. All rows have to have the
@@ -48,7 +48,7 @@ function [csvMat, exitID] = DI_readcsv(path)
     //  <varlistentry>
     //      <term>csvMat:</term>
     //      <listitem><para>
-    // This is the name of the matrix variable which contents the imported data
+    // This is the name of the matrix variable which will content the imported data
     // for further processing in Scilab's console or in a script.
     //      </para></listitem>
     //  </varlistentry>
@@ -86,9 +86,9 @@ function [csvMat, exitID] = DI_readcsv(path)
     // numbers, resp.
     // In general CSV-files it is the comma (,), in European ones it is  
     // often the semicolon (;). Sometimes it is a tabulator (tab). Text-based
-    // data files  
-    // E.g. to specify a tabulator as the separator, type in the word 
-    // "tab" for a space separator the word "space" without quotes.
+    // data files has a space or spaces as delimiters.
+    // E.g. to specify a tabulator as separator, type in the word 
+    // "tab", for a space separator the word "space" without quotes.
     //      </para></listitem>
     //  </varlistentry>
     //  <varlistentry>
@@ -124,6 +124,46 @@ function [csvMat, exitID] = DI_readcsv(path)
     // With row and column range you can import a subset of your raw data table 
     // for further processing. 
     //      </para></listitem>
+    //  </varlistentry>
+    // </variablelist>
+    //
+    // For CSV and text-based data files there are different prerequisites to 
+    // consider.
+    //
+    // <variablelist>
+    //  <varlistentry>
+    //      <term>Comma-separated-value (*.csv):</term>
+    //      <listitem><para>
+    // All rows have to have the same number of columns. That does not mean that 
+    // every cell has to be occupied by a number. Only the separator has to be
+    // present: 
+    //      </para><para>
+    //      <screen>
+    // 2.3 , 4.4 , 7.6 , 9.5
+    // 5.6 , 6.9 ,     ,    
+    //      </screen></para><para>
+    // Strings or missing data (see above) are represented as Nan (not-a-number)
+    // in the matrix. E.g.:
+    //      </para><para>
+    //      <screen>
+    // 2.3  4.4  7.6  9.5
+    // 5.6  6.9  Nan  Nan    
+    //      </screen></para>
+    //      </listitem>
+    //  </varlistentry>
+    //  <varlistentry>
+    //      <term>Text-based data (*.dat, *.txt):</term>
+    //      <listitem><para>
+    // All rows have to have the same number of columns and should not contain 
+    // strings (text). Otherwise the data will be imported as a string matrix and
+    // not a number matrix.
+    //      </para><para>
+    //      <screen>
+    // | 2.3  4.4  7.6  9.5 |
+    // |                    |
+    // | 5.6  6.9           |    
+    //      </screen></para>
+    //      </listitem>
     //  </varlistentry>
     // </variablelist>
     //
