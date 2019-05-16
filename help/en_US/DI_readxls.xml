@@ -58,7 +58,8 @@ Excel 2007 and higher!
    </para>
    <para>
 <note>
-DI_readxls handles doubles only. Strings are imported as NaN (%nan).
+DI_readxls handles doubles only. Strings or missing data are imported as
+Nan (Not-a-number, %nan).
 </note>
    </para>
    <para>

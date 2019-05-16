@@ -56,11 +56,6 @@ DI_readcsv handles doubles only. Strings are imported as NaN (%nan).
 </note>
    </para>
    <para>
-<note><para>
-If a text-based data file is separated by spaces, dataINT take EVERY space as field separator.
-</para></note>
-   </para>
-   <para>
 <variablelist>
 <varlistentry>
 <term>path:</term>

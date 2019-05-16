@@ -32,9 +32,10 @@ function [csvMat, exitID] = DI_readcsv(path)
     // data file (*.dat, *.txt) and store it into a matrix variable interactively.
     //
     // <note>
-    // DI_readcsv handles doubles only. Strings are imported as NaN (%nan).
+    // Note that the file has to be correctly formated. All rows have to have the
+    // same number of columns. 
     // </note>
-    // 
+    //
     // <variablelist>
     //  <varlistentry>
     //      <term>path:</term>
@@ -84,9 +85,10 @@ function [csvMat, exitID] = DI_readcsv(path)
     // This is the character which separates the fields and 
     // numbers, resp.
     // In general CSV-files it is the comma (,), in European ones it is  
-    // often the semicolon (;). Sometimes it is a tabulator (tab) or a space 
-    // (space). E.g. to specify a tabulator as the separator, type in the word 
-    // "tab" without quotes.
+    // often the semicolon (;). Sometimes it is a tabulator (tab). Text-based
+    // data files  
+    // E.g. to specify a tabulator as the separator, type in the word 
+    // "tab" for a space separator the word "space" without quotes.
     //      </para></listitem>
     //  </varlistentry>
     //  <varlistentry>
@@ -158,7 +160,7 @@ function [csvMat, exitID] = DI_readcsv(path)
         end
     end
 
-    // Get filename incl. path of an CSV file
+    // Get filename incl. path of a CSV file
     fn=uigetfile(["*.csv|*.txt|*.dat","Data text files (*.csv, *.txt, *.dat)"],path,"Choose a csv-file");
     if fn == "" then
         exitID = -1; // Canceled file selector
@@ -211,32 +213,34 @@ function [csvMat, exitID] = DI_readcsv(path)
         fld_sep = ascii(32); // space as separator
     end
 
-    // Read CSV file in mat_name
+    // Read CSV file in csvMat
     substitute = ['""',''; '''','']; // Ignore quotes
     try
         // if data file contains blanks as separator
         if fld_sep == ascii(32) then 
             fid1 = mopen(fn, "r");
             csvMat = mgetl(fid1); // Read data as lines of strings in a matrix of strings
-            csvMat = csvMat(headernum+1:$,:); // Crop header lines
+            csvMat = csvMat(headernum+1:$,:); // Skip header lines
             mclose(fid1);
             fid2 = mopen(TMPDIR + "/tmp.dat.txt","wt");
             mfprintf(fid2, "%s\n", csvMat); // write header-purged temporary file
             mclose(fid2);
             try
-                csvMat=fscanfMat(TMPDIR + "/tmp.dat.txt"); // read temporary file in matrix variable
+                csvMat=fscanfMat(TMPDIR + "/tmp.dat.txt","%lg"); // read temporary file in matrix variable
             catch
                 exitID = -4; 
                 errorCleanUp();
                 return;
             end
             mdelete(TMPDIR + "/tmp.dat.txt"); // clean up
-            // if data file contains NO blanks as separator         
+        // if data file contains NO blanks as separator         
         else 
-            execstr("csvMat = csvRead(fn, fld_sep, dec, [], substitute, [], [], headernum);");
+            // Read from file
+            csvMat = csvRead(fn, fld_sep, dec, [], substitute, [], [], headernum);
         end
         // Setup range
-        execstr("csvMat = csvMat(" + rowRange + "," + colRange + ")");
+        execstr("csvMat = csvMat("+rowRange+","+colRange+");");
+        disp("test");
     catch
         exitID = -3; // Error while interpreting CSV file
         errorCleanUp();
