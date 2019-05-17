@@ -21,21 +21,24 @@
   </refnamediv>
 
 
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   [exitID] = DI_writecsv(csvMat)
+   [exitID] = DI_writecsv(csvMat, path)
+   
+   </synopsis>
+</refsynopsisdiv>
+
 <refsection>
    <title>Parameters</title>
    <variablelist>
-        <varlistentry>
-            <term>csvMat:</term>
-            <listitem><para> a string, name of the matrix variable you want to store in a file</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>path:</term>
-            <listitem><para> a string, target path for the file selector (OPTIONAL)</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>exitID:</term>
-            <listitem><para> an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.</para></listitem>
-        </varlistentry>
+   <varlistentry><term>csvMat:</term>
+      <listitem><para> a string, name of the matrix variable you want to store in a file</para></listitem></varlistentry>
+   <varlistentry><term>path:</term>
+      <listitem><para> a string, target path for the file selector (OPTIONAL)</para></listitem></varlistentry>
+   <varlistentry><term>exitID:</term>
+      <listitem><para> an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.</para></listitem></varlistentry>
    </variablelist>
 </refsection>
 

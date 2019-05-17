@@ -21,21 +21,26 @@
   </refnamediv>
 
 
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   [csvMat] = DI_readcsv()
+   [csvMat] = DI_readcsv(path)
+   [csvMat, exitID] = DI_readcsv()
+   [csvMat, exitID] = DI_readcsv(path)
+   
+   </synopsis>
+</refsynopsisdiv>
+
 <refsection>
    <title>Parameters</title>
    <variablelist>
-        <varlistentry>
-            <term>path:</term>
-            <listitem><para>   a string, target path for the file selector (OPTIONAL)</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>csvMat:</term>
-            <listitem><para> a string, name of the matrix which stores the imported data</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>exitID:</term>
-            <listitem><para> an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.</para></listitem>
-        </varlistentry>
+   <varlistentry><term>path:</term>
+      <listitem><para>   a string, target path for the file selector (OPTIONAL)</para></listitem></varlistentry>
+   <varlistentry><term>csvMat:</term>
+      <listitem><para> a string, name of the matrix which stores the imported data</para></listitem></varlistentry>
+   <varlistentry><term>exitID:</term>
+      <listitem><para> an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.</para></listitem></varlistentry>
    </variablelist>
 </refsection>
 
