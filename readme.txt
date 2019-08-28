@@ -1,4 +1,4 @@
-datINT - Toolbox for INTERACTIVE reading and writing of csv- and xls-datafiles
+dataINT - Toolbox for INTERACTIVE reading and writing of csv- and xls-datafiles
 ==============================================================================
 
 dataINT offers functions for convienient interactice im-/export of data files, 
