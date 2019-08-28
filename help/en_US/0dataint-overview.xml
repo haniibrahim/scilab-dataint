@@ -13,12 +13,37 @@
 	<refsection>
 		<title>Introduction and Purpose</title>
 		<para>
-        This toolbox provides functions for importing and exporting tabular data. It is based on Scilab's in-built functions csvRead(), xlsRead(), and cvsWrite(). The purpose of this toolbox is to make the use of these functions more convenient by introducing a GUI for selecting the files and specifying the im- or export parameters.
+        This toolbox provides functions for importing and exporting numeric tabular data (*.csv, *.dat, *.txt, *.xls) without hassle. It is based on Scilab's in-built functions csvRead(), xlsRead(), and cvsWrite(). The purpose of this toolbox is to make the use of these functions more convenient by introducing a GUI for selecting the files and specifying the im- or export parameters.
 	</para>
+	<para>Choose data file:</para>
+	<para>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="../images/filechooser.png" align="center" valign="middle"/>		
+			</imageobject>
+		</inlinemediaobject>
+	</para>
+	<para>Read CSV- and text-data files:</para>
 	<para>
 		<inlinemediaobject>
 			<imageobject>
 				<imagedata fileref="../images/readcsv.png" align="center" valign="middle"/>		
+			</imageobject>
+		</inlinemediaobject>
+	</para>
+	<para>Read XLS-files:</para>
+	<para>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="../images/readxls.png" align="center" valign="middle"/>		
+			</imageobject>
+		</inlinemediaobject>
+	</para>
+	<para>Write CSV- and text-data files:</para>
+	<para>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="../images/writecsv.png" align="center" valign="middle"/>		
 			</imageobject>
 		</inlinemediaobject>
 	</para>

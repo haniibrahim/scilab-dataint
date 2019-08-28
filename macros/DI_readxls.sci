@@ -119,6 +119,7 @@ function [xlsMat, exitID] = DI_readxls(path)
     // See also
     //  DI_readcsv
     //  DI_writecsv
+    //  readxls
     //
     // Authors
     //  Hani A. Ibrahim - hani.ibrahim@gmx.de

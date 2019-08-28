@@ -155,6 +155,7 @@ disp("Exit-Code: "+string(id),mat,"data:") // Displays imported data "mat" and e
    <simplelist type="inline">
    <member><link linkend="DI_readcsv">DI_readcsv</link></member>
    <member><link linkend="DI_writecsv">DI_writecsv</link></member>
+   <member><link linkend="readxls">readxls</link></member>
    </simplelist>
 </refsection>
 

@@ -34,6 +34,10 @@ FUNCTIONS:
   Write comma-separated value files (*.csv, *.dat, *.txt) interactively.
 
 dataINT is available for Scilab 5.5.x and Scilab 6.0.x and cross-platform.
+
+CHANGELOG:
+
+1.0.1 
    
 -------------------------------------------------------------------------------
 

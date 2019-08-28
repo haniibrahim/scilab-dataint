@@ -174,6 +174,8 @@ function [csvMat, exitID] = DI_readcsv(path)
     // See also
     //  DI_readxls
     //  DI_writecsv
+    //  csvRead
+    //  fscanfMat
     //
     // Authors
     //  Hani A. Ibrahim - hani.ibrahim@gmx.de
@@ -280,7 +282,6 @@ function [csvMat, exitID] = DI_readcsv(path)
         end
         // Setup range
         execstr("csvMat = csvMat("+rowRange+","+colRange+");");
-        disp("test");
     catch
         exitID = -3; // Error while interpreting CSV file
         errorCleanUp();
