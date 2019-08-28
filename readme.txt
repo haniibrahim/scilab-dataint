@@ -35,9 +35,14 @@ FUNCTIONS:
 
 dataINT is available for Scilab 5.5.x and Scilab 6.0.x and cross-platform.
 
+-------------------------------------------------------------------------------
+
 CHANGELOG:
 
-1.0.1 
+1.0.1 Bug fixes: 
+- "test" print in DI_readcsv())
+- Syntax/Calling Sequence missing bug in help-files
+- some minor improvements
    
 -------------------------------------------------------------------------------
 

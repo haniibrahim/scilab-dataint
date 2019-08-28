@@ -35,8 +35,11 @@ function main_builder()
     // Action
     // =============================================================================
     
-    // Update help XML-files from sci-files
-    exec(fullfile(toolbox_dir,"/help/en_US/update_help.sce"),-1);
+    // Update help XML-files from sci-files when version is < 6 (Syntx/Calling Sequence problem))
+    if v(1) < 6 then
+        exec(fullfile(toolbox_dir,"/help/en_US/update_help.sce"),-1);
+    end
+    
     // ------------------------------------
 
     tbx_builder_macros(toolbox_dir);
