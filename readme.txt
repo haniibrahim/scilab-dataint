@@ -30,6 +30,8 @@ FUNCTIONS:
   Read comma-separated value files (*.csv, *.dat, *.txt) interactively.
 * DI_readxls
   Read  binary Excel files (*.xls) interactively.
+* DI_read
+  Combines functionality of DI_readcsv and DI_readxls in one function
 * DI_writecsv
   Write comma-separated value files (*.csv, *.dat, *.txt) interactively.
 
@@ -38,6 +40,9 @@ dataINT is available for Scilab 5.5.x and Scilab 6.0.x and cross-platform.
 -------------------------------------------------------------------------------
 
 CHANGELOG:
+
+1.1.0 
+- DI_read function introduced
 
 1.0.1 Bug fixes: 
 - "test" print in DI_readcsv())

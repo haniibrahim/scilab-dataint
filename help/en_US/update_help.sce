@@ -8,6 +8,7 @@ funmat = [
   "DI_readcsv"
   "DI_readxls"
   "DI_writecsv"
+  "DI_read"
   ];
 macrosdir = cwd +"../../macros";
 demosdir = [];

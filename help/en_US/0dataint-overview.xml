@@ -93,6 +93,12 @@
 				</listitem>
 			</varlistentry>
 			<varlistentry>
+				<term><link linkend="DI_read">DI_read</link>:</term>
+				<listitem>
+					<para>Combines functionality of DI_readcsv and DI_readxls in one function.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
 				<term><link linkend="DI_writecsv">DI_writecsv</link>:</term>
 				<listitem>
 					<para>Write a Scilab matrix of doubles to a comma-separated value or other text-based file interactively.</para>

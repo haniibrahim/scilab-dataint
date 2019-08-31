@@ -28,8 +28,11 @@ function [csvMat, exitID] = DI_readcsv(path)
     // exitID: an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.
     //
     // Description
-    // Read data from a comma-separated-value (*.csv) or another text-based   
+    // Read numerical data from a comma-separated-value (*.csv) or another text-based   
     // data file (*.dat, *.txt) and stores it into a matrix variable interactively.
+    //
+    // The following field delimiters are accepted: Comma, semicolon, space(s), 
+    // tabular(s). The decimal delimiter can be point or comma.
     //
     // <note>
     // Note that the file has to be correctly formated. All rows have to have the

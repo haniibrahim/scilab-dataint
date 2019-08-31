@@ -37,8 +37,8 @@ function [xlsMat, exitID] = DI_readxls(path)
     // </note>
     //
     // <note>
-    // DI_readxls handles doubles only. Strings or missing data are imported as 
-    // Nan (Not-a-number, %nan).
+    // DI_readxls handles numerical data only. Strings or missing data are imported 
+    // as Nan (Not-a-number, %nan).
     // </note>
     //
     // <variablelist>
