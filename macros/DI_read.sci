@@ -71,7 +71,7 @@ function [dataMat, exitID] = DI_read(path)
     // </variablelist>
     // 
     // <title>Comma-Separated-Value-, Text-Based Data Files</title>
-	// Read text-based data files which contains numerical data. The following 
+    // Read text-based data files which contains numerical data. The following 
     // field delimiters are accepted: Comma, semicolon, space(s), tabular(s).
     // The decimal delimiter can be point or comma.
     //
@@ -243,6 +243,7 @@ function [dataMat, exitID] = DI_read(path)
     // Authors
     //  Hani A. Ibrahim - hani.ibrahim@gmx.de
 
+
     [lhs,rhs]=argn()
     apifun_checkrhs("DI_read", rhs, 0:1); // Input args
     apifun_checklhs("DI_read", lhs, 1:2); // Output args
@@ -250,6 +251,17 @@ function [dataMat, exitID] = DI_read(path)
     function errorCleanUp()
         dataMat = []; 
         mclose("all");
+    endfunction
+    
+    // Check for Integer
+    function [i] = isInt(n)
+        // n: number
+        // i: Integer T or F
+        if pmodulo(n,1) == 0 then
+            i = %T;
+        else
+            i = %F;
+        end
     endfunction
 
     // init values
@@ -287,7 +299,7 @@ function [dataMat, exitID] = DI_read(path)
 
     // Extract file to lower case converted extension to determine data format (csv/text or xls)
     ext=convstr(fileext(fn), "l");
-    
+
     // -------------------------------------------------------------------------
     // Process data
     // -------------------------------------------------------------------------
@@ -297,18 +309,36 @@ function [dataMat, exitID] = DI_read(path)
         // Excel data 
         // ---------------------------------------------------------------------
 
-        // Get some parameters for interpreting the csv file and the name of the output matrix
-        labels=["Sheet#"; "Row range, e.g. 2:5 (2nd to 5th row) or 2 (2nd row only) or : (all rows)"; "Column range, e.g. 1:3 (1st to 3rd col.) or 2 (2nd col. only) or : (all colums)"];
-        datlist=list("vec", 1, "str", 1, "str", 1);
-        values=["1"; ":"; ":"];
+        // Initial standard values.
+        sheetNo   = 1;
+        rowRange  = ":";
+        colRange  = ":";
+        
+        while %T do 
+            sheetNo = string(sheetNo); // "values=[]" has to be string matrix even when sheetNo is in "list" declared as "vec"
+            
+            // Get some parameters for interpreting the csv file and the name of the output matrix
+            labels=["Sheet#"; "Row range, e.g. 2:5 (2nd to 5th row) or 2 (2nd row only) or : (all rows)"; "Column range, e.g. 1:3 (1st to 3rd col.) or 2 (2nd col. only) or : (all colums)"];
+            datlist=list("vec", 1, "str", 1, "str", 1);
+            values=[sheetNo; rowRange; colRange];
 
-        [ok, sheetNo, rowRange, colRange] = getvalue("Parameters", labels, datlist, values);
+            [ok, sheetNo, rowRange, colRange] = getvalue("Parameters", labels, datlist, values);
 
-        if ok == %F then  
-            exitID = -2; // canceled parameter box
-            return;
+            if ok == %F then  
+                exitID = -2; // canceled parameter box
+                return;
+            end
+            
+            // Simple check input values
+            if rowRange == "" then rowRange = ":"; end
+            if colRange == "" then colRange = ":"; end
+            if isInt(sheetNo) == %F then
+                messagebox("Sheet# is not an integer. Try again", "Error", "error", "modal")
+                continue;
+            else
+                break;
+            end
         end
-
         // Read XLS file in matName
         try
             sheets = readxls(fn);
@@ -402,7 +432,7 @@ function [dataMat, exitID] = DI_read(path)
             errorCleanUp();
             return;
         end
-    // -------------------------------------------------------------------------
+        // -------------------------------------------------------------------------
     end
 
 endfunction
