@@ -244,8 +244,8 @@ function [dataMat, exitID] = DI_read(path)
     //  Hani A. Ibrahim - hani.ibrahim@gmx.de
     
     // Load Internals lib
-    path = DI_getpath()
-    di_internallib  = lib(fullfile(path,"macros","internals"))
+    libpath = DI_getpath()
+    di_internallib  = lib(fullfile(libpath,"macros","internals"))
 
 
     [lhs,rhs]=argn()
@@ -314,10 +314,10 @@ function [dataMat, exitID] = DI_read(path)
 
     if ext == ".xls" then
         // Excel data 
-        dataMat = DI_int_readxls(fn);
+        [dataMat, exitID] = DI_int_readxls(fn);
     else
         // CSV/TXT data
-        dataMat = DI_int_readcsv(fn);
+        [dataMat, exitID] = DI_int_readcsv(fn);
     end
 
 endfunction

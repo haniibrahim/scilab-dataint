@@ -1,4 +1,14 @@
-function dataMat = DI_int_readxls(fn)
+function [dataMat, exitID] = DI_int_readxls(fn)
+    
+    // Check for integer
+   function i = isInt(n)
+        if pmodulo(n,1)== 0 then
+            i = %T;
+        else
+            i = %F;
+        end
+    endfunction
+        
     // ---------------------------------------------------------------------
     // Excel data 
     // ---------------------------------------------------------------------

@@ -124,6 +124,10 @@ function [xlsMat, exitID] = DI_readxls(path)
     // Authors
     //  Hani A. Ibrahim - hani.ibrahim@gmx.de
     
+    // Load Internals lib
+    libpath = DI_getpath()
+    di_internallib  = lib(fullfile(libpath,"macros","internals"))
+    
     [lhs,rhs]=argn()
     apifun_checkrhs("DI_readxls", rhs, 0:1); // Input args
     apifun_checklhs("DI_readxls", lhs, 1:2); // Output args
@@ -158,27 +162,5 @@ function [xlsMat, exitID] = DI_readxls(path)
         end 
     end
    
-
-    // Get some parameters for interpreting the csv file and the name of the output matrix
-    labels=["Sheet#"; "Row range, e.g. 2:5 (2nd to 5th row) or 2 (2nd row only) or : (all rows)"; "Column range, e.g. 1:3 (1st to 3rd col.) or 2 (2nd col. only) or : (all colums)"];
-    datlist=list("vec", 1, "str", 1, "str", 1);
-    values=["1"; ":"; ":"];
-
-    [ok, sheetNo, rowRange, colRange] = getvalue("Parameters", labels, datlist, values);
-
-    if ok == %F then  
-        exitID = -2; // canceled parameter box
-        return;
-    end
-
-    // Read XLS file in matName
-    try
-        sheets = readxls(fn);
-        sheet = sheets(sheetNo);
-        sheet = sheet.value; // just the numbers, text is Nan
-        execstr( "xlsMat = sheet(" + rowRange + "," + colRange + ")");
-    catch
-        exitID = -3; // Error while interpreting XLS file
-        return;
-    end
+        [xlsMat, exitID] = DI_int_readxls(fn);
 endfunction
