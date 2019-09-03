@@ -66,7 +66,7 @@ ScilabVersion: >= 5.5
 Depends: >= apifun 0.4.0
 
 // Creation date, e.g.  2019-05-05
-Date: 2019-05-10
+Date: 2019-09-03
 
 Description: Toolbox for easy and interactive reading and writing of data files
 
