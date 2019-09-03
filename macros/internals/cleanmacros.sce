@@ -12,8 +12,6 @@ function cleanmacros()
 
     mdelete(libpath+"/names");
     mdelete(libpath+"/lib");
-    
-    exec(fullfile(libpath,"internals","cleanmacros.sce")); // clean internals
 endfunction
 
 cleanmacros();

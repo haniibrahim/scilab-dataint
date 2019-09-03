@@ -17,14 +17,14 @@ function read_demo()
     
     messagebox(["Central England Temperature";"DI_read Demo, read CSV and XLS-Data"], "modal","info","Ok");
     
-    [dat,id] = DI_read(fullfile(DI_getpath(), "demos"));
+    [dat,id] = DI_read(get_absolute_file_path("read.dem.sce"));
         if (id == -1 | id == -2) then // Check for abortion by the user
             messagebox("Aborted by user")
-            error("Aborted by user");
+            disp("Aborted by user");
             abort;
         elseif id < -2 then // Check for reading errors
             messagebox("Cannot read file")
-            error("Cannot read file");
+            disp("Cannot read file");
             abort;
         end
     

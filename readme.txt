@@ -43,6 +43,8 @@ CHANGELOG:
 
 1.1.0 
 - DI_read function introduced
+- Better input parameter checking
+- Easier input of data ranges for import
 
 1.0.1 Bug fixes: 
 - "test" print in DI_readcsv())
