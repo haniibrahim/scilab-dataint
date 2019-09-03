@@ -88,10 +88,10 @@ function [dataMat, exitID] = DI_int_readcsv(fn)
         elseif ~isnum(colStart) & ~DI_int_isPosInt(strtod(colStart)) then
             messagebox("Column range start is empty or wrong. Type in number, e.g. 1. Try again", "Error", "error", "modal");
             continue;
-        elseif (~DI_int_isPosInt(strtod(rowEnd)) & ~strtod(rowEnd)>0) & string(rowEnd)~="$" then
+        elseif ~DI_int_isPosInt(strtod(rowEnd)) & ~(strtod(rowEnd)>0) & string(rowEnd)~="$" then
             messagebox("Row range end is empty or wrong. Type in number or $. Try again", "Error", "error", "modal");
             continue;
-        elseif (~DI_int_isPosInt(strtod(colEnd)) & ~strtod(colEnd)>0) & string(colEnd)~="$" then
+        elseif ~DI_int_isPosInt(strtod(colEnd)) & ~(strtod(colEnd)>0) & string(colEnd)~="$" then
             messagebox("Column range end is empty or wrong. Type in number or $. Try again", "Error", "error", "modal");
             continue;
         else
