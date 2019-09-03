@@ -135,7 +135,7 @@ dat = [32.4 34.6 36.5 32.6 ; 102.4 105.0 104.8 102.6];
 // Open the file selector at the currend directory
 // and write matrix "dat" to the specified csv-file
 [exitID] = DI_writecsv("dat", pwd());
-disp("Exit-code: " + string(exitID)) // Displays exit code
+disp("Exit-ID: " + string(exitID)) // Displays exit code
 
    ]]></programlisting>
 </refsection>
@@ -145,6 +145,10 @@ disp("Exit-code: " + string(exitID)) // Displays exit code
    <simplelist type="inline">
    <member><link linkend="DI_readcsv">DI_readcsv</link></member>
    <member><link linkend="DI_readxls">DI_readxls</link></member>
+   <member><link linkend="DI_read">DI_read</link></member>
+   <member><link linkend="csvwrite">csvwrite</link></member>
+   <member><link linkend="csvRead">csvRead</link></member>
+   <member><link linkend="fscanfMat">fscanfMat</link></member>
    </simplelist>
 </refsection>
 

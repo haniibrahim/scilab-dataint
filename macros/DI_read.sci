@@ -117,22 +117,18 @@ function [dataMat, exitID] = DI_read(path)
     //      </para></listitem>
     //  </varlistentry>
     //  <varlistentry>
-    //      <term>Row Range:</term>
+    //      <term>Row/Columns Range Start:</term>
     //      <listitem><para>
-    // The rows you want to select for import. E.g. "2:5" imports
-    // rows 2, 3, 4 and 5. "2:$" starts the import at row 2 and imports all 
-    // following rows till the last row is reached. ":" means all rows.
+    // The row/column at which the import is going to start. Type a number. 1 means 
+    // import starts at row/column 1 inclusively.
     //      </para></listitem>
     //  </varlistentry>
     //  <varlistentry>
-    //      <term>Column Range:</term>
+    //      <term>Row/Columns Range End:</term>
     //      <listitem><para>
-    // The columns you want to select for import. Refer the 
-    // description of "row range" above for details.
-    //      </para>
-    //      <para>
-    // With row and column range you can import a subset of your raw data table 
-    // for further processing. 
+    // The row at which the import is going to end. Type a number or $ (dollar-
+    // sign). 12 means the import stops at row 12 inclusively, $ means that all 
+    // rows/columns are read to the end.
     //      </para></listitem>
     //  </varlistentry>
     // </variablelist>
@@ -208,22 +204,18 @@ function [dataMat, exitID] = DI_read(path)
     //      </para></listitem>
     //  </varlistentry>
     //  <varlistentry>
-    //      <term>Row Range:</term>
+    //      <term>Row/Columns Range Start:</term>
     //      <listitem><para>
-    // The rows you want to select for import. E.g. "2:5" imports
-    // rows 2, 3, 4 and 5. "2:$" starts the import at row 2 and imports all 
-    // following rows till the last row is reached. ":" means all rows.
+    // The row/column at which the import is going to start. Type a numer. 1 means 
+    // import starts at row/column 1 inclusively.
     //      </para></listitem>
     //  </varlistentry>
     //  <varlistentry>
-    //      <term>Column Range:</term>
+    //      <term>Row/Columns Range End:</term>
     //      <listitem><para>
-    // The columns you want to select for import. Refer the 
-    // description of "row range" above for details.
-    //      </para>
-    //      <para>
-    // With row and column range you can import a subset of your raw data table 
-    // for further processing. 
+    // The row at which the import is going to end. Type a number or $ (dollar-
+    // sign). 12 means the import stops at row 12 inclusively, $ means that all 
+    // rows/columns are read to the end.
     //      </para></listitem>
     //  </varlistentry>
     // </variablelist>
@@ -231,6 +223,10 @@ function [dataMat, exitID] = DI_read(path)
     // Examples
     // [mat, id] = DI_read(fullfile(DI_getpath(), "demos")); // Read CSV file
     // disp("Exit-Code: "+string(id),mat,"data:") // Displays imported data "mat" and exit code "id"
+    // if id == 0 then // Plot data if import was sucessful
+    //    plot(mat(:,1),mat(:,14),".-")
+    //    xtitle("Central England Temperature","Year","Mean Temperature [°C]")
+    // end   
     //
     // See also
     //  DI_readxls

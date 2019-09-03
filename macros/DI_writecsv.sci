@@ -106,11 +106,15 @@ function [exitID] = DI_writecsv(csvMat, path)
     // // Open the file selector at the currend directory
     // // and write matrix "dat" to the specified csv-file
     // [exitID] = DI_writecsv("dat", pwd());
-    // disp("Exit-code: " + string(exitID)) // Displays exit code
+    // disp("Exit-ID: " + string(exitID)) // Displays exit code
     //
     // See also
     //  DI_readcsv
     //  DI_readxls
+    //  DI_read
+    //  csvwrite
+    //  csvRead
+    //  fscanfMat
     //
     // Authors
     //  Hani A. Ibrahim - hani.ibrahim@gmx.de
