@@ -26,33 +26,51 @@ function [dataMat, exitID] = DI_int_readcsv(fn)
     //          -3: Cannot read or interpret file
     //          -4: Cannot interpret file correctly - maybe header present
     // ---------------------------------------------------------------------
+    
+    function errorCleanUp()
+        dataMat = []; 
+        mclose("all");
+    endfunction
+    
+    // Check for integer >= 0
+    function i = isInt(n)
+        if pmodulo(n,1) == 0 & n>=0 then
+            i = %T;
+        else
+            i = %F;
+        end
+    endfunction
+    
+    // init values
+    exitID = 0; // All OK
+    dataMat = []; // Empty result matrix
 
     // Initial standard values.
     fld_sep   = ",";
     dec       = ".";
     headernum = 0;
-    rowRange  = ":";
-    colRange  = ":";
+    rowStart = "1";
+    rowEnd   = "$";
+    colStart = "1";
+    colEnd   = "$";
 
     while %T do    
         // Get some parameters for interpreting the csv file and the name of the output matrix
 
         headernum = string(headernum); // "values=[]" has to be string matrix even when headernum is in "list" declared as "vec"
 
-        labels=["Field separator: , | ; | tab | space"; "Decimal separator: . | ,"; "Number of header lines to skip"; "Row Range, e.g. 2:5 (2nd to 5th row) or 2 (2nd row only) or : (all rows)"; "Column range, e.g. 1:3 (1st to 3rd col.) or 2 (2nd col. only) or : (all columns)"];
-        datlist=list("str", 1, "str", 1, "vec", 1, "str", 1, "str", 1);
-        values=[fld_sep; dec; headernum; rowRange; colRange];
+        labels=["Field separator: , | ; | tab | space"; "Decimal separator: . | ,"; "Number of header lines to skip"; "Row range start";"Row range end ($=end of row)"; "Column range start"; "Column range end ($=end of column)"];
+        datlist=list("str", 1, "str", 1, "vec", 1, "str", 1, "str", 1, "str", 1, "str", 1);
+        values=[fld_sep; dec; headernum; rowStart; rowEnd; colStart; colEnd];
 
-        [ok, fld_sep, dec, headernum, rowRange, colRange] = getvalue("CSV and Scilab parameters", labels, datlist, values);
+        [ok, fld_sep, dec, headernum, rowStart, rowEnd, colStart, colEnd] = getvalue("CSV and Scilab parameters", labels, datlist, values);
 
         if ok == %F then  
             exitID = -2; // canceled parameter box
             return;
         end
 
-        // Simple check input values
-        if rowRange == "" then rowRange = ":"; end
-        if colRange == "" then colRange = ":"; end
+        // check input values
         if fld_sep ~= "," & fld_sep ~= ";" & fld_sep ~= "tab" & fld_sep ~= "space" then
             messagebox("Field delimiter is empty or wrong. Try again", "Error", "error", "modal")
             //fld_sep = ",";
@@ -60,6 +78,21 @@ function [dataMat, exitID] = DI_int_readcsv(fn)
         elseif dec ~= "," & dec ~= "." then
             messagebox("Decimal delimiter has the wrong format. Try again", "Error", "error", "modal")
             //dec = ".";
+            continue;
+        elseif ~isInt(headernum) then
+            messagebox("Number of header lines is empty or wrong. Type in number, e.g. 1. Try again", "Error", "error", "modal");
+            continue;
+        elseif ~isnum(rowStart) | ~DI_int_isPosInt(strtod(rowStart)) then
+            messagebox("Row range start is empty or wrong. Type in number, e.g. 1. Try again", "Error", "error", "modal");
+            continue;
+        elseif ~isnum(colStart) & ~DI_int_isPosInt(strtod(colStart)) then
+            messagebox("Column range start is empty or wrong. Type in number, e.g. 1. Try again", "Error", "error", "modal");
+            continue;
+        elseif (~DI_int_isPosInt(strtod(rowEnd)) & ~strtod(rowEnd)>0) & string(rowEnd)~="$" then
+            messagebox("Row range end is empty or wrong. Type in number or $. Try again", "Error", "error", "modal");
+            continue;
+        elseif (~DI_int_isPosInt(strtod(colEnd)) & ~strtod(colEnd)>0) & string(colEnd)~="$" then
+            messagebox("Column range end is empty or wrong. Type in number or $. Try again", "Error", "error", "modal");
             continue;
         else
             break;
@@ -72,6 +105,10 @@ function [dataMat, exitID] = DI_int_readcsv(fn)
     elseif fld_sep == "space" then
         fld_sep = ascii(32); // space as separator
     end
+    
+    // Merge ranges
+    rowRange = rowStart + ":" + rowEnd; // e.g. 1:$
+    colRange = colStart + ":" + colEnd; // e.g. 1:$
 
     // Read CSV file in dataMat
     substitute = ['""',''; '''','']; // Ignore quotes

@@ -20,11 +20,11 @@ function read_demo()
     [dat,id] = DI_read(get_absolute_file_path("read.dem.sce"));
         if (id == -1 | id == -2) then // Check for abortion by the user
             messagebox("Aborted by user")
-            error("Aborted by user");
+            disp("Aborted by user");
             abort;
         elseif id < -2 then // Check for reading errors
             messagebox("Cannot read file")
-            error("Cannot read file");
+            disp("Cannot read file");
             abort;
         end
     

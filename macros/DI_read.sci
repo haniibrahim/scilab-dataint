@@ -252,29 +252,6 @@ function [dataMat, exitID] = DI_read(path)
     apifun_checkrhs("DI_read", rhs, 0:1); // Input args
     apifun_checklhs("DI_read", lhs, 1:2); // Output args
 
-    function errorCleanUp()
-        dataMat = []; 
-        mclose("all");
-    endfunction
-
-    // Check for Integer
-    function [i] = isInt(n)
-        // n: number
-        // i: Integer T or F
-        if pmodulo(n,1) == 0 then
-            i = %T;
-        else
-            i = %F;
-        end
-    endfunction
-
-
-    
-    // -------------------------------------------------------------------------
-
-    // init values
-    exitID = 0; // All OK
-    dataMat = []; // Empty result matrix
 
     // Platform-dependent HOME path if "path" was not commited
     if ~exists("path") then
@@ -293,6 +270,7 @@ function [dataMat, exitID] = DI_read(path)
         fn=uigetfile(["*.csv|*.xls|*.txt|*.dat","Data files (*.csv, *.xls, *.txt, *.dat)"],path,"Choose a Data File");
         if fn == "" then
             exitID = -1; // Canceled file selector
+            dataMat = [];
             return;
         end
         // Workaround uigetfile()-bug: Check for not supported Excel files (*.xls-filter accepts xlsx, too)

@@ -16,7 +16,7 @@
 function i = DI_int_isPosInt(n)
    
     // ---------------------------------------------------------------------
-    // Check for positive integer
+    // Check for positive integer >= 1
     //
     // Parameters
     // n: n-by-m  matrix of any kind

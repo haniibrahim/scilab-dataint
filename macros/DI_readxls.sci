@@ -131,12 +131,6 @@ function [xlsMat, exitID] = DI_readxls(path)
     [lhs,rhs]=argn()
     apifun_checkrhs("DI_readxls", rhs, 0:1); // Input args
     apifun_checklhs("DI_readxls", lhs, 1:2); // Output args
-    inarg = argn(2);
-    if inarg > 1 then error(39); end
-    
-    // init values
-    exitID = 0; // All OK
-    xlsMat = []; // Empty result matrix
 
     // Platform-dependent HOME path if "path" was not commited
     if ~exists("path") then
@@ -152,6 +146,7 @@ function [xlsMat, exitID] = DI_readxls(path)
         fn=uigetfile(["*.xls","Excel 97-2003 Worksheets (*.xls)"],path,"Choose a Excel 97-2003 file (*.xls)")
         if fn == "" then
             exitID = -1; // Canceled file selector
+            xlsMat = [];
             return;
         end
         // Workaround uigetfile()-bug: Check for not supported Excel files (*.xls-filter accepts xlsx too)

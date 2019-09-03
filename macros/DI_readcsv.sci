@@ -191,15 +191,6 @@ function [csvMat, exitID] = DI_readcsv(path)
     apifun_checkrhs("DI_readcsv", rhs, 0:1); // Input args
     apifun_checklhs("DI_readcsv", lhs, 1:2); // Output args
     
-    function errorCleanUp()
-        csvMat = []; 
-        mclose("all");
-    endfunction
-
-    // init values
-    exitID = 0; // All OK
-    csvMat = []; // Empty result matrix
-
     // Platform-dependent HOME path if "path" was not commited
     if ~exists("path") then
         if getos() == "Windows" then
@@ -213,6 +204,7 @@ function [csvMat, exitID] = DI_readcsv(path)
     fn=uigetfile(["*.csv|*.txt|*.dat","Data text files (*.csv, *.txt, *.dat)"],path,"Choose a csv-file");
     if fn == "" then
         exitID = -1; // Canceled file selector
+        csvMat= [];
         return;
     end
 

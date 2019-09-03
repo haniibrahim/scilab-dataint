@@ -26,38 +26,59 @@ function [dataMat, exitID] = DI_int_readxls(fn)
     //          -2: User canceled parameter dialog box
     //          -3: Cannot read or interpret XLS file
     // ---------------------------------------------------------------------
+    
+    // init values
+    exitID = 0; // All OK
+    dataMat = []; // Empty result matrix
 
     // Initial standard values.
-    sheetNo   = 1;
-    rowRange  = ":";
-    colRange  = ":";
+    sheetNo  = 1;
+    rowStart = "1";
+    rowEnd   = "$";
+    colStart = "1";
+    colEnd   = "$";
 
     while %T do 
         sheetNo = string(sheetNo); // "values=[]" has to be string matrix even when sheetNo is in "list" declared as "vec"
 
         // Get some parameters for interpreting the csv file and the name of the output matrix
-        labels=["Sheet#"; "Row range, e.g. 2:5 (2nd to 5th row) or 2 (2nd row only) or : (all rows)"; "Column range, e.g. 1:3 (1st to 3rd col.) or 2 (2nd col. only) or : (all colums)"];
-        datlist=list("vec", 1, "str", 1, "str", 1);
-        values=[sheetNo; rowRange; colRange];
+        labels=["Sheet#"; "Row range start";"Row range end ($=end of row)"; "Column range start"; "Column range end ($=end of column)" ];
+        datlist=list("vec", 1, "str", 1, "str", 1, "str", 1, "str", 1);
+        values=[sheetNo; rowStart; rowEnd; colStart; rowEnd];
 
-        [ok, sheetNo, rowRange, colRange] = getvalue("Parameters", labels, datlist, values);
+        [ok, sheetNo, rowStart, rowEnd, colStart, colEnd] = getvalue("Parameters", labels, datlist, values);
 
         if ok == %F then  
             exitID = -2; // canceled parameter box
             return;
         end
 
-        // Simple check input values
-        if rowRange == "" then rowRange = ":"; end
-        if colRange == "" then colRange = ":"; end
-        if DI_int_isPosInt(sheetNo) == %F then
+        // check input values
+        if ~isnum(string(sheetNo)) | ~DI_int_isPosInt(sheetNo) then
             messagebox("Sheet# is not an integer. Try again", "Error", "error", "modal")
+            continue;
+        elseif ~isnum(rowStart) | ~DI_int_isPosInt(strtod(rowStart)) then
+            messagebox("Row range start is empty or wrong. Type in number, e.g. 1. Try again", "Error", "error", "modal");
+            continue;
+        elseif ~isnum(colStart) & ~DI_int_isPosInt(strtod(colStart)) then
+            messagebox("Column range start is empty or wrong. Type in number, e.g. 1. Try again", "Error", "error", "modal");
+            continue;
+        elseif (~DI_int_isPosInt(strtod(rowEnd)) & ~strtod(rowEnd)>0) & string(rowEnd)~="$" then
+            messagebox("Row range end is empty or wrong. Type in number or $. Try again", "Error", "error", "modal");
+            continue;
+        elseif (~DI_int_isPosInt(strtod(colEnd)) & ~strtod(colEnd)>0) & string(colEnd)~="$" then
+            messagebox("Column range end is empty or wrong. Type in number or $. Try again", "Error", "error", "modal");
             continue;
         else
             break;
         end
     end
-    // Read XLS file in matName
+    
+    // Merge ranges
+    rowRange = rowStart + ":" + rowEnd; // e.g. 1:$
+    colRange = colStart + ":" + colEnd; // e.g. 1:$
+    
+    // Read XLS file in dataMat
     try
         sheets = readxls(fn);
         sheet = sheets(sheetNo);

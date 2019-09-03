@@ -22,22 +22,22 @@ function dataint_demo()
         [dat,id] = DI_readcsv(fullfile(DI_getpath(), "demos"));
         if (id == -1 | id == -2) then // Check for abortion by the user
             messagebox("Aborted by user")
-            error("Aborted by user");
+            disp("Aborted by user");
             abort;
         elseif id < -2 then // Check for reading errors
             messagebox("Cannot read file")
-            error("Cannot read file");
+            disp("Cannot read file");
             abort;
         end
     else // XLS import
         [dat,id] = DI_readxls(fullfile(DI_getpath(), "demos"));
         if (id == -1 | id == -2) then 
             messagebox("Aborted by user")
-            error("Aborted by user");
+            disp("Aborted by user");
             abort;
         elseif id < -2 then
             messagebox("Cannot read file")
-            error("Cannot read file");
+            disp("Cannot read file");
             abort;
         end
     end
