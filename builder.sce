@@ -39,7 +39,6 @@ function main_builder()
     if v(1) < 6 then
         exec(fullfile(toolbox_dir,"/help/en_US/update_help.sce"),-1);
     end
-    
     // ------------------------------------
 
     tbx_builder_macros(toolbox_dir);
