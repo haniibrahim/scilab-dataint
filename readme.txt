@@ -41,6 +41,10 @@ dataINT is available for Scilab 5.5.x and Scilab 6.0.x and cross-platform.
 
 CHANGELOG:
 
+1.1.1
+ - Fix decimal-comma-bug when reading/parsing space separated text files 
+   with decimal commas
+
 1.1.0 
 - DI_read function introduced
 - Better input parameter checking

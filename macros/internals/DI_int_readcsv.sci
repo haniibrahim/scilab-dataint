@@ -118,6 +118,9 @@ function [dataMat, exitID] = DI_int_readcsv(fn)
             fid1 = mopen(fn, "r");
             dataMat = mgetl(fid1); // Read data as lines of strings in a matrix of strings
             dataMat = dataMat(headernum+1:$,:); // Skip header lines
+            if dec == "," then // if decimal separator is comma
+                dataMat = strsubst(dataMat,',','.'); // Replace commas with points
+            end
             mclose(fid1);
             fid2 = mopen(TMPDIR + "/tmp.dat.txt","wt");
             mfprintf(fid2, "%s\n", dataMat); // write header-purged temporary file
