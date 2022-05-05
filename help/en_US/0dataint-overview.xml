@@ -13,7 +13,7 @@
 	<refsection>
 		<title>Introduction and Purpose</title>
 		<para>
-        This toolbox provides functions for importing and exporting numeric tabular data (*.csv, *.dat, *.txt, *.xls) without hassle. It is based on Scilab's in-built functions csvRead(), xlsRead(), and cvsWrite(). The purpose of this toolbox is to make the use of these functions more convenient by introducing a GUI for selecting the files and specifying the im- or export parameters.
+        This toolbox provides functions for importing and exporting numeric tabular data (*.csv, *.dat, *.txt, *.xls) without hassle. It is based on Scilab's in-built functions csvRead(), xlsRead(), fscanfMat() and cvsWrite(). The purpose of this toolbox is to make the use of these functions more convenient by introducing a GUI for selecting the files and specifying the im- or export parameters.
 	</para>
 	<para>Choose data file:</para>
 	<para>
@@ -72,7 +72,7 @@
 		<para>
 		<note>
 			<para>
-		dataINT cannot import XML-based Excel files (Excel 2007 and higher)!
+		dataINT cannot import XML-based Excel files (Excel 2007 and higher) yet! But the toolbox "XLreadwrite" will be called in future versions to offer this feature, too. 
 	</para>
 		</note>
 		</para>
@@ -81,31 +81,52 @@
 		<title>Functions</title>
 		<variablelist>
 			<varlistentry>
-				<term><link linkend="DI_readcsv">DI_readcsv</link>:</term>
-				<listitem>
-					<para> Read data from a comma-separated-value or another text-based data file and stores it into a matrix variable interactively.</para>
-				</listitem>
-			</varlistentry>
-			<varlistentry>
-				<term><link linkend="DI_readxls">DI_readxls</link>:</term>
-				<listitem>
-					<para>Read data from a binary Excel 95-2003 file and stores it into a matrix variable interactively.</para>
-				</listitem>
-			</varlistentry>
-			<varlistentry>
 				<term><link linkend="DI_read">DI_read</link>:</term>
 				<listitem>
-					<para>Combines functionality of DI_readcsv and DI_readxls in one function.</para>
+					<para>Read data from a comma-separated-value, text-based data file or a binary Excel 95-2003 file and stores it into a matrix variable interactively.</para>
 				</listitem>
 			</varlistentry>
 			<varlistentry>
-				<term><link linkend="DI_writecsv">DI_writecsv</link>:</term>
+				<term><link linkend="DI_show">DI_show</link>:</term>
+				<listitem>
+					<para>Read the first 25 or an arbitrary number of lines of a text data file, displays them in the console and invoke the reading procedure "DI_read" after, if desired.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><link linkend="DI_writedat">DI_writedat</link>:</term>
 				<listitem>
 					<para>Write a Scilab matrix of doubles to a comma-separated value or other text-based file interactively.</para>
 				</listitem>
 			</varlistentry>
 		</variablelist>
 		<para>Type "demo_gui()" in Scilab's console and search for "dataINT" to get started.</para>
+	</refsection>
+	<refsection>
+		<title>Functions (deprecated)</title>
+		<para>The following functions are obsolete. To avoid breaking legal scripts, the code will stay in the toolbox but will be removed from the documentation.</para>
+		<variablelist>
+			<varlistentry>
+				<term>DI_readcsv:</term>
+				<listitem>
+					<para> Read data from a comma-separated-value or another text-based data file and stores it into a matrix variable interactively.</para>
+					<para>The successor is DI_read.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>DI_readxls:</term>
+				<listitem>
+					<para>Read data from a binary Excel 95-2003 file and stores it into a matrix variable interactively.</para>
+					<para>The successor is DI_read.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>DI_writecsv:</term>
+				<listitem>
+					<para>Write a Scilab matrix of doubles to a comma-separated value or other text-based file interactively.</para>
+					<para>The successor is DI_writedat.</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
 	</refsection>
 	<refsection>
 		<title>Authors</title>

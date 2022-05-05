@@ -14,8 +14,8 @@
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
 function [dataMat, exitID] = DI_show(path, n)
-    // Read the first 25 or an arbitary number of lines of a text data file,    
-    // displays them in the console and invoke a reading procedure, if desired.
+    // Read the first 25 or an arbitrary number of lines of a text data file,    
+    // displays them in the console and invoke a reading procedure after, if desired.
     //
     //
     // Calling Sequence
@@ -40,7 +40,7 @@ function [dataMat, exitID] = DI_show(path, n)
     // </note>
     //
     // Description
-    // Read the first 25 or an arbitary number of lines of a text-based data file and 
+    // Read the first 25 or an arbitrary number of lines of a text-based data file and 
     // displays them in the console for reviewing data, determine delimiter signs, 
     // comment lines etc. This makes it easier to fill in the right paramezters for 
     // reading procedures, as DI_read().
