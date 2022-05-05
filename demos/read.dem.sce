@@ -32,7 +32,7 @@ function read_demo()
     disp(dat)
     
     // Plot data
-    plot(dat(:,1),dat(:,14),".-")
+    plot(dat(:,1),dat(:,14),"-")
     xtitle("Central England Temperature","Year","Mean Temperature [°C]")
     
     //

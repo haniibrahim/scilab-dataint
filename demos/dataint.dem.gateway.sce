@@ -5,7 +5,7 @@ function subdemolist = demo_gateway()
     demopath = get_absolute_file_path("dataint.dem.gateway.sce");
 
     subdemolist = [
-	"DI_readcsv and DI_readxls-Demo", "dataint.dem.sce"; ..
+	"DI_show-Demo", "show.dem.sce"; ..
     "DI_read-Demo", "read.dem.sce"; ..
 	];
 

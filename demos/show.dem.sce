@@ -13,13 +13,11 @@
 // You should have received a copy of the GNU General Public License along with
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
-function dataint_demo()
+function show_demo()
     
-    messagebox("Central England Temperature", "modal","info","Ok");
-    aw = messagebox("Import from CSV or XLS-file?", "Data source", "question", ["CSV" "XLS"], "modal")
+    messagebox(["Central England Temperature";"DI_show Demo, preview text-based data and read data"], "modal","info","Ok");
     
-    if aw == 1 then // CSV import
-        [dat,id] = DI_readcsv(fullfile(DI_getpath(), "demos"));
+    [dat,id] = DI_show(get_absolute_file_path("show.dem.sce"),10);
         if (id == -1 | id == -2) then // Check for abortion by the user
             messagebox("Aborted by user")
             disp("Aborted by user");
@@ -29,30 +27,18 @@ function dataint_demo()
             disp("Cannot read file");
             abort;
         end
-    else // XLS import
-        [dat,id] = DI_readxls(fullfile(DI_getpath(), "demos"));
-        if (id == -1 | id == -2) then 
-            messagebox("Aborted by user")
-            disp("Aborted by user");
-            abort;
-        elseif id < -2 then
-            messagebox("Cannot read file")
-            disp("Cannot read file");
-            abort;
-        end
-    end
     
-    // Display data
-    disp(dat)
-    
-    // Plot data
-    plot(dat(:,1),dat(:,14),".-")
-    xtitle("Central England Temperature","Year","Mean Temperature [°C]")
+    // Display and plot data if available
+    if dat ~= [] then
+		disp(dat)    
+        plot(dat(:,1),dat(:,14),"-")
+        xtitle("Central England Temperature","Year","Mean Temperature [°C]")
+	end
     
     //
     // Load this script into the editor
     //
-    filename = "dataint.dem.sce";
+    filename = "show.dem.sce";
     dname = get_absolute_file_path(filename);
     editor ( fullfile(dname,filename) );
 
@@ -60,5 +46,5 @@ endfunction
 
 // Main
 
-dataint_demo();
-clear dataint_demo;
+show_demo();
+clear show_demo;
