@@ -14,7 +14,7 @@
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
 function [dataMat, exitID] = DI_read(path)
-    // Imports a data file (comma-separated-value, Excel-xls, text-based) in a matrix variable interactively. Combined functionality of DI_readcsv() and DI_readxls().
+    // Imports a data file (comma-separated-value, Excel-xls, text-based) in a matrix variable interactively.
     //
     // Calling Sequence
     // [dataMat] = DI_read()
@@ -104,7 +104,7 @@ function [dataMat, exitID] = DI_read(path)
     //  <varlistentry>
     //      <term>Decimal separator:</term>
     //      <listitem><para>
-    // The character which indentifies the decimal place. In
+    // The character which identifies the decimal place. In
     // general CSV files it is the point (.), in most European ones it is  
     // the comma (,).
     //      </para></listitem>
@@ -223,15 +223,14 @@ function [dataMat, exitID] = DI_read(path)
     // Examples
     // [mat, id] = DI_read(fullfile(DI_getpath(), "demos")); // Read CSV file
     // disp("Exit-Code: "+string(id),mat,"data:") // Displays imported data "mat" and exit code "id"
-    // if id == 0 then // Plot data if import was sucessful
-    //    plot(mat(:,1),mat(:,14),".-")
+    // if id == 0 then // Plot data if import was successful
+    //    plot(mat(:,1),mat(:,14),"-")
     //    xtitle("Central England Temperature","Year","Mean Temperature [°C]")
     // end   
     //
     // See also
-    //  DI_readxls
-    //  DI_readcsv
-    //  DI_writecsv
+    //  DI_show
+    //  DI_writedat
     //  csvRead
     //  readxls
     //  fscanfMat

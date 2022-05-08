@@ -26,7 +26,7 @@ Summary: dataINT provides userfriendly INTERACTIVE reading and writing of csv- a
 // 'major.minor.patch', where all fields are numbers.
 // If you are just starting your toolbox, you should use '0.1' or '0.1.0'.
 // Use '1.0' or '1.0.0' for a tested, good quality first version.
-Version: 1.1.1
+Version: 1.2.0
 
 // Name(s) of the author(s) of this toolbox.
 // They are usually the original copyright holders
@@ -66,25 +66,25 @@ ScilabVersion: >= 5.5
 Depends: >= apifun 0.4.0
 
 // Creation date, e.g.  2019-05-05
-Date: 2019-09-03
+Date: 2022-05-06
 
 Description: Toolbox for easy and interactive reading and writing of data files
 
- dataINT offers functions for convienient interactice im-/export of data files, 
- as comma-separated-value- (*.csv, *.dat, *.txt) and binary Excel files (*.xls)
- to or from a Scilab matrix. 
+ dataINT offers functions for convenient, interactive im-/export of test-based 
+ data files (*.csv, *.dat, *.txt) to or from a Scilab matrix or from a binary 
+ Excel files (*.xls), respectively. 
  
- Parameters, to specify the im-/export, can convieniently entered in a dialog  
+ Parameters, to specify the im-/export, can conveniently entered in a dialog  
  box and the file selection is done by the platform-specific 
  file selection dialog.
  
  You can specify the following im-/export parameters:
  - Field separator (comma, semicolon, tab, space)
  - Decimal separator (comma, point)
- - Rows and Colums you want to import (DI_readcsv, DI_readxls only)
- - Sheet you want to import (DI_readxls only)
- - Number of lines to skip, e.g. header line(s) (DI_readcsv, DI_readxls only)
- - Comment header line to describe your data (DI_writecsv only)
+ - Rows and columns you want to import
+ - Sheet you want to import 
+ - Number of lines to skip, e.g. header line(s)
+ - Comment header line to describe your data 
  
  IMPORTANT: dataINT does not handle data from XML-based Excel files (.xlsx)!
  NOTE: dataINT handles doubles only.
@@ -95,21 +95,27 @@ Description: Toolbox for easy and interactive reading and writing of data files
  
  FUNCTIONS:
  
- * DI_readcsv
-   Read comma-separated value files (*.csv, *.dat, *.txt) interactively.
- * DI_readxls
-   Read  binary Excel files (*.xls) interactively.
  * DI_read
    Combines functionality of DI_readcsv and DI_readxls in one function
- * DI_writecsv
+ * DI_show
+   Read the first 25 or an arbitrary number of lines of a text data file,    
+   displays them in the console and invoke the reading procedure after, if
+   desired.
+ * DI_writedat
    Write comma-separated value files (*.csv, *.dat, *.txt) interactively.
  
- dataINT is available for Scilab 5.5.x and Scilab 6.0.x and cross-platform.
+ dataINT is available for Scilab 5.5.x, 6.0.x and 6.1.x. Furthermore 
+ dataINT is cross-platform.
  
   ---------------------------------------------------------------------
    
  CHANGELOG:
  
+ 1.2.0
+ - DI_show function added
+ - DI_writedat replaces DI_writecsv
+ - Deprecation of DI_readcsv and DI_readxls. Successor of both is DI_read
+  
  1.1.1
  - Fix decimal-comma-bug when reading/parsing space separated text files 
    with decimal commas

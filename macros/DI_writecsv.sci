@@ -14,7 +14,7 @@
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
 function [exitID] = DI_writecsv(csvMat, path)
-    // Exports numerical data stored in a matrix variable to a CSV file interactively
+    // DEPRECATED: Exports numerical data stored in a matrix variable to a CSV file interactively.
     //
     // Calling Sequence
     // [exitID] = DI_writecsv(csvMat)
@@ -27,7 +27,14 @@ function [exitID] = DI_writecsv(csvMat, path)
     // 
     // Description
     // Write a Scilab matrix of doubles to a CSV or other text-based file interactively.
-    // 
+    //
+    // <important> <para>
+    // This function is DEPRECATED. Use <link linkend="DI_writedat">DI_writedat</link> instead!
+    // To avoid breaking legal scripts, the code will 
+    // stay in the toolbox but will be removed from the documentation.
+    // </para>
+    //</important>
+    //
     // <variablelist>
     //  <varlistentry>
     //      <term>path:</term>
@@ -66,7 +73,7 @@ function [exitID] = DI_writecsv(csvMat, path)
     //
     // <inlinemediaobject>
     //  <imageobject>
-    //      <imagedata fileref="../images/writecsv.png" align="center" valign="middle"/>
+    //      <imagedata fileref="../../images/writecsv.png" align="center" valign="middle"/>
     //  </imageobject>
     // </inlinemediaobject>
     //
@@ -87,7 +94,7 @@ function [exitID] = DI_writecsv(csvMat, path)
     //  <varlistentry>
     //      <term>Decimal separator:</term>
     //      <listitem><para>
-    // The character which indentifies the decimal place. In
+    // The character which identifies the decimal place. In
     // general CSV files it is the point (.), in most European ones it is  
     // the comma (,).
     //      </para></listitem>
@@ -103,16 +110,16 @@ function [exitID] = DI_writecsv(csvMat, path)
     //
     // Examples
     // dat = [32.4 34.6 36.5 32.6 ; 102.4 105.0 104.8 102.6];
-    // // Open the file selector at the currend directory
+    // // Open the file selector at the current directory
     // // and write matrix "dat" to the specified csv-file
     // [exitID] = DI_writecsv("dat", pwd());
     // disp("Exit-ID: " + string(exitID)) // Displays exit code
     //
     // See also
-    //  DI_readcsv
-    //  DI_readxls
+    //  DI_writedat
+    //  DI_show
     //  DI_read
-    //  csvwrite
+    //  csvWrite
     //  csvRead
     //  fscanfMat
     //
