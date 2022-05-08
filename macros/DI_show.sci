@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Hani Andreas Ibrahim
+2// Copyright (C) 2019 Hani Andreas Ibrahim
 //
 // This program is free software; you can redistribute it and/or modify it under
 // the terms of the GNU General Public License as published by the Free Software
@@ -14,9 +14,7 @@
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
 function [dataMat, exitID] = DI_show(path, n)
-    // Read the first 25 or an arbitrary number of lines of a text data file,    
-    // displays them in the console and invoke a reading procedure after, if desired.
-    //
+    // Read and display the first 25 or an arbitrary number of lines of a text data file.
     //
     // Calling Sequence
     // [dataMat] = DI_show()
@@ -133,7 +131,7 @@ function [dataMat, exitID] = DI_show(path, n)
     //  <varlistentry>
     //      <term>Decimal separator:</term>
     //      <listitem><para>
-    // The character which indentifies the decimal place. In
+    // The character which identifies the decimal place. In
     // general CSV files it is the point (.), in most European ones it is  
     // the comma (,).
     //      </para></listitem>
@@ -210,12 +208,6 @@ function [dataMat, exitID] = DI_show(path, n)
     // else
     //    mprintf("Reading of data not confirmed\n")
     // end
-    // abort;
-    // // Further examples (will not be executed by "play")
-    // DI_show(fullfile(DI_getpath(), "demos"));
-    // DI_show(pwd()); // Opens current directory and read 25 lines (default)
-    // DI_show(,10);   // Opens home directory (default) and reads 10 lines
-    // DI_show();      // Opens home directory (default) and reads 25 lines (default)
     //
     // See also
     //  DI_read
@@ -298,7 +290,7 @@ function [dataMat, exitID] = DI_show(path, n)
     // Display rows of the file ------------------------------------------------
     
     // Prevent the display loop from overflowing if n > rows 
-    lrows = size(rows)(1); // No. of rows
+    lrows = size(rows,1); // No. of rows
     if n > lrows then
         n = lrows
     end

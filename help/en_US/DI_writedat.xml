@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from DI_writedat.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="DI_writedat" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>DI_writedat</refname>
+    <refpurpose>Exports numerical data stored in a matrix variable to a text data file interactively.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   [exitID] = DI_writedat(datMat)
+   [exitID] = DI_writedat(datMat, path)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>datMat:</term>
+      <listitem><para> name of the matrix variable you want to store in a file</para></listitem></varlistentry>
+   <varlistentry><term>path:</term>
+      <listitem><para> a string, target path for the file selector (OPTIONAL)</para></listitem></varlistentry>
+   <varlistentry><term>exitID:</term>
+      <listitem><para> an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+Write a Scilab matrix of doubles to a CSV or other text-based file interactively.
+If you do not specify a file-extension explicitly, ".txt" is added automatically.
+   </para>
+   <para>
+<variablelist>
+<varlistentry>
+<term>path:</term>
+<listitem><para>
+You can commit an optional path to the function. This is used to open
+the file selector at the committed target path. If you omit it your home
+directory is set as the target path.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>datMat:</term>
+<listitem><para>
+This is the name of the matrix variable which contents the data you want
+to export.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>exitID:</term>
+<listitem><para>
+The exitID gives a feedback what happened inside the function. If
+something went wrong datMat is always [] (empty). To handle errors in a
+script you can evaluate exitID's error codes (negative numbers):
+</para>
+<itemizedlist>
+<listitem><para> 0: Everything is OK. Matrix datMat was created</para></listitem>
+<listitem><para>-1: User canceled file selection</para></listitem>
+<listitem><para>-2: User canceled parameter dialog box</para></listitem>
+<listitem><para>-3: Cannot write CSV file</para></listitem>
+<listitem><para>-4: No matrix variable name specified</para></listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+   </para>
+   <para>
+Export Parameter:
+   </para>
+   <para>
+<inlinemediaobject>
+<imageobject>
+<imagedata fileref="../images/writecsv.png" align="center" valign="middle"/>
+</imageobject>
+</inlinemediaobject>
+   </para>
+   <para>
+<variablelist>
+<varlistentry>
+<term>Field Separator:</term>
+<listitem><para>
+This is the character which separates the fields and
+numbers, resp.
+In general CSV-files it is the comma (,), in European ones it is
+often the semicolon (;). Sometimes it is a tabulator (tab) or a space
+(space). E.g. to specify a tabulator as the separator, type in the word
+"tab" without quotes.
+</para><para>
+If you select space just ONE space character delimits the data.
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Decimal separator:</term>
+<listitem><para>
+The character which identifies the decimal place. In
+general CSV files it is the point (.), in most European ones it is
+the comma (,).
+</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Comment header:</term>
+<listitem><para>
+Place a comment in the first line/row of the file. This is useful to
+describe your data. Just one line is supported (OPTIONAL).
+</para></listitem>
+</varlistentry>
+</variablelist>
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+dat = [32.4 34.6 36.5 32.6 ; 102.4 105.0 104.8 102.6];
+// Open the file selector at the current directory
+// and write matrix "dat" to the specified csv-file
+[exitID] = DI_writedat(dat, pwd());
+disp("Exit-ID: " + string(exitID)) // Displays exit code
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="DI_show">DI_show</link></member>
+   <member><link linkend="DI_read">DI_read</link></member>
+   <member><link linkend="csvWrite">csvWrite</link></member>
+   <member><link linkend="csvRead">csvRead</link></member>
+   <member><link linkend="fscanfMat">fscanfMat</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Hani A. Ibrahim - hani.ibrahim@gmx.de</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -14,7 +14,7 @@
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
 function [csvMat, exitID] = DI_readcsv(path)
-    // Imports a CSV file (comma-separated-value) in a matrix variable interactively
+    // DEPRECATED: Imports a CSV file (comma-separated-value) in a matrix variable interactively.
     //
     // Calling Sequence
     // [csvMat] = DI_readcsv()
@@ -38,6 +38,13 @@ function [csvMat, exitID] = DI_readcsv(path)
     // Note that the file has to be correctly formated. All rows have to have the
     // same number of columns. 
     // </note>
+    //
+    // <important> <para>
+    // This function is DEPRECATED. Use <link linkend="DI_read">DI_read</link> instead!
+    // To avoid breaking legal scripts, the code will 
+    // stay in the toolbox but will be removed from the documentation.
+    // </para>
+    //</important>
     //
     // <variablelist>
     //  <varlistentry>
@@ -77,7 +84,7 @@ function [csvMat, exitID] = DI_readcsv(path)
     //
     // <inlinemediaobject>
     //  <imageobject>
-    //      <imagedata fileref="../images/readcsv.png" align="center" valign="middle"/>
+    //      <imagedata fileref="../../images/readcsv.png" align="center" valign="middle"/>
     //  </imageobject>
     // </inlinemediaobject>
     //
@@ -167,14 +174,15 @@ function [csvMat, exitID] = DI_readcsv(path)
     // Examples
     // [mat, id] = DI_readcsv(fullfile(DI_getpath(), "demos")); // Read CSV file
     // disp("Exit-ID: "+string(id),mat,"data:") // Displays imported data "mat" and exit code "id"
-    // if id == 0 then // Plot data if import was sucessful
-    //    plot(mat(:,1),mat(:,14),".-")
+    // if id == 0 then // Plot data if import was successful
+    //    plot(mat(:,1),mat(:,14),"-")
     //    xtitle("Central England Temperature","Year","Mean Temperature [°C]")
     // end  
     //
     // See also
-    //  DI_readxls
-    //  DI_writecsv
+    //  DI_read
+    //  DI_show
+    //  DI_writedat
     //  csvRead
     //  fscanfMat
     //

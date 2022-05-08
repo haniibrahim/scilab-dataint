@@ -14,7 +14,7 @@
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
 function [xlsMat, exitID] = DI_readxls(path)
-    // Imports a binary Excel file (xls) in a matrix variable interactively
+    // DEPRECATED: Imports a binary Excel file (xls) in a matrix variable interactively.
     //
     // Calling Sequence
     // [xlsMat] = DI_readxls()
@@ -78,7 +78,7 @@ function [xlsMat, exitID] = DI_readxls(path)
     //
     // <inlinemediaobject>
     //  <imageobject>
-    //      <imagedata fileref="../images/readxls.png" align="center" valign="middle"/>
+    //      <imagedata fileref="../../images/readxls.png" align="center" valign="middle"/>
     //  </imageobject>
     // </inlinemediaobject>
     //
@@ -111,14 +111,15 @@ function [xlsMat, exitID] = DI_readxls(path)
     // Examples
     // [mat, id] = DI_readxls(fullfile(DI_getpath(), "demos")) // Read XLS file
     // disp("Exit-ID: "+string(id),mat,"data:") // Displays imported data "mat" and exit code "id"
-    // if id == 0 then // Plot data if import was sucessful
-    //    plot(mat(:,1),mat(:,14),".-")
+    // if id == 0 then // Plot data if import was successful
+    //    plot(mat(:,1),mat(:,14),"-")
     //    xtitle("Central England Temperature","Year","Mean Temperature [°C]")
     // end 
     //
     // See also
-    //  DI_readcsv
-    //  DI_writecsv
+    //  DI_read
+    //  DI_show
+    //  DI_writedat
     //  readxls
     //
     // Authors

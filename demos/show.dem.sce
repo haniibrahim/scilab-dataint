@@ -17,7 +17,7 @@ function show_demo()
     
     messagebox(["Central England Temperature";"DI_show Demo, preview text-based data and read data"], "modal","info","Ok");
     
-    [dat,id] = DI_show(get_absolute_file_path("show.dem.sce"),10);
+    [dat,id] = DI_show(get_absolute_file_path("show.dem.sce"),10); // Show the first 10 lines of the data file
         if (id == -1 | id == -2) then // Check for abortion by the user
             messagebox("Aborted by user")
             disp("Aborted by user");

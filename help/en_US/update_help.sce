@@ -5,10 +5,9 @@ mprintf("Working dir = %s\n",cwd);
 mprintf("Updating root\n");
 helpdir = fullfile(cwd);
 funmat = [
-  "DI_readcsv"
-  "DI_readxls"
-  "DI_writecsv"
   "DI_read"
+  "DI_show"
+  "DI_writedat"
   ];
 macrosdir = cwd +"../../macros";
 demosdir = [];
@@ -25,4 +24,16 @@ macrosdir = cwd +"../../macros";
 demosdir = [];
 modulename = "dataint";
 helptbx_helpupdate ( funmat , helpdir , macrosdir , demosdir , modulename , %t );
-
+// ========================================================================================
+// Generate the deprecated help
+mprintf("Updating deprecated\n");
+helpdir = fullfile(cwd,"deprecated");
+funmat = [
+  "DI_readcsv"
+  "DI_readxls"
+  "DI_writecsv"
+  ];
+macrosdir = cwd +"../../macros";
+demosdir = [];
+modulename = "dataint";
+helptbx_helpupdate ( funmat , helpdir , macrosdir , demosdir , modulename , %t );
