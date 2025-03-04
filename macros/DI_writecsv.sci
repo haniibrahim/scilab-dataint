@@ -16,7 +16,7 @@
 function [exitID] = DI_writecsv(csvMat, path)
     // DEPRECATED: Exports numerical data stored in a matrix variable to a CSV file interactively.
     //
-    // Calling Sequence
+    // Syntax
     // [exitID] = DI_writecsv(csvMat)
     // [exitID] = DI_writecsv(csvMat, path)
     //

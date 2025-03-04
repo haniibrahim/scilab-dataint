@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN" "http://java.sun.com/products/javahelp/toc_1_0.dtd">
+<toc version="1.0">
+<tocitem target="index" text="dataint">
+<tocitem target="section_11c257f677e6736c392281a8e4d966b4" text="dataint">
+<tocitem target="dataint_overview" text="Overview"/>
+<tocitem target="DI_read" text="DI_read"/>
+<tocitem target="DI_show" text="DI_show"/>
+<tocitem target="DI_writedat" text="DI_writedat"/>
+<tocitem target="section_7c088a5a585a9a5b961ec70234e7588e" text="Deprecated">
+<tocitem target="DI_readcsv" text="DI_readcsv"/>
+<tocitem target="DI_readxls" text="DI_readxls"/>
+<tocitem target="DI_writecsv" text="DI_writecsv"/>
+</tocitem>
+<tocitem target="section_99d17921686e511c91939f651af26d0e" text="Utilities">
+<tocitem target="DI_getpath" text="DI_getpath"/>
+</tocitem>
+</tocitem>
+</tocitem>
+</toc>

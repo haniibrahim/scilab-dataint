@@ -1,0 +1,190 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>DI_read</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="dataint_overview.html">&lt;&lt; Overview</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_11c257f677e6736c392281a8e4d966b4.html">dataint</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="DI_show.html">DI_show &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path" dir="ltr"><a href="index.html">dataint</a> &gt;&gt; <a href="section_11c257f677e6736c392281a8e4d966b4.html">dataint</a> &gt; DI_read</span>
+
+    <br /><br />
+    <div class="refnamediv"><h1 class="refname">DI_read</h1>
+    <p class="refpurpose">Imports a data file (comma-separated-value, Excel-xls, text-based) in a matrix variable interactively.</p></div>
+
+
+<div class="refsynopsisdiv"><h3 class="title" id="#L25">Syntax</h3>
+   <div class="synopsis"><pre><span class="default">[</span><span class="default">dataMat</span><span class="default">] = </span><span class="functionid">DI_read</span><span class="default">()</span>
+<span class="default">[</span><span class="default">dataMat</span><span class="default">] = </span><span class="functionid">DI_read</span><span class="default">(</span><span class="default">path</span><span class="default">)</span>
+<span class="default">[</span><span class="default">dataMat</span><span class="default">, </span><span class="default">exitID</span><span class="default">] = </span><span class="functionid">DI_read</span><span class="default">()</span>
+<span class="default">[</span><span class="default">dataMat</span><span class="default">, </span><span class="default">exitID</span><span class="default">] = </span><span class="functionid">DI_read</span><span class="default">(</span><span class="default">path</span><span class="default">)</span></pre></div></div>
+
+<div class="refsection"><h3 class="title" id="#L36">Parameters</h3>
+   <dl><dt><span class="term">path:</span>
+            <dd><p class="para">a string, target path for the file selector (OPTIONAL)</p></dd></dt>
+        <dt><span class="term">dataMat:</span>
+            <dd><p class="para">a string, name of the matrix which stores the imported data</p></dd></dt>
+        <dt><span class="term">exitID:</span>
+            <dd><p class="para">an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.</p></dd></dt></dl></div>
+
+<div class="refsection"><h3 class="title" id="#L54">Description</h3>
+   <p class="para">Read numerical data from a comma-separated-value (*.csv) or another text-based
+data file (*.dat, *.txt) or a binary Excel 95-2003 file (*.xls) and
+stores it into a matrix variable interactively.</p>
+   <p class="para">Many field or decimal delimiters in text-based files are accepted (see below).</p>
+   <p class="para">DI_read combines the functionality of DI_readcsv and DI_readxls in one function.</p>
+   <p class="para"><dl><dt><span class="term">path:</span>
+<dd><p class="para">You can commit an optional path to the function. This is used to open
+the file selector at the committed target path. If you omit it your home
+directory is set as the target path.</p></dd></dt>
+<dt><span class="term">dataMat:</span>
+<dd><p class="para">This is the name of the matrix variable which will content the imported data
+for further processing in Scilab&#0039;s console or in a script.</p></dd></dt>
+<dt><span class="term">exitID:</span>
+<dd><p class="para">The exitID gives a feedback what happened inside the function. If
+something went wrong dataMat is always [] (empty). To handle errors in a
+script you can evaluate exitID&#0039;s error codes (negative numbers):</p>
+<ul class="itemizedlist"><li><p class="para">0: Everything is OK. Matrix dataMat was created</p></li>
+<li><p class="para">-1: User canceled file selection</p></li>
+<li><p class="para">-2: User canceled parameter dialog box</p></li>
+<li><p class="para">-3: Cannot read or interpret data file</p></li>
+<li><p class="para">-4: Cannot interpret file correctly - maybe header present (only CSV/TXT data files)</p></li></ul></dd></dt></dl></p>
+   <p class="para"><h3 class="title" id="#L102">Comma-Separated-Value-, Text-Based Data Files</h3>
+Read text-based data files which contains numerical data. The following
+field delimiters are accepted: Comma, semicolon, space(s), tabular(s).
+The decimal delimiter can be point or comma.</p>
+   <p class="para"><table><tr><td valign="top"><img src="ScilabNote.png"/></td><td valign="top"><div class="note">Note that the file has to be correctly formated. All rows have to have the
+same number of columns.</div></td></tr></table></p>
+   <p class="para">Import Parameter:</p>
+   <p class="para"><span><div style='text-align:center'>
+<img src='./readcsv.png' />
+</div></span></p>
+   <p class="para"><dl><dt><span class="term">Field Separator:</span>
+<dd><p class="para">This is the character which separates the fields and
+numbers, resp.
+In general CSV-files it is the comma (,), in European ones it is
+often the semicolon (;). Sometimes it is a tabulator (tab). Text-based
+data files has a space or spaces as delimiters.
+E.g. to specify a tabulator as separator, type in the word
+&#0034;tab&#0034;, for a space separator the word &#0034;space&#0034; without quotes.</p></dd></dt>
+<dt><span class="term">Decimal separator:</span>
+<dd><p class="para">The character which identifies the decimal place. In
+general CSV files it is the point (.), in most European ones it is
+the comma (,).</p></dd></dt>
+<dt><span class="term">Number of Header Lines to Skip:</span>
+<dd><p class="para">The number of lines to be ignored at the
+beginning of the file. This is useful to skip table headers.</p></dd></dt>
+<dt><span class="term">Row/Columns Range Start:</span>
+<dd><p class="para">The row/column at which the import is going to start. Type a number. 1 means
+import starts at row/column 1 inclusively.</p></dd></dt>
+<dt><span class="term">Row/Columns Range End:</span>
+<dd><p class="para">The row at which the import is going to end. Type a number or $ (dollar-
+sign). 12 means the import stops at row 12 inclusively, $ means that all
+rows/columns are read to the end.</p></dd></dt></dl></p>
+   <p class="para">For CSV and text-based data files there are different prerequisites to
+consider.</p>
+   <p class="para"><dl><dt><span class="term">Comma-separated-value (*.csv):</span>
+<dd><p class="para">All rows have to have the same number of columns. That does not mean that
+every cell has to be occupied by a number. Only the separator has to be
+present:</p><p class="para"><div class="screen"><pre>
+2.3 , 4.4 , 7.6 , 9.5
+5.6 , 6.9 ,     ,
+</pre></div></p><p class="para">Strings or missing data (see above) are represented as Nan (not-a-number)
+in the matrix. E.g.:</p><p class="para"><div class="screen"><pre>
+2.3  4.4  7.6  9.5
+5.6  6.9  Nan  Nan
+</pre></div></p></dd></dt>
+<dt><span class="term">Text-based data (*.dat, *.txt):</span>
+<dd><p class="para">All rows have to have the same number of columns and should not contain
+strings (text). Otherwise the data will be imported as a string matrix and
+not a number matrix.</p><p class="para"><div class="screen"><pre>
+| 2.3  4.4  7.6  9.5 |
+|                    |
+| 5.6  6.9           |
+</pre></div></p></dd></dt></dl></p>
+   <p class="para"><h3 class="title" id="#L212">Excel 95-2003 Files</h3>
+Read numerical data from XLS-files</p>
+   <p class="para"><table><tr><td valign="top"><img src="ScilabNote.png"/></td><td valign="top"><div class="note">DI_read can read binary Excel-files (*.xls) from Excel 95-2003 only.
+XML-based Excel files (*.xlsx) from Excel 2010 and higher are not supported!</div></td></tr></table></p>
+   <p class="para"><table><tr><td valign="top"><img src="ScilabNote.png"/></td><td valign="top"><div class="note">DI_read handles numerical data only. Strings or missing data are imported as
+Nan (Not-a-number, %nan).</div></td></tr></table></p>
+   <p class="para">Import Parameter:</p>
+   <p class="para"><span><div style='text-align:center'>
+<img src='./readxls.png' />
+</div></span></p>
+   <p class="para"><dl><dt><span class="term">Sheet#:</span>
+<dd><p class="para">The number of the sheet of the Excel file you want to import from. The
+names of the sheets are not evaluated. The 1st sheet is 1 the 2nd is 2
+independent of their names in Excel.</p></dd></dt>
+<dt><span class="term">Row/Columns Range Start:</span>
+<dd><p class="para">The row/column at which the import is going to start. Type a numer. 1 means
+import starts at row/column 1 inclusively.</p></dd></dt>
+<dt><span class="term">Row/Columns Range End:</span>
+<dd><p class="para">The row at which the import is going to end. Type a number or $ (dollar-
+sign). 12 means the import stops at row 12 inclusively, $ means that all
+rows/columns are read to the end.</p></dd></dt></dl></p>
+   <p class="para"></p></div>
+
+<div class="refsection"><h3 class="title" id="#L269">Examples</h3>
+   <div class="programlisting" id="#L278"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabopenclose">[</span><span class="scilabid">mat</span><span class="scilabdefault">,</span> <span class="scilabid">id</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">DI_read</span><span class="scilabopenclose">(</span><a class="scilabmacro" href="scilab://fullfile">fullfile</a><span class="scilabopenclose">(</span><span class="scilabid">DI_getpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">demos</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span> <span class="scilabcomment">// Read CSV file</span>
+<a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Exit-Code: </span><span class="scilabstring">&#0034;</span><span class="scilaboperator">+</span><a class="scilabcommand" href="scilab://string">string</a><span class="scilabopenclose">(</span><span class="scilabid">id</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabid">mat</span><span class="scilabdefault">,</span><span class="scilabstring">&#0034;</span><span class="scilabstring">data:</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span> <span class="scilabcomment">// Displays imported data </span><span class="scilabcomment">&#0034;</span><span class="scilabcomment">mat</span><span class="scilabcomment">&#0034;</span><span class="scilabcomment"> and exit code </span><span class="scilabcomment">&#0034;</span><span class="scilabcomment">id</span><span class="scilabcomment">&#0034;</span>
+<span class="scilabskeyword">if</span> <span class="scilabid">id</span> <span class="scilaboperator">==</span> <span class="scilabnumber">0</span> <span class="scilabskeyword">then</span> <span class="scilabcomment">// Plot data if import was successful</span>
+<a class="scilabmacro" href="scilab://plot">plot</a><span class="scilabopenclose">(</span><span class="scilabid">mat</span><span class="scilabopenclose">(</span><span class="scilabspecial">:</span><span class="scilabdefault">,</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabid">mat</span><span class="scilabopenclose">(</span><span class="scilabspecial">:</span><span class="scilabdefault">,</span><span class="scilabnumber">14</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabstring">&#0034;</span><span class="scilabstring">-</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span>
+<a class="scilabcommand" href="scilab://xtitle">xtitle</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Central England Temperature</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">,</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Year</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">,</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Mean Temperature [°C]</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span>
+<span class="scilabskeyword">end</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+
+<div class="refsection"><h3 class="title" id="#L282">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="DI_show.html" class="link">DI_show</a> &#8212; Read and display the first 25 or an arbitrary number of lines of a text data file.</li>
+   <li class="member"><a href="DI_writedat.html" class="link">DI_writedat</a> &#8212; Exports numerical data stored in a matrix variable to a text data file interactively.</li>
+   <li class="member"><a href="scilab://csvRead" class="link">csvRead</a></li>
+   <li class="member"><a href="scilab://readxls" class="link">readxls</a></li>
+   <li class="member"><a href="scilab://fscanfMat" class="link">fscanfMat</a></li></ul></div>
+
+<div class="refsection"><h3 class="title" id="#L293">Authors</h3>
+   <ul class="itemizedlist"><li class="member">Hani A. Ibrahim - hani.ibrahim@gmx.de</li></ul></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="https://gitlab.com/scilab/scilab/-/issues/new" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="dataint_overview.html">&lt;&lt; Overview</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_11c257f677e6736c392281a8e4d966b4.html">dataint</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="DI_show.html">DI_show &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Overview</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="section_11c257f677e6736c392281a8e4d966b4.html">&lt;&lt; dataint</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_11c257f677e6736c392281a8e4d966b4.html">dataint</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="DI_read.html">DI_read &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path" dir="ltr"><a href="index.html">dataint</a> &gt;&gt; <a href="section_11c257f677e6736c392281a8e4d966b4.html">dataint</a> &gt; Overview</span>
+
+    <br /><br />
+    <div class="refnamediv"><h1 class="refname">Overview</h1>
+		<p class="refpurpose">An overview of the dataINT toolbox.</p></div>
+	<div class="refsection"><h3 class="title" id="#L14">Introduction and Purpose</h3>
+		<p class="para">This toolbox provides functions for importing and exporting numeric tabular data (*.csv, *.dat, *.txt, *.xls) without hassle. It is based on Scilab&#0039;s in-built functions csvRead(), xlsRead(), fscanfMat() and cvsWrite(). The purpose of this toolbox is to make the use of these functions more convenient by introducing a GUI for selecting the files and specifying the im- or export parameters.</p>
+	<p class="para">Choose data file:</p>
+	<p class="para"><span><div style='text-align:center'>
+<img src='./filechooser.png' />
+</div></span></p>
+	<p class="para">Read CSV- and text-data files:</p>
+	<p class="para"><span><div style='text-align:center'>
+<img src='./readcsv.png' />
+</div></span></p>
+	<p class="para">Read XLS-files:</p>
+	<p class="para"><span><div style='text-align:center'>
+<img src='./readxls.png' />
+</div></span></p>
+	<p class="para">Write CSV- and text-data files:</p>
+	<p class="para"><span><div style='text-align:center'>
+<img src='./writecsv.png' />
+</div></span></p>
+	<p class="para">It can easily integrated in scripts and controlled by dataINT&#0039;s exit codes but can also be used in Scilab&#0039;s console for importing or exporting data conveniently.</p>
+	<p class="para">dataINT&#0039;s import functions read the data from a comma-separated value (*.csv), other text-based data (*.dat, *.txt) or from a binary Excel 95-2003 file (*.xls) into a Scilab matrix variable for further processing. The export function saves a Scilab matrix into a csv or other text-based file.</p>
+	<p class="para">The following data formats, field and decimal separators are supported:</p>
+	<p class="para"><ul class="itemizedlist"><li><p class="para">COMMA-SEPARATED-VALUE files (*.csv) with field separators: comma, semicolon or tabulator. The decimal separator can be point or comma.</p></li>
+		<li><p class="para">TEXT-BASED-DATA files (*.dat, *.txt) with space or spaces as field separator. The decimal separator can be point or comma.</p></li>
+		<li><p class="para">EXCEL files in Excel 95-2003 format (*.xls).</p></li></ul></p>
+	<p class="para">This makes dataINT flexible to a huge variety of commonly-used data formats.</p>
+		<p class="para"><table><tr><td valign="top"><img src="ScilabNote.png"/></td><td valign="top"><div class="note"><p class="para">dataINT cannot import XML-based Excel files (Excel 2007 and higher) yet! But the toolbox &#0034;XLreadwrite&#0034; will be called in future versions to offer this feature, too.</p></div></td></tr></table></p></div>
+	<div class="refsection"><h3 class="title" id="#L81">Functions</h3>
+		<dl><dt><span class="term"><a href="DI_read.html" class="link">DI_read</a>:</span>
+				<dd><p class="para">Read data from a comma-separated-value, text-based data file or a binary Excel 95-2003 file and stores it into a matrix variable interactively.</p></dd></dt>
+			<dt><span class="term"><a href="DI_show.html" class="link">DI_show</a>:</span>
+				<dd><p class="para">Read the first 25 or an arbitrary number of lines of a text data file, displays them in the console and invoke the reading procedure &#0034;DI_read&#0034; after, if desired.</p></dd></dt>
+			<dt><span class="term"><a href="DI_writedat.html" class="link">DI_writedat</a>:</span>
+				<dd><p class="para">Write a Scilab matrix of doubles to a comma-separated value or other text-based file interactively.</p></dd></dt></dl>
+		<p class="para">Type &#0034;demo_gui()&#0034; in Scilab&#0039;s console and search for &#0034;dataINT&#0034; to get started.</p></div>
+	<div class="refsection"><h3 class="title" id="#L105">Functions (deprecated)</h3>
+		<p class="para">The following functions are obsolete. To avoid breaking legal scripts, the code will stay in the toolbox but will be removed from the documentation.</p>
+		<dl><dt><span class="term">DI_readcsv:</span>
+				<dd><p class="para">Read data from a comma-separated-value or another text-based data file and stores it into a matrix variable interactively.</p>
+					<p class="para">The successor is DI_read.</p></dd></dt>
+			<dt><span class="term">DI_readxls:</span>
+				<dd><p class="para">Read data from a binary Excel 95-2003 file and stores it into a matrix variable interactively.</p>
+					<p class="para">The successor is DI_read.</p></dd></dt>
+			<dt><span class="term">DI_writecsv:</span>
+				<dd><p class="para">Write a Scilab matrix of doubles to a comma-separated value or other text-based file interactively.</p>
+					<p class="para">The successor is DI_writedat.</p></dd></dt></dl></div>
+	<div class="refsection"><h3 class="title" id="#L132">Authors</h3>
+		<p class="para">Hani A. Ibrahim - hani.ibrahim@gmx.de</p></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="https://gitlab.com/scilab/scilab/-/issues/new" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="section_11c257f677e6736c392281a8e4d966b4.html">&lt;&lt; dataint</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_11c257f677e6736c392281a8e4d966b4.html">dataint</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="DI_read.html">DI_read &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

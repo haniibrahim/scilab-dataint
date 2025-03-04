@@ -26,7 +26,7 @@ Summary: dataINT provides userfriendly INTERACTIVE reading and writing of csv- a
 // 'major.minor.patch', where all fields are numbers.
 // If you are just starting your toolbox, you should use '0.1' or '0.1.0'.
 // Use '1.0' or '1.0.0' for a tested, good quality first version.
-Version: 1.2.0
+Version: 1.2.1
 
 // Name(s) of the author(s) of this toolbox.
 // They are usually the original copyright holders
@@ -53,7 +53,7 @@ License: GPL 3.0
 
 // Version of Scilab supported by this toolbox,
 // prefixed by =, >= ...
-ScilabVersion: >= 5.5
+ScilabVersion: >= 2023.0.0
 
 // Other toolbox(es) that must be installed in order
 // this toolboxes to work. Atoms will automatically ensure that
@@ -63,7 +63,7 @@ ScilabVersion: >= 5.5
 //    <operator> <toolbox name> <toolbox version|any>
 // where operator can be: ~, >, <, >=, <=
 // If multiple dependencies, put one per line (starting each line with a space) e.g. >= apifun 0.4.0
-Depends: >= apifun 0.4.0
+Depends: ~ apifun any
 
 // Creation date, e.g.  2019-05-05
 Date: 2022-05-06
@@ -110,6 +110,8 @@ Description: Toolbox for easy and interactive reading and writing of data files
   ---------------------------------------------------------------------
    
  CHANGELOG:
+ 1.2.1
+ - Fixed start problems with 2025.0.0 on Linux and macOS
  
  1.2.0
  - DI_show function added

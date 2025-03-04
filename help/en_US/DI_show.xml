@@ -22,7 +22,7 @@
 
 
 <refsynopsisdiv>
-   <title>Calling Sequence</title>
+   <title>Syntax</title>
    <synopsis>
    [dataMat] = DI_show()
    [dataMat] = DI_show(path)
@@ -39,14 +39,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>path:</term>
-      <listitem><para>    string, target path for the file selector (OPTIONAL)</para></listitem></varlistentry>
-   <varlistentry><term>n:</term>
-      <listitem><para>       integer, Number of lines to display (OPTINAL), default: 25</para></listitem></varlistentry>
-   <varlistentry><term>dataMat:</term>
-      <listitem><para> string, name of the matrix which stores the imported data, if confirmed, default: ans, IMPORTANT: See note below.</para></listitem></varlistentry>
-   <varlistentry><term>exitID:</term>
-      <listitem><para>  integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, if data reading was confirmed. IMPORTANT: See note below.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>path:</term>
+            <listitem><para>    string, target path for the file selector (OPTIONAL)</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n:</term>
+            <listitem><para>       integer, Number of lines to display (OPTINAL), default: 25</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>dataMat:</term>
+            <listitem><para> string, name of the matrix which stores the imported data, if confirmed, default: ans, IMPORTANT: See note below.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>exitID:</term>
+            <listitem><para>  integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, if data reading was confirmed. IMPORTANT: See note below.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -244,7 +252,7 @@ end
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="DI_read">DI_read</link></member>

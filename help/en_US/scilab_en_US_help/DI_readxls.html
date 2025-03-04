@@ -1,0 +1,130 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>DI_readxls</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="DI_readcsv.html">&lt;&lt; DI_readcsv</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_7c088a5a585a9a5b961ec70234e7588e.html">Deprecated</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="DI_writecsv.html">DI_writecsv &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path" dir="ltr"><a href="index.html">dataint</a> &gt;&gt; <a href="section_11c257f677e6736c392281a8e4d966b4.html">dataint</a> &gt; <a href="section_7c088a5a585a9a5b961ec70234e7588e.html">Deprecated</a> &gt; DI_readxls</span>
+
+    <br /><br />
+    <div class="refnamediv"><h1 class="refname">DI_readxls</h1>
+    <p class="refpurpose">DEPRECATED: Imports a binary Excel file (xls) in a matrix variable interactively.</p></div>
+
+
+<div class="refsynopsisdiv"><h3 class="title" id="#L25">Syntax</h3>
+   <div class="synopsis"><pre><span class="default">[</span><span class="default">xlsMat</span><span class="default">] = </span><span class="functionid">DI_readxls</span><span class="default">()</span>
+<span class="default">[</span><span class="default">xlsMat</span><span class="default">] = </span><span class="functionid">DI_readxls</span><span class="default">(</span><span class="default">path</span><span class="default">)</span>
+<span class="default">[</span><span class="default">xlsMat</span><span class="default">, </span><span class="default">exitID</span><span class="default">] = </span><span class="functionid">DI_readxls</span><span class="default">()</span>
+<span class="default">[</span><span class="default">xlsMat</span><span class="default">, </span><span class="default">exitID</span><span class="default">] = </span><span class="functionid">DI_readxls</span><span class="default">(</span><span class="default">path</span><span class="default">)</span></pre></div></div>
+
+<div class="refsection"><h3 class="title" id="#L36">Parameters</h3>
+   <dl><dt><span class="term">path:</span>
+            <dd><p class="para">a string, target path for the file selector (OPTIONAL)</p></dd></dt>
+        <dt><span class="term">xlsMat:</span>
+            <dd><p class="para">a string, name of the matrix which stores the imported data</p></dd></dt>
+        <dt><span class="term">exitID:</span>
+            <dd><p class="para">an integer, exit codes, 0=OK, -1, -2, -3=error codes, see below.</p></dd></dt></dl></div>
+
+<div class="refsection"><h3 class="title" id="#L54">Description</h3>
+   <p class="para">Read data from a binary Excel 95-2003 file (*.xls) and stores it into
+a matrix variable interactively.</p>
+   <p class="para"><table><tr><td valign="top"><img src="ScilabNote.png"/></td><td valign="top"><div class="note">DI_readxls does not handle data from XML-based Excel files (*.xlsx) of
+Excel 2007 and higher!</div></td></tr></table></p>
+   <p class="para"><table><tr><td valign="top"><img src="ScilabNote.png"/></td><td valign="top"><div class="note">DI_readxls handles numerical data only. Strings or missing data are imported
+as Nan (Not-a-number, %nan).</div></td></tr></table></p>
+   <p class="para"><dl><dt><span class="term">path:</span>
+<dd><p class="para">You can commit an optional path to the function. This is used to open
+the file selector at the committed target path. If you omit it your home
+directory is set as the target path.</p></dd></dt>
+<dt><span class="term">xlsMat:</span>
+<dd><p class="para">This is the name of the matrix variable which contents the imported data
+for further processing in Scilab&#0039;s console or in a script.</p></dd></dt>
+<dt><span class="term">exitID:</span>
+<dd><p class="para">The exitID gives a feedback what happened inside the function. If
+something went wrong xlsMat is always [] (empty). To handle errors in a
+script you can evaluate exitID&#0039;s error codes (negative numbers):</p>
+<ul class="itemizedlist"><li><p class="para">0: Everything is OK. Matrix xlsMat was created</p></li>
+<li><p class="para">-1: User canceled file selection</p></li>
+<li><p class="para">-2: User canceled parameter dialog box</p></li>
+<li><p class="para">-3: Cannot read or interpret XLS file</p></li></ul></dd></dt></dl></p>
+   <p class="para">Import Parameter:</p>
+   <p class="para"><span><div style='text-align:center'>
+<img src='./readxls.png' />
+</div></span></p>
+   <p class="para"><dl><dt><span class="term">Sheet#:</span>
+<dd><p class="para">The number of the sheet of the Excel file you want to import from. The
+names of the sheets are not evaluated. The 1st sheet is 1 the 2nd is 2
+independent of their names in Excel.</p></dd></dt>
+<dt><span class="term">Row/Columns Range Start:</span>
+<dd><p class="para">The row/column at which the import is going to start. Type a number. 1 means
+import starts at row/column 1 inclusively.</p></dd></dt>
+<dt><span class="term">Row/Columns Range End:</span>
+<dd><p class="para">The row at which the import is going to end. Type a number or $ (dollar-
+sign). 12 means the import stops at row 12 inclusively, $ means that all
+rows/columns are read to the end.</p></dd></dt></dl></p>
+   <p class="para"></p></div>
+
+<div class="refsection"><h3 class="title" id="#L147">Examples</h3>
+   <div class="programlisting" id="#L156"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabopenclose">[</span><span class="scilabid">mat</span><span class="scilabdefault">,</span> <span class="scilabid">id</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">DI_readxls</span><span class="scilabopenclose">(</span><a class="scilabmacro" href="scilab://fullfile">fullfile</a><span class="scilabopenclose">(</span><span class="scilabid">DI_getpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">demos</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span> <span class="scilabcomment">// Read XLS file</span>
+<a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Exit-ID: </span><span class="scilabstring">&#0034;</span><span class="scilaboperator">+</span><a class="scilabcommand" href="scilab://string">string</a><span class="scilabopenclose">(</span><span class="scilabid">id</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabid">mat</span><span class="scilabdefault">,</span><span class="scilabstring">&#0034;</span><span class="scilabstring">data:</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span> <span class="scilabcomment">// Displays imported data </span><span class="scilabcomment">&#0034;</span><span class="scilabcomment">mat</span><span class="scilabcomment">&#0034;</span><span class="scilabcomment"> and exit code </span><span class="scilabcomment">&#0034;</span><span class="scilabcomment">id</span><span class="scilabcomment">&#0034;</span>
+<span class="scilabskeyword">if</span> <span class="scilabid">id</span> <span class="scilaboperator">==</span> <span class="scilabnumber">0</span> <span class="scilabskeyword">then</span> <span class="scilabcomment">// Plot data if import was successful</span>
+<a class="scilabmacro" href="scilab://plot">plot</a><span class="scilabopenclose">(</span><span class="scilabid">mat</span><span class="scilabopenclose">(</span><span class="scilabspecial">:</span><span class="scilabdefault">,</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabid">mat</span><span class="scilabopenclose">(</span><span class="scilabspecial">:</span><span class="scilabdefault">,</span><span class="scilabnumber">14</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabstring">&#0034;</span><span class="scilabstring">-</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span>
+<a class="scilabcommand" href="scilab://xtitle">xtitle</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Central England Temperature</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">,</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Year</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">,</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Mean Temperature [°C]</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span>
+<span class="scilabskeyword">end</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+
+<div class="refsection"><h3 class="title" id="#L160">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="DI_read.html" class="link">DI_read</a> &#8212; Imports a data file (comma-separated-value, Excel-xls, text-based) in a matrix variable interactively.</li>
+   <li class="member"><a href="DI_show.html" class="link">DI_show</a> &#8212; Read and display the first 25 or an arbitrary number of lines of a text data file.</li>
+   <li class="member"><a href="DI_writedat.html" class="link">DI_writedat</a> &#8212; Exports numerical data stored in a matrix variable to a text data file interactively.</li>
+   <li class="member"><a href="scilab://readxls" class="link">readxls</a></li></ul></div>
+
+<div class="refsection"><h3 class="title" id="#L170">Authors</h3>
+   <ul class="itemizedlist"><li class="member">Hani A. Ibrahim - hani.ibrahim@gmx.de</li></ul></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="https://gitlab.com/scilab/scilab/-/issues/new" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="DI_readcsv.html">&lt;&lt; DI_readcsv</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_7c088a5a585a9a5b961ec70234e7588e.html">Deprecated</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="DI_writecsv.html">DI_writecsv &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

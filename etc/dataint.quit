@@ -10,6 +10,5 @@ function quitModule()
 
 endfunction
 
-
 quitModule();
 clear quitModule;

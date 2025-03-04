@@ -16,7 +16,7 @@
 function path = DI_getpath()
 // Returns the path to the current module.
 //
-// Calling Sequence
+// Syntax
 //   path = DI_getpath()
 //
 // Parameters

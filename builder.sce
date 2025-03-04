@@ -7,52 +7,32 @@ mode(-1);
 lines(0);
 
 function main_builder()
-    TOOLBOX_NAME  = "dataint"; // name of the toolbox small letters
-    TOOLBOX_TITLE = "dataINT"; // name of the toolbox small letters
+    TOOLBOX_NAME  = "dataint";
+    TOOLBOX_TITLE = "dataINT";
     toolbox_dir   = get_absolute_file_path("builder.sce");
 
-    // Check Scilab's version
-    // =============================================================================
-
+    // Check Scilab-Version
     try
         v = getversion("scilab");
     catch
-        error(gettext("Scilab 5.3 or more is required."));
+        error(gettext("Scilab 5.5 or higher is required."));
     end
 
-    if v(1) < 5 & v(2) < 3 then
-        // new API in scilab 5.3
-        error(gettext("Scilab 5.3 or more is required."));
+    if v(1) < 2023  then 
+        error(gettext("Scilab 2023.0.0 or higher is required."));
     end
 
-    // Check modules_manager module availability
-    // =============================================================================
+    // Action ----------------------------------------------------------------------
 
-    if ~isdef("tbx_build_loader") then
-        error(msprintf(gettext("%s module not installed."), "modules_manager"));
-    end
-
-    // Action
-    // =============================================================================
+    // Update help XML-files from sci-files via Helptbx
+    exec(fullfile(toolbox_dir,"/help/en_US/update_help.sce"),-1);
     
-    // Update help XML-files from sci-files when version is < 6 (Syntx/Calling Sequence problem))
-    if v(1) < 6 then
-        exec(fullfile(toolbox_dir,"/help/en_US/update_help.sce"),-1);
-    end
-    // ------------------------------------
+    // =============================================================================
 
     tbx_builder_macros(toolbox_dir);
- //   tbx_builder_src(toolbox_dir);
- //   tbx_builder_gateway(toolbox_dir);
- //   tbx_build_localization(toolbox_dir);
     tbx_builder_help(toolbox_dir);
-    if v(1) == 5  then // For Scilab versions 5 and 6
-        tbx_build_loader(TOOLBOX_NAME, toolbox_dir);
-        tbx_build_cleaner(TOOLBOX_NAME, toolbox_dir);
-    else
-        tbx_build_loader(toolbox_dir);
-        tbx_build_cleaner(toolbox_dir);
-    end
+    tbx_build_loader(toolbox_dir);
+    tbx_build_cleaner(toolbox_dir);
 
 endfunction
 // =============================================================================

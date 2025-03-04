@@ -16,7 +16,7 @@
 function [exitID] = DI_writedat(datMat, path)
     // Exports numerical data stored in a matrix variable to a text data file interactively.
     //
-    // Calling Sequence
+    // Syntax
     // [exitID] = DI_writedat(datMat)
     // [exitID] = DI_writedat(datMat, path)
     //

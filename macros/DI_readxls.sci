@@ -16,7 +16,7 @@
 function [xlsMat, exitID] = DI_readxls(path)
     // DEPRECATED: Imports a binary Excel file (xls) in a matrix variable interactively.
     //
-    // Calling Sequence
+    // Syntax
     // [xlsMat] = DI_readxls()
     // [xlsMat] = DI_readxls(path)
     // [xlsMat, exitID] = DI_readxls()

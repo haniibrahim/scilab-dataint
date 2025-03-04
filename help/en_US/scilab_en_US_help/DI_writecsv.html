@@ -1,0 +1,131 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>DI_writecsv</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="DI_readxls.html">&lt;&lt; DI_readxls</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_7c088a5a585a9a5b961ec70234e7588e.html">Deprecated</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="section_99d17921686e511c91939f651af26d0e.html">Utilities &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path" dir="ltr"><a href="index.html">dataint</a> &gt;&gt; <a href="section_11c257f677e6736c392281a8e4d966b4.html">dataint</a> &gt; <a href="section_7c088a5a585a9a5b961ec70234e7588e.html">Deprecated</a> &gt; DI_writecsv</span>
+
+    <br /><br />
+    <div class="refnamediv"><h1 class="refname">DI_writecsv</h1>
+    <p class="refpurpose">DEPRECATED: Exports numerical data stored in a matrix variable to a CSV file interactively.</p></div>
+
+
+<div class="refsynopsisdiv"><h3 class="title" id="#L25">Syntax</h3>
+   <div class="synopsis"><pre><span class="default">[</span><span class="default">exitID</span><span class="default">] = </span><span class="functionid">DI_writecsv</span><span class="default">(</span><span class="default">csvMat</span><span class="default">)</span>
+<span class="default">[</span><span class="default">exitID</span><span class="default">] = </span><span class="functionid">DI_writecsv</span><span class="default">(</span><span class="default">csvMat</span><span class="default">, </span><span class="default">path</span><span class="default">)</span></pre></div></div>
+
+<div class="refsection"><h3 class="title" id="#L34">Parameters</h3>
+   <dl><dt><span class="term">csvMat:</span>
+            <dd><p class="para">a string, name of the matrix variable you want to store in a file</p></dd></dt>
+        <dt><span class="term">path:</span>
+            <dd><p class="para">a string, target path for the file selector (OPTIONAL)</p></dd></dt>
+        <dt><span class="term">exitID:</span>
+            <dd><p class="para">an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.</p></dd></dt></dl></div>
+
+<div class="refsection"><h3 class="title" id="#L52">Description</h3>
+   <p class="para">Write a Scilab matrix of doubles to a CSV or other text-based file interactively.</p>
+   <p class="para"><table><tr><td valign="top"><img src="ScilabImportant.png"/></td><td valign="top"><div class="important"><p class="para">This function is DEPRECATED. Use <a href="DI_writedat.html" class="link">DI_writedat</a> instead!
+To avoid breaking legal scripts, the code will
+stay in the toolbox but will be removed from the documentation.</p></div></td></tr></table></p>
+   <p class="para"><dl><dt><span class="term">path:</span>
+<dd><p class="para">You can commit an optional path to the function. This is used to open
+the file selector at the committed target path. If you omit it your home
+directory is set as the target path.</p></dd></dt>
+<dt><span class="term">csvMat:</span>
+<dd><p class="para">This is the name of the matrix variable which contents the data you want
+to export.</p></dd></dt>
+<dt><span class="term">exitID:</span>
+<dd><p class="para">The exitID gives a feedback what happened inside the function. If
+something went wrong csvMat is always [] (empty). To handle errors in a
+script you can evaluate exitID&#0039;s error codes (negative numbers):</p>
+<ul class="itemizedlist"><li><p class="para">0: Everything is OK. Matrix csvMat was created</p></li>
+<li><p class="para">-1: User canceled file selection</p></li>
+<li><p class="para">-2: User canceled parameter dialog box</p></li>
+<li><p class="para">-3: Cannot write CSV file</p></li>
+<li><p class="para">-4: No matrix variable name specified</p></li></ul></dd></dt></dl></p>
+   <p class="para">Export Parameter:</p>
+   <p class="para"><span><div style='text-align:center'>
+<img src='./writecsv.png' />
+</div></span></p>
+   <p class="para"><dl><dt><span class="term">Field Separator:</span>
+<dd><p class="para">This is the character which separates the fields and
+numbers, resp.
+In general CSV-files it is the comma (,), in European ones it is
+often the semicolon (;). Sometimes it is a tabulator (tab) or a space
+(space). E.g. to specify a tabulator as the separator, type in the word
+&#0034;tab&#0034; without quotes.</p><p class="para">If you select space just ONE space character delimits the data.</p></dd></dt>
+<dt><span class="term">Decimal separator:</span>
+<dd><p class="para">The character which identifies the decimal place. In
+general CSV files it is the point (.), in most European ones it is
+the comma (,).</p></dd></dt>
+<dt><span class="term">Comment header:</span>
+<dd><p class="para">Place a comment in the first line/row of the file. This is useful to
+describe your data. Just one line is supported (OPTIONAL).</p></dd></dt></dl></p>
+   <p class="para"></p></div>
+
+<div class="refsection"><h3 class="title" id="#L146">Examples</h3>
+   <div class="programlisting" id="#L154"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">dat</span> <span class="scilaboperator">=</span> <span class="scilabopenclose">[</span><span class="scilabnumber">32.4</span> <span class="scilabnumber">34.6</span> <span class="scilabnumber">36.5</span> <span class="scilabnumber">32.6</span> <span class="scilabdefault">;</span> <span class="scilabnumber">102.4</span> <span class="scilabnumber">105.0</span> <span class="scilabnumber">104.8</span> <span class="scilabnumber">102.6</span><span class="scilabopenclose">]</span><span class="scilabdefault">;</span>
+<span class="scilabcomment">// Open the file selector at the current directory</span>
+<span class="scilabcomment">// and write matrix </span><span class="scilabcomment">&#0034;</span><span class="scilabcomment">dat</span><span class="scilabcomment">&#0034;</span><span class="scilabcomment"> to the specified csv-file</span>
+<span class="scilabopenclose">[</span><span class="scilabid">exitID</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">DI_writecsv</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">dat</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">,</span> <a class="scilabcommand" href="scilab://pwd">pwd</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Exit-ID: </span><span class="scilabstring">&#0034;</span> <span class="scilaboperator">+</span> <a class="scilabcommand" href="scilab://string">string</a><span class="scilabopenclose">(</span><span class="scilabid">exitID</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span> <span class="scilabcomment">// Displays exit code</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+
+<div class="refsection"><h3 class="title" id="#L158">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="DI_writedat.html" class="link">DI_writedat</a> &#8212; Exports numerical data stored in a matrix variable to a text data file interactively.</li>
+   <li class="member"><a href="DI_show.html" class="link">DI_show</a> &#8212; Read and display the first 25 or an arbitrary number of lines of a text data file.</li>
+   <li class="member"><a href="DI_read.html" class="link">DI_read</a> &#8212; Imports a data file (comma-separated-value, Excel-xls, text-based) in a matrix variable interactively.</li>
+   <li class="member"><a href="scilab://csvWrite" class="link">csvWrite</a></li>
+   <li class="member"><a href="scilab://csvRead" class="link">csvRead</a></li>
+   <li class="member"><a href="scilab://fscanfMat" class="link">fscanfMat</a></li></ul></div>
+
+<div class="refsection"><h3 class="title" id="#L170">Authors</h3>
+   <ul class="itemizedlist"><li class="member">Hani A. Ibrahim - hani.ibrahim@gmx.de</li></ul></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="https://gitlab.com/scilab/scilab/-/issues/new" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="DI_readxls.html">&lt;&lt; DI_readxls</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_7c088a5a585a9a5b961ec70234e7588e.html">Deprecated</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="section_99d17921686e511c91939f651af26d0e.html">Utilities &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

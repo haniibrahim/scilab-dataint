@@ -16,7 +16,7 @@
 function [dataMat, exitID] = DI_read(path)
     // Imports a data file (comma-separated-value, Excel-xls, text-based) in a matrix variable interactively.
     //
-    // Calling Sequence
+    // Syntax
     // [dataMat] = DI_read()
     // [dataMat] = DI_read(path)
     // [dataMat, exitID] = DI_read()

@@ -16,7 +16,7 @@
 function [csvMat, exitID] = DI_readcsv(path)
     // DEPRECATED: Imports a CSV file (comma-separated-value) in a matrix variable interactively.
     //
-    // Calling Sequence
+    // Syntax
     // [csvMat] = DI_readcsv()
     // [csvMat] = DI_readcsv(path)
     // [csvMat, exitID] = DI_readcsv()

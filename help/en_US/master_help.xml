@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!--Begin Entities-->
+<!ENTITY a5b5ca59b07b2d19be4d2ff39bffd1270 SYSTEM "/Users/hi/Desktop/dataint-1.2.1_2023.x.x_src/help/en_US/0dataint-overview.xml">
+<!ENTITY a2c082f56aee07aac94ab316a1ce7f6a7 SYSTEM "/Users/hi/Desktop/dataint-1.2.1_2023.x.x_src/help/en_US/DI_read.xml">
+<!ENTITY a974ebc05180023e4fa32355c00e675c2 SYSTEM "/Users/hi/Desktop/dataint-1.2.1_2023.x.x_src/help/en_US/DI_show.xml">
+<!ENTITY ab4c0117e1647cfb7e4c94aa505517180 SYSTEM "/Users/hi/Desktop/dataint-1.2.1_2023.x.x_src/help/en_US/DI_writedat.xml">
+<!ENTITY a42e9ffae720f21225b80709fd8cb1679 SYSTEM "/Users/hi/Desktop/dataint-1.2.1_2023.x.x_src/help/en_US/deprecated/DI_readcsv.xml">
+<!ENTITY a2cbad2e79fad6a18f7f36bdca01eb30e SYSTEM "/Users/hi/Desktop/dataint-1.2.1_2023.x.x_src/help/en_US/deprecated/DI_readxls.xml">
+<!ENTITY af6314ae02608640d24a848432a194349 SYSTEM "/Users/hi/Desktop/dataint-1.2.1_2023.x.x_src/help/en_US/deprecated/DI_writecsv.xml">
+<!ENTITY ae5980e6148333e9ea8b79fcc75eb2b56 SYSTEM "/Users/hi/Desktop/dataint-1.2.1_2023.x.x_src/help/en_US/utilities/DI_getpath.xml">
+<!--End Entities-->
+]>
+<book version="5.0-subset Scilab" xml:lang="en_US"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:mml="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info xml:id='dataint_manual'>
+    <title>dataint</title>
+  </info>
+
+<part xml:id='section_11c257f677e6736c392281a8e4d966b4'>
+<title>dataint</title>
+&a5b5ca59b07b2d19be4d2ff39bffd1270;
+&a2c082f56aee07aac94ab316a1ce7f6a7;
+&a974ebc05180023e4fa32355c00e675c2;
+&ab4c0117e1647cfb7e4c94aa505517180;
+<chapter xml:id='section_7c088a5a585a9a5b961ec70234e7588e'>
+<title>Deprecated</title>
+&a42e9ffae720f21225b80709fd8cb1679;
+&a2cbad2e79fad6a18f7f36bdca01eb30e;
+&af6314ae02608640d24a848432a194349;
+</chapter>
+<chapter xml:id='section_99d17921686e511c91939f651af26d0e'>
+<title>Utilities</title>
+&ae5980e6148333e9ea8b79fcc75eb2b56;
+</chapter>
+</part>
+</book>

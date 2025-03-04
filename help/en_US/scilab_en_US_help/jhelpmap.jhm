@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN" "http://java.sun.com/products/javahelp/map_1_0.dtd">
+<map version="1.0">
+<mapID target="index" url="index.html"/>
+<mapID target="section_11c257f677e6736c392281a8e4d966b4" url="section_11c257f677e6736c392281a8e4d966b4.html"/>
+<mapID target="dataint_overview" url="dataint_overview.html"/>
+<mapID target="DI_read" url="DI_read.html"/>
+<mapID target="DI_show" url="DI_show.html"/>
+<mapID target="DI_writedat" url="DI_writedat.html"/>
+<mapID target="section_7c088a5a585a9a5b961ec70234e7588e" url="section_7c088a5a585a9a5b961ec70234e7588e.html"/>
+<mapID target="DI_readcsv" url="DI_readcsv.html"/>
+<mapID target="DI_readxls" url="DI_readxls.html"/>
+<mapID target="DI_writecsv" url="DI_writecsv.html"/>
+<mapID target="section_99d17921686e511c91939f651af26d0e" url="section_99d17921686e511c91939f651af26d0e.html"/>
+<mapID target="DI_getpath" url="DI_getpath.html"/>
+</map>

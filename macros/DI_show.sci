@@ -16,7 +16,7 @@
 function [dataMat, exitID] = DI_show(path, n)
     // Read and display the first 25 or an arbitrary number of lines of a text data file.
     //
-    // Calling Sequence
+    // Syntax
     // [dataMat] = DI_show()
     // [dataMat] = DI_show(path)
     // [dataMat] = DI_show(path, n)
