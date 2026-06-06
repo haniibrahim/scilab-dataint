@@ -35,15 +35,15 @@ FUNCTIONS:
 * DI_writedat
   Write comma-separated value files (*.csv, *.dat, *.txt) interactively.
 
-dataINT is available for Scilab 2023.0.0 and higher. Furthermore 
+dataINT is available for Scilab 2024.0.0 and higher. Furthermore 
 dataINT is cross-platform.
 
 -------------------------------------------------------------------------------
 
 CHANGELOG:
 
- 1.2.1
- - Fixed start problems with Atoms on Linux and macOS on newer Scilab versions
+ 1.2.1/1.2.2
+ - Fixed start problems with 2025.0.0 on Linux and macOS. Works also with 2026.1.0.
 
 1.2.0
 - DI_show function added
