@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book [
 <!--Begin Entities-->
-<!ENTITY aa36054982d8bdca525676518060f0bdc SYSTEM "file:///C:/Users/hi/Entwicklung/dataINT/dataint/help/en_US/0dataint-overview.xml">
-<!ENTITY a3dadf5acf170a7e942d6df48befd1ebf SYSTEM "file:///C:/Users/hi/Entwicklung/dataINT/dataint/help/en_US/DI_read.xml">
-<!ENTITY a4ba719d911bc2476c2617e1b0b54a669 SYSTEM "file:///C:/Users/hi/Entwicklung/dataINT/dataint/help/en_US/DI_show.xml">
-<!ENTITY a61d5c8bd784fb4b5e6eeae353a9fffbc SYSTEM "file:///C:/Users/hi/Entwicklung/dataINT/dataint/help/en_US/DI_writedat.xml">
-<!ENTITY a51aa7c15a0d3ad0a61c414bd5a73de79 SYSTEM "file:///C:/Users/hi/Entwicklung/dataINT/dataint/help/en_US/deprecated/DI_readcsv.xml">
-<!ENTITY a49ca37f0aebece1e6afa8675bd87fcdb SYSTEM "file:///C:/Users/hi/Entwicklung/dataINT/dataint/help/en_US/deprecated/DI_readxls.xml">
-<!ENTITY a05849de205003aef5b29aaabbf2b10a7 SYSTEM "file:///C:/Users/hi/Entwicklung/dataINT/dataint/help/en_US/deprecated/DI_writecsv.xml">
-<!ENTITY af5bb60a971b7b75a1058989d4ae650dd SYSTEM "file:///C:/Users/hi/Entwicklung/dataINT/dataint/help/en_US/utilities/DI_getpath.xml">
+<!ENTITY aedc7c9eecb33586026ff705770f0ee4a SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/0dataint-overview.xml">
+<!ENTITY ae3ec1d2c7f402b44d883615334303b9e SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/DI_read.xml">
+<!ENTITY ac93bfec4d801ff568193cd5c683d97f2 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/DI_show.xml">
+<!ENTITY a8a58fb7a4b14f6116a0ff563dd923499 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/DI_writedat.xml">
+<!ENTITY a4e7e8f748aa5ae19d68751e63acba8a8 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/deprecated/DI_readcsv.xml">
+<!ENTITY ac8dfe25acf7b31231da378101966ff52 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/deprecated/DI_readxls.xml">
+<!ENTITY a6416a6c24adc41a649243f9770a4db59 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/deprecated/DI_writecsv.xml">
+<!ENTITY ac1fb4b700c382cf06b6472ce28dd0498 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/utilities/DI_getpath.xml">
 <!--End Entities-->
 ]>
 <book version="5.0-subset Scilab" xml:lang="en_US"
@@ -23,21 +23,21 @@
     <title>dataint</title>
   </info>
 
-<part xml:id='section_1d7d1e875b387c1e73f81f14259c57ab'>
+<part xml:id='section_4a85e1093e0e1b532207cbf6af01dc3f'>
 <title>dataint</title>
-&aa36054982d8bdca525676518060f0bdc;
-&a3dadf5acf170a7e942d6df48befd1ebf;
-&a4ba719d911bc2476c2617e1b0b54a669;
-&a61d5c8bd784fb4b5e6eeae353a9fffbc;
-<chapter xml:id='section_51b08749f418296bc3030ba655bd824c'>
+&aedc7c9eecb33586026ff705770f0ee4a;
+&ae3ec1d2c7f402b44d883615334303b9e;
+&ac93bfec4d801ff568193cd5c683d97f2;
+&a8a58fb7a4b14f6116a0ff563dd923499;
+<chapter xml:id='section_862ebce64b2faf97b8a49f3c93b8a464'>
 <title>Deprecated</title>
-&a51aa7c15a0d3ad0a61c414bd5a73de79;
-&a49ca37f0aebece1e6afa8675bd87fcdb;
-&a05849de205003aef5b29aaabbf2b10a7;
+&a4e7e8f748aa5ae19d68751e63acba8a8;
+&ac8dfe25acf7b31231da378101966ff52;
+&a6416a6c24adc41a649243f9770a4db59;
 </chapter>
-<chapter xml:id='section_2b0285a5ec01c636f26865e9d22dd714'>
+<chapter xml:id='section_27170d4f719760554abf25aa0546d39d'>
 <title>Utilities</title>
-&af5bb60a971b7b75a1058989d4ae650dd;
+&ac1fb4b700c382cf06b6472ce28dd0498;
 </chapter>
 </part>
 </book>

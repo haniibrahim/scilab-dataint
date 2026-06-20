@@ -45,6 +45,10 @@ function perform_clean()
     if isfile(root_tlbx + "/unloader.sce") then
         mdelete(root_tlbx + "/unloader.sce");
     end
+    
+    if isdir(root_tlbx + "/help/en_US/scilab_en_US_help") then
+        rmdir(root_tlbx + "/help/en_US/scilab_en_US_help", "s");
+    end
 endfunction
 
 try
