@@ -1,2 +1,4 @@
 .DS_Store
 scilab_en_US_help/
+*.sci~
+*.sce~

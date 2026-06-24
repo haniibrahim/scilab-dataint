@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book [
 <!--Begin Entities-->
-<!ENTITY aedc7c9eecb33586026ff705770f0ee4a SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/0dataint-overview.xml">
-<!ENTITY ae3ec1d2c7f402b44d883615334303b9e SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/DI_read.xml">
-<!ENTITY ac93bfec4d801ff568193cd5c683d97f2 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/DI_show.xml">
-<!ENTITY a8a58fb7a4b14f6116a0ff563dd923499 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/DI_writedat.xml">
-<!ENTITY a4e7e8f748aa5ae19d68751e63acba8a8 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/deprecated/DI_readcsv.xml">
-<!ENTITY ac8dfe25acf7b31231da378101966ff52 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/deprecated/DI_readxls.xml">
-<!ENTITY a6416a6c24adc41a649243f9770a4db59 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/deprecated/DI_writecsv.xml">
-<!ENTITY ac1fb4b700c382cf06b6472ce28dd0498 SYSTEM "/Users/hi/Entwicklung/Scilab/test/scilab-dataint/help/en_US/utilities/DI_getpath.xml">
+<!ENTITY a4174002873c5b696fa5f7d9f671fc19b SYSTEM "/Users/hi/Entwicklung/Scilab/dataint/help/en_US/0dataint-overview.xml">
+<!ENTITY a547657ad736504440334153d13fb16d5 SYSTEM "/Users/hi/Entwicklung/Scilab/dataint/help/en_US/DI_read.xml">
+<!ENTITY ab788c2345ecd34983a88566f65d5cc09 SYSTEM "/Users/hi/Entwicklung/Scilab/dataint/help/en_US/DI_show.xml">
+<!ENTITY a672c4da5abf9e34c84bc21d3740f13e3 SYSTEM "/Users/hi/Entwicklung/Scilab/dataint/help/en_US/DI_writedat.xml">
+<!ENTITY a6a79a7c380686363f689a5fb012a228c SYSTEM "/Users/hi/Entwicklung/Scilab/dataint/help/en_US/utilities/DI_getpath.xml">
 <!--End Entities-->
 ]>
 <book version="5.0-subset Scilab" xml:lang="en_US"
@@ -23,21 +20,15 @@
     <title>dataint</title>
   </info>
 
-<part xml:id='section_4a85e1093e0e1b532207cbf6af01dc3f'>
+<part xml:id='section_865f9bc8176180f403ab7cdf244e91ed'>
 <title>dataint</title>
-&aedc7c9eecb33586026ff705770f0ee4a;
-&ae3ec1d2c7f402b44d883615334303b9e;
-&ac93bfec4d801ff568193cd5c683d97f2;
-&a8a58fb7a4b14f6116a0ff563dd923499;
-<chapter xml:id='section_862ebce64b2faf97b8a49f3c93b8a464'>
-<title>Deprecated</title>
-&a4e7e8f748aa5ae19d68751e63acba8a8;
-&ac8dfe25acf7b31231da378101966ff52;
-&a6416a6c24adc41a649243f9770a4db59;
-</chapter>
-<chapter xml:id='section_27170d4f719760554abf25aa0546d39d'>
+&a4174002873c5b696fa5f7d9f671fc19b;
+&a547657ad736504440334153d13fb16d5;
+&ab788c2345ecd34983a88566f65d5cc09;
+&a672c4da5abf9e34c84bc21d3740f13e3;
+<chapter xml:id='section_fac072232d459eae7b0c557521ab5dfc'>
 <title>Utilities</title>
-&ac1fb4b700c382cf06b6472ce28dd0498;
+&a6a79a7c380686363f689a5fb012a228c;
 </chapter>
 </part>
 </book>

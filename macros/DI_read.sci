@@ -14,7 +14,7 @@
 // this program; if not, see <http://www.gnu.org/licenses/>.
 
 function [dataMat, exitID] = DI_read(path)
-    // Imports a data file (comma-separated-value, Excel-xls, text-based) in a matrix variable interactively.
+    // Imports a data file (comma-separated-value, Excel-xls/xlsx, text-based) in a matrix variable interactively.
     //
     // Syntax
     // [dataMat] = DI_read()
@@ -29,12 +29,10 @@ function [dataMat, exitID] = DI_read(path)
     //
     // Description
     // Read numerical data from a comma-separated-value (*.csv) or another text-based   
-    // data file (*.dat, *.txt) or a binary Excel 95-2003 file (*.xls) and 
-    // stores it into a matrix variable interactively.
+    // data file (*.dat, *.txt) or a binary Excel 95-2003 file (*.xls) or modern  
+    // Excel 365 XML file (*.xlsx) and stores it into a matrix variable interactively.
     //
     // Many field or decimal delimiters in text-based files are accepted (see below).
-    //
-    // DI_read combines the functionality of DI_readcsv and DI_readxls in one function.
     //
     // <variablelist>
     //  <varlistentry>
@@ -173,12 +171,12 @@ function [dataMat, exitID] = DI_read(path)
     //  </varlistentry>
     // </variablelist>
     //
-    // <title>Excel 95-2003 Files</title>
-    // Read numerical data from XLS-files 
+    // <title>Excel Files</title>
+    // Read numerical data from XLS- or XLSX-files 
     //
     // <note>
-    // DI_read can read binary Excel-files (*.xls) from Excel 95-2003 only. 
-    // XML-based Excel files (*.xlsx) from Excel 2010 and higher are not supported!
+    // DI_read can read older binary Excel-files (*.xls) from Excel 95-2003 and 
+    // XML-based Excel files (*.xlsx) from Excel 2010 and higher.
     // </note>
     //
     // <note>
@@ -196,7 +194,7 @@ function [dataMat, exitID] = DI_read(path)
     //
     // <variablelist>
     //  <varlistentry>
-    //      <term>Sheet#:</term>
+    //      <term>SheetNo:</term>
     //      <listitem><para>
     // The number of the sheet of the Excel file you want to import from. The 
     // names of the sheets are not evaluated. The 1st sheet is 1 the 2nd is 2
@@ -204,18 +202,10 @@ function [dataMat, exitID] = DI_read(path)
     //      </para></listitem>
     //  </varlistentry>
     //  <varlistentry>
-    //      <term>Row/Columns Range Start:</term>
+    //      <term>Sheet Range:</term>
     //      <listitem><para>
-    // The row/column at which the import is going to start. Type a numer. 1 means 
-    // import starts at row/column 1 inclusively.
-    //      </para></listitem>
-    //  </varlistentry>
-    //  <varlistentry>
-    //      <term>Row/Columns Range End:</term>
-    //      <listitem><para>
-    // The row at which the import is going to end. Type a number or $ (dollar-
-    // sign). 12 means the import stops at row 12 inclusively, $ means that all 
-    // rows/columns are read to the end.
+    // Specify the cell range (e.g. A1:D7). All data within this range will be loaded.
+    // If left blank, the entire worksheet will be loaded if possible.
     //      </para></listitem>
     //  </varlistentry>
     // </variablelist>
@@ -231,6 +221,7 @@ function [dataMat, exitID] = DI_read(path)
     // See also
     //  DI_show
     //  DI_writedat
+    //  DI_writexls
     //  csvRead
     //  readxls
     //  fscanfMat
@@ -260,32 +251,23 @@ function [dataMat, exitID] = DI_read(path)
     // -------------------------------------------------------------------------
     // Get filename incl. path of a data file
     // -------------------------------------------------------------------------
-
-    while %T // Workaround uigetfile()-bug: see below
-        fn=uigetfile(["*.csv|*.xls|*.txt|*.dat","Data files (*.csv, *.xls, *.txt, *.dat)"],path,"Choose a Data File");
-        if fn == "" then
-            exitID = -1; // Canceled file selector
-            dataMat = [];
-            return;
-        end
-        // Workaround uigetfile()-bug: Check for not supported Excel files (*.xls-filter accepts xlsx, too)
-        if fileext(convstr(fn,"l")) == ".xlsx" then
-            messagebox("Wrong Excel file! (xlsx, etc are not supported) Try again!","modal", "error");
-        else
-            break;
-        end 
+    fn=uigetfile(["*.csv|*.xls|*.xlsx|*.txt|*.dat","Data files (*.csv, *.xls(x), *.txt, *.dat)"],path,"Choose a Data File");
+    if fn == "" then
+        exitID = -1; // Canceled file selector
+        dataMat = [];
+        return;
     end
 
     // -------------------------------------------------------------------------
 
-    // Extract file to lower case converted extension to determine data format (csv/text or xls)
+    // Extract file to lower case converted extension to determine data format (csv/text or xls/xlsx)
     ext=convstr(fileext(fn), "l");
 
     // -------------------------------------------------------------------------
     // Process data
     // -------------------------------------------------------------------------
 
-    if ext == ".xls" then
+    if ext == ".xls" | ext == ".xlsx" then
         // Excel data 
         [dataMat, exitID] = DI_int_readxls(fn);
     else

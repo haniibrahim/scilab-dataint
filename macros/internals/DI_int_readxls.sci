@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Hani Andreas Ibrahim
+// Copyright (C) 2026 Hani Andreas Ibrahim
 //
 // This program is free software; you can redistribute it and/or modify it under
 // the terms of the GNU General Public License as published by the Free Software
@@ -16,7 +16,7 @@
 function [dataMat, exitID] = DI_int_readxls(fn)
             
     // ---------------------------------------------------------------------
-    // Read XLS-Excel data from file
+    // Read XLS/XLSX-Excel data from file
     //
     // Parameters
     // fn:      file path
@@ -32,21 +32,18 @@ function [dataMat, exitID] = DI_int_readxls(fn)
     dataMat = []; // Empty result matrix
 
     // Initial standard values.
-    sheetNo  = 1;
-    rowStart = "1";
-    rowEnd   = "$";
-    colStart = "1";
-    colEnd   = "$";
+    sheetNo    = 1;
+    sheetRange = "";
 
     while %T do 
         sheetNo = string(sheetNo); // "values=[]" has to be string matrix even when sheetNo is in "list" declared as "vec"
 
         // Get some parameters for interpreting the csv file and the name of the output matrix
-        labels=["Sheet#"; "Row range start";"Row range end ($=end of row)"; "Column range start"; "Column range end ($=end of column)" ];
-        datlist=list("vec", 1, "str", 1, "str", 1, "str", 1, "str", 1);
-        values=[sheetNo; rowStart; rowEnd; colStart; rowEnd];
+        labels=["Sheet#"; "Sheet Range (like A1:C5 or empty for all cells)" ];
+        datlist=list("vec", 1, "str", 1);
+        values=[sheetNo; sheetRange];
 
-        [ok, sheetNo, rowStart, rowEnd, colStart, colEnd] = getvalue("Parameters", labels, datlist, values);
+        [ok, sheetNo, sheetRange] = getvalue("Parameters", labels, datlist, values);
 
         if ok == %F then  
             exitID = -2; // canceled parameter box
@@ -57,35 +54,25 @@ function [dataMat, exitID] = DI_int_readxls(fn)
         if ~isnum(string(sheetNo)) | ~DI_int_isPosInt(sheetNo) then
             messagebox("Sheet# is not an integer. Try again", "Error", "error", "modal")
             continue;
-        elseif ~isnum(rowStart) | ~DI_int_isPosInt(strtod(rowStart)) then
-            messagebox("Row range start is empty or wrong. Type in number, e.g. 1. Try again", "Error", "error", "modal");
-            continue;
-        elseif ~isnum(colStart) & ~DI_int_isPosInt(strtod(colStart)) then
-            messagebox("Column range start is empty or wrong. Type in number, e.g. 1. Try again", "Error", "error", "modal");
-            continue;
-        elseif ~DI_int_isPosInt(strtod(rowEnd)) & ~(strtod(rowEnd)>0) & string(rowEnd)~="$" then
-            messagebox("Row range end is empty or wrong. Type in number or $. Try again", "Error", "error", "modal");
-            continue;
-        elseif ~DI_int_isPosInt(strtod(colEnd)) & ~(strtod(colEnd)>0) & string(colEnd)~="$" then
-            messagebox("Column range end is empty or wrong. Type in number or $. Try again", "Error", "error", "modal");
+        elseif sheetRange == "" then
+            break;
+        elseif ~DI_int_isSheetRange(sheetRange) then
+            messagebox(["Sheet Range is not valid."; "Should be like A2:G23" ; "Try again"], "Error", "error","modal");
             continue;
         else
             break;
         end
     end
-    
-    // Merge ranges
-    rowRange = rowStart + ":" + rowEnd; // e.g. 1:$
-    colRange = colStart + ":" + colEnd; // e.g. 1:$
-    
-    // Read XLS file in dataMat
+
+    // Read XLS/XLSX file in dataMat
     try
-        sheets = readxls(fn);
-        sheet = sheets(sheetNo);
-        sheet = sheet.value; // just the numbers, text is Nan
-        execstr( "dataMat = sheet(" + rowRange + "," + colRange + ")");
+        dataMat = xlread( fn, sheetNo, sheetRange)
+//        sheets = readxls(fn);
+//        sheet = sheets(sheetNo);
+//        sheet = sheet.value; // just the numbers, text is Nan
+//        execstr( "dataMat = sheet(" + rowRange + "," + colRange + ")");
     catch
-        exitID = -3; // Error while interpreting XLS file
+        exitID = -3; // Error while interpreting XLS/XLSX file
         return;
     end
 endfunction

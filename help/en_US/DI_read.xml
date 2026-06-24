@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>DI_read</refname>
-    <refpurpose>Imports a data file (comma-separated-value, Excel-xls, text-based) in a matrix variable interactively.</refpurpose>
+    <refpurpose>Imports a data file (comma-separated-value, Excel-xls/xlsx, text-based) in a matrix variable interactively.</refpurpose>
   </refnamediv>
 
 
@@ -54,14 +54,11 @@
    <title>Description</title>
    <para>
 Read numerical data from a comma-separated-value (*.csv) or another text-based
-data file (*.dat, *.txt) or a binary Excel 95-2003 file (*.xls) and
-stores it into a matrix variable interactively.
+data file (*.dat, *.txt) or a binary Excel 95-2003 file (*.xls) or modern
+Excel 365 XML file (*.xlsx) and stores it into a matrix variable interactively.
    </para>
    <para>
 Many field or decimal delimiters in text-based files are accepted (see below).
-   </para>
-   <para>
-DI_read combines the functionality of DI_readcsv and DI_readxls in one function.
    </para>
    <para>
 <variablelist>
@@ -209,13 +206,13 @@ not a number matrix.
 </variablelist>
    </para>
    <para>
-<title>Excel 95-2003 Files</title>
-Read numerical data from XLS-files
+<title>Excel Files</title>
+Read numerical data from XLS- or XLSX-files
    </para>
    <para>
 <note>
-DI_read can read binary Excel-files (*.xls) from Excel 95-2003 only.
-XML-based Excel files (*.xlsx) from Excel 2010 and higher are not supported!
+DI_read can read older binary Excel-files (*.xls) from Excel 95-2003 and
+XML-based Excel files (*.xlsx) from Excel 2010 and higher.
 </note>
    </para>
    <para>
@@ -237,7 +234,7 @@ Import Parameter:
    <para>
 <variablelist>
 <varlistentry>
-<term>Sheet#:</term>
+<term>SheetNo:</term>
 <listitem><para>
 The number of the sheet of the Excel file you want to import from. The
 names of the sheets are not evaluated. The 1st sheet is 1 the 2nd is 2
@@ -245,18 +242,10 @@ independent of their names in Excel.
 </para></listitem>
 </varlistentry>
 <varlistentry>
-<term>Row/Columns Range Start:</term>
+<term>Sheet Range:</term>
 <listitem><para>
-The row/column at which the import is going to start. Type a numer. 1 means
-import starts at row/column 1 inclusively.
-</para></listitem>
-</varlistentry>
-<varlistentry>
-<term>Row/Columns Range End:</term>
-<listitem><para>
-The row at which the import is going to end. Type a number or $ (dollar-
-sign). 12 means the import stops at row 12 inclusively, $ means that all
-rows/columns are read to the end.
+Specify the cell range (e.g. A1:D7). All data within this range will be loaded.
+If left blank, the entire worksheet will be loaded where possible.
 </para></listitem>
 </varlistentry>
 </variablelist>
@@ -283,6 +272,7 @@ end
    <simplelist type="inline">
    <member><link linkend="DI_show">DI_show</link></member>
    <member><link linkend="DI_writedat">DI_writedat</link></member>
+   <member><link linkend="DI_writexls">DI_writexls</link></member>
    <member><link linkend="csvRead">csvRead</link></member>
    <member><link linkend="readxls">readxls</link></member>
    <member><link linkend="fscanfMat">fscanfMat</link></member>
