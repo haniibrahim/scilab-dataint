@@ -19,10 +19,17 @@ function i = DI_int_isPosInt(n)
     // Check for positive integer >= 1
     //
     // Parameters
-    // n: n-by-m  matrix of any kind
+    // n: 1-by-1  matrix of any kind
     // i: integer or not - n-by-m matrix of binaries
     // ---------------------------------------------------------------------
     
+    apifun_checkscalar ( "DI_int_isPosInt",n,"n",1 ) // n must not a matrix
+    
+    // Check if "n" is a string, then convert to double
+    if type(n) == 10 then
+        n = strtod(n);
+    end
+     
     if pmodulo(n,1)==0 & n>0 then
         i = %T;
     else

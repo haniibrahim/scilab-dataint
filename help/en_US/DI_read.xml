@@ -245,7 +245,7 @@ independent of their names in Excel.
 <term>Sheet Range:</term>
 <listitem><para>
 Specify the cell range (e.g. A1:D7). All data within this range will be loaded.
-If left blank, the entire worksheet will be loaded where possible.
+If left blank, the entire worksheet will be loaded if possible.
 </para></listitem>
 </varlistentry>
 </variablelist>

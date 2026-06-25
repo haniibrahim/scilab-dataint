@@ -39,8 +39,8 @@ function [dataMat, exitID] = DI_int_readxls(fn)
         sheetNo = string(sheetNo); // "values=[]" has to be string matrix even when sheetNo is in "list" declared as "vec"
 
         // Get some parameters for interpreting the csv file and the name of the output matrix
-        labels=["Sheet#"; "Sheet Range (like A1:C5 or empty for all cells)" ];
-        datlist=list("vec", 1, "str", 1);
+        labels=["Sheet no. or name"; "Sheet Range (like A1:C5 or empty for all cells)" ];
+        datlist=list("str", 1, "str", 1);
         values=[sheetNo; sheetRange];
 
         [ok, sheetNo, sheetRange] = getvalue("Parameters", labels, datlist, values);
@@ -51,10 +51,7 @@ function [dataMat, exitID] = DI_int_readxls(fn)
         end
 
         // check input values
-        if ~isnum(string(sheetNo)) | ~DI_int_isPosInt(sheetNo) then
-            messagebox("Sheet# is not an integer. Try again", "Error", "error", "modal")
-            continue;
-        elseif sheetRange == "" then
+        if sheetRange == "" then
             break;
         elseif ~DI_int_isSheetRange(sheetRange) then
             messagebox(["Sheet Range is not valid."; "Should be like A2:G23" ; "Try again"], "Error", "error","modal");
@@ -63,14 +60,16 @@ function [dataMat, exitID] = DI_int_readxls(fn)
             break;
         end
     end
+    
+    if sheetNo == "" then
+        sheetNo = 1;
+    elseif DI_int_isPosInt(sheetNo) then
+        sheetNo = strtod(sheetNo);
+    end  
 
     // Read XLS/XLSX file in dataMat
     try
         dataMat = xlread( fn, sheetNo, sheetRange)
-//        sheets = readxls(fn);
-//        sheet = sheets(sheetNo);
-//        sheet = sheet.value; // just the numbers, text is Nan
-//        execstr( "dataMat = sheet(" + rowRange + "," + colRange + ")");
     catch
         exitID = -3; // Error while interpreting XLS/XLSX file
         return;
