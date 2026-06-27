@@ -2,3 +2,7 @@
 scilab_en_US_help/
 *.sci~
 *.sce~
+*.bin
+*.sbin
+lib
+scilab_en_US_help.jar

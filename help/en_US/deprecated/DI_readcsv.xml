@@ -2,11 +2,11 @@
 
 <!--
  *
- * This help file was generated from DI_read.sci using help_from_sci().
+ * This help file was generated from DI_readcsv.sci using help_from_sci().
  *
  -->
 
-<refentry version="5.0-subset Scilab" xml:id="DI_read" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="DI_readcsv" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -16,18 +16,18 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
   <refnamediv>
-    <refname>DI_read</refname>
-    <refpurpose>Imports a data file (comma-separated-value, Excel-xls/xlsx, text-based) in a matrix variable interactively.</refpurpose>
+    <refname>DI_readcsv</refname>
+    <refpurpose>DEPRECATED: Imports a CSV file (comma-separated-value) in a matrix variable interactively.</refpurpose>
   </refnamediv>
 
 
 <refsynopsisdiv>
    <title>Syntax</title>
    <synopsis>
-   [dataMat] = DI_read()
-   [dataMat] = DI_read(path)
-   [dataMat, exitID] = DI_read()
-   [dataMat, exitID] = DI_read(path)
+   [csvMat] = DI_readcsv()
+   [csvMat] = DI_readcsv(path)
+   [csvMat, exitID] = DI_readcsv()
+   [csvMat, exitID] = DI_readcsv(path)
    
    </synopsis>
 </refsynopsisdiv>
@@ -40,7 +40,7 @@
             <listitem><para>   a string, target path for the file selector (OPTIONAL)</para></listitem>
         </varlistentry>
         <varlistentry>
-            <term>dataMat:</term>
+            <term>csvMat:</term>
             <listitem><para> a string, name of the matrix which stores the imported data</para></listitem>
         </varlistentry>
         <varlistentry>
@@ -54,11 +54,25 @@
    <title>Description</title>
    <para>
 Read numerical data from a comma-separated-value (*.csv) or another text-based
-data file (*.dat, *.txt) or a binary Excel 95-2003 file (*.xls) or modern
-Excel 365 XML file (*.xlsx) and stores it into a matrix variable interactively.
+data file (*.dat, *.txt) and stores it into a matrix variable interactively.
    </para>
    <para>
-Many field or decimal delimiters in text-based files are accepted (see below).
+The following field delimiters are accepted: Comma, semicolon, space(s),
+tabular(s). The decimal delimiter can be point or comma.
+   </para>
+   <para>
+<note>
+Note that the file has to be correctly formated. All rows have to have the
+same number of columns.
+</note>
+   </para>
+   <para>
+<important> <para>
+This function is DEPRECATED. Use <link linkend="DI_read">DI_read</link> instead!
+It has the same API. To avoid breaking legal scripts, the code will
+stay in the toolbox but will be removed from the documentation.
+</para>
+</important>
    </para>
    <para>
 <variablelist>
@@ -71,7 +85,7 @@ directory is set as the target path.
 </para></listitem>
 </varlistentry>
 <varlistentry>
-<term>dataMat:</term>
+<term>csvMat:</term>
 <listitem><para>
 This is the name of the matrix variable which will content the imported data
 for further processing in Scilab's console or in a script.
@@ -81,31 +95,19 @@ for further processing in Scilab's console or in a script.
 <term>exitID:</term>
 <listitem><para>
 The exitID gives a feedback what happened inside the function. If
-something went wrong dataMat is always [] (empty). To handle errors in a
+something went wrong csvMat is always [] (empty). To handle errors in a
 script you can evaluate exitID's error codes (negative numbers):
 </para>
 <itemizedlist>
-<listitem><para> 0: Everything is OK. Matrix dataMat was created</para></listitem>
+<listitem><para> 0: Everything is OK. Matrix csvMat was created</para></listitem>
 <listitem><para>-1: User canceled file selection</para></listitem>
 <listitem><para>-2: User canceled parameter dialog box</para></listitem>
-<listitem><para>-3: Cannot read or interpret data file</para></listitem>
-<listitem><para>-4: Cannot interpret file correctly - maybe header present (only CSV/TXT data files)</para></listitem>
+<listitem><para>-3: Cannot read or interpret CSV file</para></listitem>
+<listitem><para>-4: Cannot interpret file correctly - maybe header present</para></listitem>
 </itemizedlist>
 </listitem>
 </varlistentry>
 </variablelist>
-   </para>
-   <para>
-<title>Comma-Separated-Value-, Text-Based Data Files</title>
-Read text-based data files which contains numerical data. The following
-field delimiters are accepted: Comma, semicolon, space(s), tabular(s).
-The decimal delimiter can be point or comma.
-   </para>
-   <para>
-<note>
-Note that the file has to be correctly formated. All rows have to have the
-same number of columns.
-</note>
    </para>
    <para>
 Import Parameter:
@@ -113,7 +115,7 @@ Import Parameter:
    <para>
 <inlinemediaobject>
 <imageobject>
-<imagedata fileref="../images/readcsv.png" align="center" valign="middle"/>
+<imagedata fileref="../../images/readcsv.png" align="center" valign="middle"/>
 </imageobject>
 </inlinemediaobject>
    </para>
@@ -134,7 +136,7 @@ E.g. to specify a tabulator as separator, type in the word
 <varlistentry>
 <term>Decimal separator:</term>
 <listitem><para>
-The character which identifies the decimal place. In
+The character which indentifies the decimal place. In
 general CSV files it is the point (.), in most European ones it is
 the comma (,).
 </para></listitem>
@@ -164,10 +166,7 @@ rows/columns are read to the end.
 </variablelist>
    </para>
    <para>
-For CSV and text-based data files there are different prerequisites to
-consider.
-   </para>
-   <para>
+<title>Prerequisites to consider</title>
 <variablelist>
 <varlistentry>
 <term>Comma-separated-value (*.csv):</term>
@@ -206,60 +205,14 @@ not a number matrix.
 </variablelist>
    </para>
    <para>
-<title>Excel Files</title>
-Read numerical data from XLS- or XLSX-files
-   </para>
-   <para>
-<note>
-DI_read can read older binary Excel-files (*.xls) from Excel 95-2003 and
-XML-based Excel files (*.xlsx) from Excel 2010 and higher.
-</note>
-   </para>
-   <para>
-<note>
-DI_read handles numerical data only. Strings or missing data are imported as
-Nan (Not-a-number, %nan).
-</note>
-   </para>
-   <para>
-Import Parameter:
-   </para>
-   <para>
-<inlinemediaobject>
-<imageobject>
-<imagedata fileref="../images/readxls.png" align="center" valign="middle"/>
-</imageobject>
-</inlinemediaobject>
-   </para>
-   <para>
-<variablelist>
-<varlistentry>
-<term>Sheet no. or name:</term>
-<listitem><para>
-The number or name of the worksheet of the Excel file you want to import from.
-The 1st sheet is 1 the 2nd is 2 independent of their names in Excel.
-The name of sheet should be committed without quotation marks.
-If left blank, the 1st sheet will be choosen.
-</para></listitem>
-</varlistentry>
-<varlistentry>
-<term>Sheet Range:</term>
-<listitem><para>
-Specify the cell range (e.g. A1:D7). All data within this range will be loaded.
-If left blank, the entire worksheet will be loaded if possible.
-</para></listitem>
-</varlistentry>
-</variablelist>
-   </para>
-   <para>
 </para>
 </refsection>
 
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-[mat, id] = DI_read(fullfile(DI_getpath(), "demos")); // Read CSV file
-disp("Exit-Code: "+string(id),mat,"data:") // Displays imported data "mat" and exit code "id"
+[mat, id] = DI_readcsv(fullfile(DI_getpath(), "demos")); // Read CSV file
+disp("Exit-ID: "+string(id),mat,"data:") // Displays imported data "mat" and exit code "id"
 if id == 0 then // Plot data if import was successful
 plot(mat(:,1),mat(:,14),"-")
 xtitle("Central England Temperature","Year","Mean Temperature [°C]")
@@ -271,10 +224,10 @@ end
 <refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
+   <member><link linkend="DI_read">DI_read</link></member>
    <member><link linkend="DI_show">DI_show</link></member>
    <member><link linkend="DI_writedat">DI_writedat</link></member>
    <member><link linkend="csvRead">csvRead</link></member>
-   <member><link linkend="readxls">readxls</link></member>
    <member><link linkend="fscanfMat">fscanfMat</link></member>
    </simplelist>
 </refsection>

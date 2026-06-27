@@ -194,18 +194,19 @@ function [dataMat, exitID] = DI_read(path)
     //
     // <variablelist>
     //  <varlistentry>
-    //      <term>SheetNo:</term>
+    //      <term>Sheet no. or name:</term>
     //      <listitem><para>
-    // The number of the sheet of the Excel file you want to import from. The 
-    // names of the sheets are not evaluated. The 1st sheet is 1 the 2nd is 2
-    // independent of their names in Excel.
+    // The number or name of the worksheet of the Excel file you want to import from. 
+    // The 1st sheet is 1 the 2nd is 2 independent of their names in Excel.
+    // The name of sheet should be committed without quotation marks.
+    // If left blank, the 1st sheet will be choosen. 
     //      </para></listitem>
     //  </varlistentry>
     //  <varlistentry>
     //      <term>Sheet Range:</term>
     //      <listitem><para>
     // Specify the cell range (e.g. A1:D7). All data within this range will be loaded.
-    // If left blank, the entire worksheet will be loaded if possible.
+    // If left blank, the entire worksheet will be loaded if possible. 
     //      </para></listitem>
     //  </varlistentry>
     // </variablelist>
@@ -221,7 +222,6 @@ function [dataMat, exitID] = DI_read(path)
     // See also
     //  DI_show
     //  DI_writedat
-    //  DI_writexls
     //  csvRead
     //  readxls
     //  fscanfMat
@@ -251,7 +251,9 @@ function [dataMat, exitID] = DI_read(path)
     // -------------------------------------------------------------------------
     // Get filename incl. path of a data file
     // -------------------------------------------------------------------------
-    fn=uigetfile(["*.csv|*.xls|*.xlsx|*.txt|*.dat","Data files (*.csv, *.xls(x), *.txt, *.dat)"],path,"Choose a Data File");
+    fn=uigetfile( ..
+        ["*.csv|*.xls|*.xlsx|*.txt|*.dat","Data files (*.csv, *.xls(x), *.txt, *.dat)"], ..
+        path, "Choose a Data File");
     if fn == "" then
         exitID = -1; // Canceled file selector
         dataMat = [];
@@ -261,7 +263,13 @@ function [dataMat, exitID] = DI_read(path)
     // -------------------------------------------------------------------------
 
     // Extract file to lower case converted extension to determine data format (csv/text or xls/xlsx)
-    ext=convstr(fileext(fn), "l");
+    ext = convstr(fileext(fn), "l");
+    
+    if ext == "" | ext == "." then
+        dataMat = [];
+        exitID  = -3; 
+        return;
+    end
 
     // -------------------------------------------------------------------------
     // Process data

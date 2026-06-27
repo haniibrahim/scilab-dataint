@@ -26,7 +26,7 @@ Summary: dataINT provides userfriendly INTERACTIVE reading and writing of csv- a
 // 'major.minor.patch', where all fields are numbers.
 // If you are just starting your toolbox, you should use '0.1' or '0.1.0'.
 // Use '1.0' or '1.0.0' for a tested, good quality first version.
-Version: 1.2.2
+Version: 2.0.0
 
 // Name(s) of the author(s) of this toolbox.
 // They are usually the original copyright holders
@@ -64,30 +64,45 @@ ScilabVersion: >= 2024.0.0
 // where operator can be: ~, >, <, >=, <=
 // If multiple dependencies, put one per line (starting each line with a space) e.g. >= apifun 0.4.0
 Depends: ~ apifun any
+ ~ xlreadwrite any
 
 // Creation date, e.g.  2019-05-05
 Date: 2022-05-09
 
-Description: Toolbox for easy and interactive reading and writing of data files
+Description: Toolbox for easy and interactive reading and writing of text/Excel numerical data files
 
  dataINT offers functions for convenient, interactive im-/export of test-based 
- data files (*.csv, *.dat, *.txt) to or from a Scilab matrix or from a binary 
- Excel files (*.xls), respectively. 
+ data files (*.csv, *.dat, *.txt) or Excel files (*.xls, *.xlsx) to or from a Scilab number 
+ matrix, respectively.
  
- Parameters, to specify the im-/export, can conveniently entered in a dialog  
- box and the file selection is done by the platform-specific 
+ dataINT handles:
+ - comma separated text data files
+ - semicolon separated text data files
+ - space separated text data files
+ - tabulator separated text data files
+ - binary Excel 95-2003 files (*.xls)
+ - XML Excel 2010-365 files (*.xlsx)
+ 
+ Parameters, to specify the im-/export, can conveniently entered in a 
+ graphic dialog box and the file selection is done by the platform-specific 
  file selection dialog.
  
- You can specify the following im-/export parameters:
+ You can specify the following im-/export parameters for test data files:
  - Field separator (comma, semicolon, tab, space)
  - Decimal separator (comma, point)
- - Rows and columns you want to import
- - Sheet you want to import 
+ - Rows and columns you want to import 
  - Number of lines to skip, e.g. header line(s)
  - Comment header line to describe your data 
  
- IMPORTANT: dataINT does not handle data from XML-based Excel files (.xlsx)!
- NOTE: dataINT handles doubles only.
+ and for Excel files:
+ - Worksheet number or worksheet name
+ - Read just cell range or whole worksheet
+ - Write numbers to a specified start cell
+ 
+ NEW: dataINT 2.0.0 does handle data from XML-based Excel files (.xlsx), now!
+ 
+ NOTE: dataINT cannot work with Excel's binary *.xlsb files!
+ NOTE: dataINT handles doubles only. Non-real-numerical data are imported as NaN.
  
  The functions can easily integrated in your own scripts to make use of 
  dataINT's interactive functionality or to simplify your data import in 
@@ -96,20 +111,28 @@ Description: Toolbox for easy and interactive reading and writing of data files
  FUNCTIONS:
  
  * DI_read
-   Combines functionality of DI_readcsv and DI_readxls in one function
+   Read text numerical data (*.csv, *.dat, *.txt) and Excel (*.xls, *.xlsx) files 
+   in a Scilab matrix variable.
  * DI_show
    Read the first 25 or an arbitrary number of lines of a text data file,    
    displays them in the console and invoke the reading procedure after, if
    desired.
  * DI_writedat
-   Write comma-separated value files (*.csv, *.dat, *.txt) interactively.
+   Write comma-separated value (*.csv, *.dat, *.txt) or Excel (*.xls, *.xlsx) 
+   files interactively.
  
- dataINT is available for Scilab 5.5.x, 6.x, 6.1.x. & 2023, 2024, 2025, 2026 
+ dataINT versions are available for Scilab 5.5.x, 6.x, 6.1.x. & 2023, 2024, 2025, 2026 
  Furthermore dataINT is cross-platform.
  
-  ---------------------------------------------------------------------
-   
+ ---------------------------------------------------------------------
+  
  CHANGELOG:
+ 2.0.0
+ - Write binary Excel 95-2003 files (*.xls)
+ - Read and write XML Excel 2010-365 files (*.xlsx)
+ - Deprecation message displayed for DI_readcsv and DI_readxls. 
+   Successor of both is still DI_read with the same API.
+ 
  1.2.1/1.2.2
  - Fixed start problems with 2025.0.0 on Linux and macOS. Works also with 2026.1.0.
  

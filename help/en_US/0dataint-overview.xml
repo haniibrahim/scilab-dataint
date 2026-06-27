@@ -13,7 +13,7 @@
 	<refsection>
 		<title>Introduction and Purpose</title>
 		<para>
-        This toolbox provides functions for importing and exporting numeric tabular data (*.csv, *.dat, *.txt, *.xls) without hassle. It is based on Scilab's in-built functions csvRead(), xlsRead(), fscanfMat() and cvsWrite(). The purpose of this toolbox is to make the use of these functions more convenient by introducing a GUI for selecting the files and specifying the im- or export parameters.
+        This toolbox provides functions for importing and exporting numeric tabular data (*.csv, *.dat, *.txt, *.xls, *.xlsx) without hassle. It is based on Scilab's in-built functions csvRead(), fscanfMat(), cvsWrite() and the Excel-format read and write functions of the toolbox "XLreadwrite". The purpose of this toolbox is to make the use of these functions more convenient by introducing a GUI for selecting the files and specifying the im- or export parameters.
 	</para>
 	<para>Choose data file:</para>
 	<para>
@@ -31,7 +31,7 @@
 			</imageobject>
 		</inlinemediaobject>
 	</para>
-	<para>Read XLS-files:</para>
+	<para>Read Excel's XLS- or XLSX-files:</para>
 	<para>
 		<inlinemediaobject>
 			<imageobject>
@@ -39,7 +39,7 @@
 			</imageobject>
 		</inlinemediaobject>
 	</para>
-	<para>Write CSV- and text-data files:</para>
+	<para>Write CSV- and text-data and …</para>
 	<para>
 		<inlinemediaobject>
 			<imageobject>
@@ -47,10 +47,18 @@
 			</imageobject>
 		</inlinemediaobject>
 	</para>
+	<para>… Excel's XLS-/XLSX-files:</para>
+	<para>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="../images/writexls.png" align="center" valign="middle"/>		
+			</imageobject>
+		</inlinemediaobject>
+	</para>
 	<para>It can easily integrated in scripts and controlled by dataINT's exit codes but can also be used in Scilab's console for importing or exporting data conveniently.
     </para>
 	<para>
-        dataINT's import functions read the data from a comma-separated value (*.csv), other text-based data (*.dat, *.txt) or from a binary Excel 95-2003 file (*.xls) into a Scilab matrix variable for further processing. The export function saves a Scilab matrix into a csv or other text-based file.
+        dataINT's import functions read the data from a comma-separated value (*.csv), other text-based data (*.dat, *.txt) or from a binary Excel 95-2003 (*.xls) and modern XML-Excel 2010-365 (*.xlsx) file into a Scilab matrix variable for further processing. The export function saves a Scilab matrix into a csv or other text-based file or an Excel XLS- or XLSX-file.
     </para>
 	<para>
         The following data formats, field and decimal separators are supported:
@@ -65,6 +73,9 @@
 		<listitem><para>
 			EXCEL files in Excel 95-2003 format (*.xls).
 		</para></listitem>
+		<listitem><para>
+			EXCEL files in Excel 2010-365 format (*.xlsx).
+		</para></listitem>
 	</itemizedlist></para>
 	<para>
 		This makes dataINT flexible to a huge variety of commonly-used data formats. 
@@ -72,7 +83,7 @@
 		<para>
 		<note>
 			<para>
-		dataINT cannot import XML-based Excel files (Excel 2007 and higher) yet! But the toolbox "XLreadwrite" will be called in future versions to offer this feature, too. 
+		dataINT can now import XML-based Excel files (Excel 2010 and higher)! The toolbox "XLreadwrite" is used for this purpose. It will be installed automatically, if needed.
 	</para>
 		</note>
 		</para>
@@ -95,7 +106,7 @@
 			<varlistentry>
 				<term><link linkend="DI_writedat">DI_writedat</link>:</term>
 				<listitem>
-					<para>Write a Scilab matrix of doubles to a comma-separated value or other text-based file interactively.</para>
+					<para>Write a Scilab matrix of doubles to a comma-separated value or other text-based file or Excel's XLS-/XLSX-file interactively.</para>
 				</listitem>
 			</varlistentry>
 		</variablelist>
@@ -103,7 +114,7 @@
 	</refsection>
 	<refsection>
 		<title>Functions (deprecated)</title>
-		<para>The following functions are obsolete. To avoid breaking legal scripts, the code will stay in the toolbox but will be removed from the documentation.</para>
+		<para>The following functions are obsolete. To avoid breaking legal scripts, the code stays in the toolbox but is removed from the documentation and a deprecation message is displayed.</para>
 		<variablelist>
 			<varlistentry>
 				<term>DI_readcsv:</term>

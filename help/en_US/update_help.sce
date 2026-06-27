@@ -25,4 +25,15 @@ demosdir = [];
 modulename = "dataint";
 helptbx_helpupdate ( funmat , helpdir , macrosdir , demosdir , modulename , %t );
 // ========================================================================================
-
+// Generate the deprecated help
+mprintf("Updating deprecated\n");
+helpdir = fullfile(cwd,"deprecated");
+funmat = [
+  "DI_readcsv"
+  "DI_readxls"
+  "DI_writecsv"
+  ];
+macrosdir = cwd +"../../macros";
+demosdir = [];
+modulename = "dataint";
+helptbx_helpupdate ( funmat , helpdir , macrosdir , demosdir , modulename , %t );

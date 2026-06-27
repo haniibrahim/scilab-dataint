@@ -41,7 +41,7 @@ function [csvMat, exitID] = DI_readcsv(path)
     //
     // <important> <para>
     // This function is DEPRECATED. Use <link linkend="DI_read">DI_read</link> instead!
-    // To avoid breaking legal scripts, the code will 
+    // It has the same API. To avoid breaking legal scripts, the code will 
     // stay in the toolbox but will be removed from the documentation.
     // </para>
     //</important>
@@ -196,6 +196,8 @@ function [csvMat, exitID] = DI_readcsv(path)
     [lhs,rhs]=argn()
     apifun_checkrhs("DI_readcsv", rhs, 0:1); // Input args
     apifun_checklhs("DI_readcsv", lhs, 1:2); // Output args
+    
+    warning("This function is DEPRECATED. Use DI_read() instead! Same API.")
     
     // Platform-dependent HOME path if "path" was not commited
     if ~exists("path") then

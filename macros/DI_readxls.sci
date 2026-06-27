@@ -31,6 +31,13 @@ function [xlsMat, exitID] = DI_readxls(path)
     // Read data from a binary Excel 95-2003 file (*.xls) and stores it into 
     // a matrix variable interactively.
     //
+    // <important> <para>
+    // This function is DEPRECATED. Use <link linkend="DI_read">DI_read</link> instead!
+    // It has the same API. To avoid breaking legal scripts, the code will 
+    // stay in the toolbox but will be removed from the documentation.
+    // </para>
+    //</important>
+    //
     // <note>
     // DI_readxls does not handle data from XML-based Excel files (*.xlsx) of 
     // Excel 2007 and higher!
@@ -132,6 +139,8 @@ function [xlsMat, exitID] = DI_readxls(path)
     [lhs,rhs]=argn()
     apifun_checkrhs("DI_readxls", rhs, 0:1); // Input args
     apifun_checklhs("DI_readxls", lhs, 1:2); // Output args
+    
+    warning("This function is DEPRECATED. Use DI_read() instead! Same API.")
 
     // Platform-dependent HOME path if "path" was not commited
     if ~exists("path") then
