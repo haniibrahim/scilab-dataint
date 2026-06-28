@@ -30,8 +30,8 @@
    </synopsis>
 </refsynopsisdiv>
 
-<refsection role="arguments">
-   <title>Arguments</title>
+<refsection>
+   <title>Parameters</title>
    <variablelist>
         <varlistentry>
             <term>csvMat:</term>

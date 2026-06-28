@@ -153,6 +153,10 @@ function [exitID] = DI_writedat(dataMat, path)
     //
     // Authors
     //  Hani A. Ibrahim - hani.ibrahim@gmx.de
+    
+    // Load Internals lib
+    libpath = DI_getpath()
+    di_internallib  = lib(fullfile(libpath,"macros","internals"))
 
     [lhs,rhs]=argn()
     apifun_checkrhs("DI_writedat", rhs, 1:2); // Input args
