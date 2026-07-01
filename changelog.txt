@@ -1,5 +1,8 @@
- 1.2.1
- - Fixed start problems with Atoms on Linux and macOS on newer Scilab versions
+ 2.0.0
+ - Write binary Excel 95-2003 files (*.xls)
+ - Read and write XML Excel 2010-365 files (*.xlsx)
+ - Deprecation message displayed for DI_readcsv and DI_readxls. 
+   Successor of both is still DI_read with the same API.
  
  1.2.0
  - DI_show function added

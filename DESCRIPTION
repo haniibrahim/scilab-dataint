@@ -133,14 +133,11 @@ Description: Toolbox for easy and interactive reading and writing of text/Excel 
  - Deprecation message displayed for DI_readcsv and DI_readxls. 
    Successor of both is still DI_read with the same API.
  
- 1.2.1/1.2.2
- - Fixed start problems with 2025.0.0 on Linux and macOS. Works also with 2026.1.0.
- 
  1.2.0
  - DI_show function added
  - DI_writedat replaces DI_writecsv
  - Deprecation of DI_readcsv and DI_readxls. Successor of both is DI_read
-  
+ 
  1.1.1
  - Fix decimal-comma-bug when reading/parsing space separated text files 
    with decimal commas
