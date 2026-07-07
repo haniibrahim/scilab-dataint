@@ -69,7 +69,9 @@ function [dataMat, exitID] = DI_int_readxls(fn)
 
     // Read XLS/XLSX file in dataMat
     try
-        dataMat = xlread( fn, sheetNo, sheetRange)
+        winId=progressionbar('Reading Excel file');
+        dataMat = xlread( fn, sheetNo, sheetRange);
+        close(winId);
     catch
         exitID = -3; // Error while interpreting XLS/XLSX file
         return;

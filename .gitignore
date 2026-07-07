@@ -6,3 +6,5 @@ scilab_en_US_help/
 *.sbin
 lib
 scilab_en_US_help.jar
+loader.sce
+unloader.sce
