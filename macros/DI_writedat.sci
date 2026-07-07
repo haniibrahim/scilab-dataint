@@ -23,15 +23,19 @@ function [exitID] = DI_writedat(dataMat, path)
     // Parameters
     // dataMat: name of the matrix variable you want to store in a file
     // path: a string, target path for the file selector (OPTIONAL)
-    // exitID: an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.
+    // exitID: an integer, exit codes, 0=OK, -1, -2, -3=error codes, see below.
     // 
     // Description
     // Write a Scilab matrix of doubles to a CSV or other text-based file or an 
-    // Excel file (*.xls, '.xlsx) )interactively.
+    // Excel file (*.xls, '.xlsx) interactively.
     //
     // To select the format, specify the corresponding file extension to the file 
     // name. E.g. *.xlsx for XML Excel 2010-365 or *.csv for data text files. 
     // Empty file extentions are not allowed.
+    //
+    // Any file extension other than *.xls or *.xlsx is interpreted as a text file 
+    // extension and creates test files. This applies not only to *.csv, *.dat, 
+    // or *.txt file extensions. 
     // 
     // <variablelist>
     //  <varlistentry>
@@ -53,15 +57,14 @@ function [exitID] = DI_writedat(dataMat, path)
     //      <term>exitID:</term>
     //      <listitem><para>
     // The exitID gives a feedback what happened inside the function. If 
-    // something went wrong dataMat is always [] (empty). To handle errors in a 
+    // something went wrong no file will be created. To handle errors in a 
     // script you can evaluate exitID's error codes (negative numbers):
     //      </para>
     // <itemizedlist>
-    // <listitem><para> 0: Everything is OK. Matrix dataMat was created</para></listitem>
+    // <listitem><para> 0: Everything is OK. File was created</para></listitem>
     // <listitem><para>-1: User canceled file selection</para></listitem>
     // <listitem><para>-2: User canceled parameter dialog box</para></listitem>
-    // <listitem><para>-3: Cannot write CSV file</para></listitem>
-    // <listitem><para>-4: No matrix variable name specified</para></listitem>
+    // <listitem><para>-3: Cannot write file</para></listitem>
     // </itemizedlist>
     //      </listitem>
     //  </varlistentry>
@@ -153,7 +156,7 @@ function [exitID] = DI_writedat(dataMat, path)
     //
     // Authors
     //  Hani A. Ibrahim - hani.ibrahim@gmx.de
-    
+
     // Load Internals lib
     libpath = DI_getpath()
     di_internallib  = lib(fullfile(libpath,"macros","internals"))
@@ -179,31 +182,47 @@ function [exitID] = DI_writedat(dataMat, path)
         end
     end
 
-    // Get filename incl. path of an CSV file
+    // Get filename incl. path and extension-filter
     while %T do
-        fn=uiputfile([ ..
+        [fname,pathUi,fil]=uiputfile([ ..
         "*.xls","Excel 95-2003 file (*.xls)"; ..
         "*.xlsx","Excel 2010-365 file (.xlsx)"; ..
         "*.csv|*.dat|*txt","Text data files (*.csv,*.dat,*.txt)"], ..
         path, "Choose a filename to store numerical data")
         // If no file was selected 
-        if fn == "" then
+        if fname == "" then
             exitID = -1; // Canceled file selector
             return;
         end
 
-        ext = fileparts(fn, "extension"); // file extension
-        if  ext ~= "" then
-            break;
-        end
-        messagebox(["No file extension, like .csv, .dat, .txt,", ".xls or .xlsx","Try again"],"Warning", "warning","modal" )
-    end
+        [pathdummy, fbase, ext] = fileparts(fname);
+        if ext ~= "" then
+            // Has extension -> exit loop
+            break
 
-    // Checking data input
-    if dataMat == "" then
-        exitID = -4; // no matrix name specified => error
-        return;
+        elseif fil == 1 then
+            // No extension but .xls-filter -> exit loop
+            fname = fbase + ".xls";
+            break
+
+        elseif fil == 2 then
+            // No extension but .xlsx-filter -> exit loop
+            fname = fbase + ".xlsx";
+            break
+
+        else
+            // No extension, no Excel filter
+            messagebox( ...
+            ["No file extension, like .csv, .dat, .txt,"; ...
+            ".xls or .xlsx"; ...
+            "Try again"], ...
+            "Warning", "warning", "modal");
+        end
     end
+    
+    // Combine filenamepath & check for extension again
+    fn  = fullfile(pathUi + filesep(), fname);
+    ext = fileparts(fn, "extension");
 
     if ext == ".xls" | ext == ".xlsx" then
         // Excel format --------------------------------------------------------
@@ -216,7 +235,7 @@ function [exitID] = DI_writedat(dataMat, path)
 
             // Get some parameters for interpreting the csv file and the name of the output matrix
             labels=["Worksheet no. or name"; ..
-                    "Start cell (e.g. A8 or blank for A1)" ];
+            "Start cell (e.g. A8 or blank for A1)" ];
             datlist=list("str", 1, "str", 1);
             values=[sheetNo; sheetStartCell];
 
@@ -232,11 +251,11 @@ function [exitID] = DI_writedat(dataMat, path)
                 break;
             elseif ~DI_int_isCell(sheetStartCell) then
                 messagebox(["Start cell is not valid."; "Should be like A2" ; "Try again"], ..
-                            "Warning", "warning","modal");
+                "Warning", "warning","modal");
                 continue;
-             else
-                 break;
-             end
+            else
+                break;
+            end
         end
 
         if sheetNo == "" then
@@ -247,7 +266,9 @@ function [exitID] = DI_writedat(dataMat, path)
 
         // Write XLS/XLSX file in dataMat
         try
-           xlwrite( fn, dataMat, sheetNo, sheetStartCell)
+            winId=progressionbar('Writing Excel file');
+            xlwrite( fn, dataMat, sheetNo, sheetStartCell);
+            close(winId);
         catch
             exitID = -3; // Error while interpreting XLS/XLSX file
             return;

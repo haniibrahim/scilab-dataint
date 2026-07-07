@@ -43,7 +43,7 @@
         </varlistentry>
         <varlistentry>
             <term>exitID:</term>
-            <listitem><para> an integer, exit codes, 0=OK, -1, -2, -3, -4=error codes, see below.</para></listitem>
+            <listitem><para> an integer, exit codes, 0=OK, -1, -2, -3=error codes, see below.</para></listitem>
         </varlistentry>
    </variablelist>
 </refsection>
@@ -52,12 +52,17 @@
    <title>Description</title>
    <para>
 Write a Scilab matrix of doubles to a CSV or other text-based file or an
-Excel file (*.xls, '.xlsx) )interactively.
+Excel file (*.xls, '.xlsx) interactively.
    </para>
    <para>
 To select the format, specify the corresponding file extension to the file
 name. E.g. *.xlsx for XML Excel 2010-365 or *.csv for data text files.
 Empty file extentions are not allowed.
+   </para>
+   <para>
+Any file extension other than *.xls or *.xlsx is interpreted as a text file
+extension and creates test files. This applies not only to *.csv, *.dat,
+or *.txt file extensions.
    </para>
    <para>
 <variablelist>
@@ -80,15 +85,14 @@ to export.
 <term>exitID:</term>
 <listitem><para>
 The exitID gives a feedback what happened inside the function. If
-something went wrong dataMat is always [] (empty). To handle errors in a
+something went wrong no file will be created. To handle errors in a
 script you can evaluate exitID's error codes (negative numbers):
 </para>
 <itemizedlist>
-<listitem><para> 0: Everything is OK. Matrix dataMat was created</para></listitem>
+<listitem><para> 0: Everything is OK. File was created</para></listitem>
 <listitem><para>-1: User canceled file selection</para></listitem>
 <listitem><para>-2: User canceled parameter dialog box</para></listitem>
-<listitem><para>-3: Cannot write CSV file</para></listitem>
-<listitem><para>-4: No matrix variable name specified</para></listitem>
+<listitem><para>-3: Cannot write file</para></listitem>
 </itemizedlist>
 </listitem>
 </varlistentry>
