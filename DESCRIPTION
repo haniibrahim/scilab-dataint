@@ -20,7 +20,7 @@ Toolbox: dataint
 Title: dataINT
 
 // One-line description for your toolbox
-Summary: dataINT provides userfriendly INTERACTIVE reading and writing of csv- and xls-datafiles
+Summary: dataINT provides GUI-supported INTERACTIVE reading & writing of text (csv, dat) & Excel files (xls, xlsx)
 
 // Version number, in format 'major.minor.patch', or
 // 'major.minor.patch', where all fields are numbers.
