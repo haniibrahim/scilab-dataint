@@ -18,8 +18,8 @@ function main_builder()
         error(gettext("Scilab 5.5 or higher is required."));
     end
 
-    if v(1) < 2023  then 
-        error(gettext("Scilab 2023.0.0 or higher is required."));
+    if v(1) < 2024  then 
+        error(gettext("Scilab 2024.0.0 or higher is required."));
     end
 
     // Action ----------------------------------------------------------------------

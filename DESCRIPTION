@@ -20,7 +20,7 @@ Toolbox: dataint
 Title: dataINT
 
 // One-line description for your toolbox
-Summary: dataINT provides GUI-supported INTERACTIVE reading & writing of text (csv, dat) & Excel files (xls, xlsx)
+Summary: dataINT provides GUI-supported INTERACTIVE reading & writing of text (csv, dat) & Excel data files (xls, xlsx)
 
 // Version number, in format 'major.minor.patch', or
 // 'major.minor.patch', where all fields are numbers.
@@ -41,8 +41,8 @@ Maintainer: Hani A. Ibrahim (hani.ibrahim@gmx.de)
 // under the categories that you select here.
 Category: Data Handling
 
-// Name of the institution (company, university, lab...) who has developped the toolbox.
-// If you developped the toolbox as an individual, then just enter "private individual"
+// Name of the institution (company, university, lab...) who has developed the toolbox.
+// If you developed the toolbox as an individual, then just enter "private individual"
 Entity: private individual
 
 // Optional website that has more information about this toolbox
@@ -53,7 +53,7 @@ License: GPL 3.0
 
 // Version of Scilab supported by this toolbox,
 // prefixed by =, >= ...
-ScilabVersion: >= 2023.0
+ScilabVersion: >= 2024.0
 
 // Other toolbox(es) that must be installed in order
 // this toolboxes to work. Atoms will automatically ensure that
@@ -73,7 +73,7 @@ Date: 2022-05-09
 Description: Toolbox for easy and interactive reading and writing of text/Excel numerical data files
 
  dataINT offers functions for convenient, interactive im-/export of test-based 
- data files (*.csv, *.dat, *.txt) or Excel files (*.xls, *.xlsx) to or from a Scilab number 
+ data (*.csv, *.dat, *.txt) or Excel files (*.xls, *.xlsx) to or from a Scilab double 
  matrix, respectively.
  
  dataINT handles:
@@ -81,29 +81,29 @@ Description: Toolbox for easy and interactive reading and writing of text/Excel 
  - semicolon separated text data files
  - space separated text data files
  - tabulator separated text data files
- - binary Excel 95-2003 files (*.xls)
+ - BIFF Excel 95-2003 files (*.xls)
  - XML Excel 2010-365 files (*.xlsx)
  
  Parameters, to specify the im-/export, can conveniently entered in a 
- graphic dialog box and the file selection is done by the platform-specific 
+ graphical dialog box and the file selection is done by the platform-specific 
  file selection dialog.
  
- You can specify the following im-/export parameters for test data files:
+ You can specify the following im-/export parameters for text data files:
  - Field separator (comma, semicolon, tab, space)
  - Decimal separator (comma, point)
  - Rows and columns you want to import 
- - Number of lines to skip, e.g. header line(s)
- - Comment header line to describe your data 
+ - Number of lines to skip, e.g. header line/s (reading only)
+ - Comment header line to describe your data  (writing only)
  
  and for Excel files:
- - Worksheet number or worksheet name
- - Read just cell range or whole worksheet
- - Write numbers to a specified start cell
+ - Specifying worksheet number or worksheet name
+ - Reading just a cell range or whole worksheet
+ - Writing data from a specified start cell on
  
  NEW: dataINT 2.0.0 does handle data from XML-based Excel files (.xlsx), now!
  
  NOTE: dataINT cannot work with Excel's binary *.xlsb files!
- NOTE: dataINT handles doubles only. Non-real-numerical data are imported as NaN.
+ NOTE: dataINT handles doubles only. Non-real-numerical data is imported as NaN.
  
  The functions can easily integrated in your own scripts to make use of 
  dataINT's interactive functionality or to simplify your data import in 
@@ -120,16 +120,21 @@ Description: Toolbox for easy and interactive reading and writing of text/Excel 
    desired.
  * DI_writedat
    Write comma-separated value (*.csv, *.dat, *.txt) or Excel (*.xls, *.xlsx) 
-   files interactively.
+   files interactively. File extension determines the output format.
  
- dataINT versions are available for Scilab 5.5.x, 6.x & 2023, 2024, 2025, 2026 
+ dataINT versions are available for Scilab 5.5.x, 6.x & 2023, 2024, 2025, 2026.
+ dataINT 2.0.0 works from Scilab 2024.0 on. Testet on 2024.1.0, 2025.1.0, 2026.1.0.
  Furthermore dataINT is cross-platform.
+ 
+ IMPORTANT: IF YOU HAVE INSTALLED  dataINT 1.2.2-rev UNINSTALL IT USING
+ ========== atomsRemove('dataint')
+            RESTART SCILAB BEFORE INSTALLING VERSION 2.0.0!
  
  ---------------------------------------------------------------------
   
  CHANGELOG:
  2.0.0
- - Write binary Excel 95-2003 files (*.xls)
+ - Write BIFF Excel 95-2003 files (*.xls)
  - Read and write XML Excel 2010-365 files (*.xlsx)
  - Deprecation message displayed for DI_readcsv and DI_readxls. 
    Successor of both is still DI_read with the same API.

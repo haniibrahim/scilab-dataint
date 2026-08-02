@@ -186,7 +186,7 @@ function [exitID] = DI_writedat(dataMat, path)
     while %T do
         [fname,pathUi,fil]=uiputfile([ ..
         "*.xls","Excel 95-2003 file (*.xls)"; ..
-        "*.xlsx","Excel 2010-365 file (.xlsx)"; ..
+        "*.xlsx","Excel 2010-365 file (*.xlsx)"; ..
         "*.csv|*.dat|*txt","Text data files (*.csv,*.dat,*.txt)"], ..
         path, "Choose a filename to store numerical data")
         // If no file was selected 
