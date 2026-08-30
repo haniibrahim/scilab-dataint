@@ -23,12 +23,12 @@ function perform_clean()
     if isfile(root_tlbx + "/src/cleaner_src.sce") then
         exec(root_tlbx + "/src/cleaner_src.sce");
         mdelete(root_tlbx + "/src/cleaner_src.sce");
-    end
+     end
 
     if isfile(root_tlbx + "/sci_gateway/cleaner_gateway.sce") then
         exec(root_tlbx + "/sci_gateway/cleaner_gateway.sce");
         mdelete(root_tlbx + "/sci_gateway/cleaner_gateway.sce");
-    end
+     end
 
     if isfile(root_tlbx + "/help/cleaner_help.sce") then
         exec(root_tlbx + "/help/cleaner_help.sce");
@@ -36,10 +36,6 @@ function perform_clean()
         if isdir(root_tlbx + "/jar/") then
             rmdir(root_tlbx + "/jar/", "s");
         end
-    end
-
-    if isdir(root_tlbx + "/inline/") then
-        rmdir(root_tlbx + "/inline/", "s");
     end
 
     if isfile(root_tlbx + "/loader.sce") then
